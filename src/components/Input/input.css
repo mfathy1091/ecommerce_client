@@ -1,0 +1,68 @@
+.form-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 36px;
+  transition: all 0.3s;
+  margin-top: 16px;
+}
+
+.form-group .form-control {
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 2px;
+  width: 100%;
+  transition: all 0.3s;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  
+  outline: none;
+  color: black;
+  font-size: 16px;
+}
+
+
+.form-group .form-label {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  font-size: 16px;
+  color: #aaa;
+  display: block;
+  opacity: 1;
+  /* transform: translateX(10px) translateY(-30px); */
+  pointer-events: none;
+  
+  transform-origin: 0 0;
+  transition: all 0.3s;
+  
+}
+
+
+
+
+.form-control::placeholder {
+  color:transparent;
+}
+
+.form-control:focus
+{
+  box-shadow: none;
+  outline: none;
+  border: 2px solid var(--primary-color);
+}
+
+
+.form-control:focus + .form-label,
+.form-control:not(:placeholder-shown) + .form-label {
+  transform: translateY(-26px) scale(0.9);
+  left: 0;
+}
+
+.form-control:focus + .form-group,
+.form-control:not(:placeholder-shown) + .form-group {
+  top: -500px;
+}
+
+/* .form-group:focus-within {
+  transform: scale(1.05, 1.05);
+} */

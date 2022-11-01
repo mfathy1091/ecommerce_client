@@ -1,0 +1,109 @@
+
+.profile-avatar {
+  margin-bottom: 24px;
+}
+
+.profile-avatar-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3 ease;
+  
+}
+
+.profile-avatar-wrapper:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  
+}
+
+.profile-avatar-wrapper img {
+  box-shadow: 1px 1px 15px -15px #000 !important;
+  transition: all 0.3 ease;
+  border-radius: 50%;
+}
+
+.profile-avatar-wrapper svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 100%;
+  width: 50%;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3 ease;
+}
+
+.profile-avatar-wrapper:hover svg{
+  transition: all 0.3 ease;
+  opacity: 0.9;
+}
+
+.profile-avatar-wrapper:hover img{
+  transition: all 0.3 ease;
+  opacity: 0.3;
+}
+
+
+
+.profile-avatar-input {
+  display: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  padding: 10px;
+  border-bottom: solid 1px rgba(0, 0, 0 , 0.1);
+}
+
+.row:hover {
+  background-color: var(--bg-light-gray);
+  cursor: pointer;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+input:disabled {
+  border: none;
+  font-size: 14px;
+  background-color: inherit;
+}
+
+input {
+  width: 100%;
+}
+
+.save-button {
+  width: 64px;
+  height: 36px;
+  background-color: #228891;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  margin-left: 36px;
+  margin-right: 36px;
+  transition: background-color 0.3s;
+}
+
+.save-button:hover {
+  background-color: #1E4D5F;
+}
+
+.edit-button {
+  margin-left: 36px;
+  margin-right: 36px;
+  color:#228891;
+  transition: color 0.3s;
+}
+
+.edit-button:hover {
+  color:#1E4D5F;
+}

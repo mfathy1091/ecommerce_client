@@ -1,0 +1,35 @@
+.data-table {
+  width: 100%; 
+  margin-top: 2rem;
+  border: 1px solid rgb(243, 243, 243);
+}
+
+table th, table td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.data-row:hover {
+  background: rgb(247, 247, 247);
+}
+
+th {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px;
+  font-family: "DM sans", "sans-serif";
+  color: rgba(0, 0, 0, 0.87);
+}
+
+td {
+  font-size: 14px;
+  font-weight: 500;
+  color: #777E89;
+}
+
+.no-data-message {
+  font-size: 16px;
+  color: #777E89;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}

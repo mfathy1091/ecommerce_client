@@ -1,0 +1,79 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px 10px;
+  width: 200px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  height: 14px;
+  width: 14px;
+  background: #fff;
+  box-shadow: -1px -1px 5px rgba(0, 0, 0, 0.1);
+  transform: rotate(45deg);
+}
+
+.username {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--primary-text-color);
+  line-height: 1.2rem;
+}
+
+.username .role {
+  font-size: 14px;
+  color: var(--secondary-text-color);
+  font-weight: 400;
+}
+
+.dropdown-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px  0;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+
+
+.dropdown-item:hover{
+  background-color: var(--bg-light-gray);
+  cursor: pointer;
+}
+
+.dropdown-menu.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--speed) ease;
+}
+
+.dropdown-menu.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: var(--speed) ease;
+}
+
+

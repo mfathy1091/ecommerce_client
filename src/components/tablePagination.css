@@ -1,0 +1,37 @@
+.pagination-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  color: #898f98;
+  padding-left: 30px;
+  padding-right: 2px;
+}
+.select-limit-label {}
+
+.select-limit {
+  margin-left: 8px;
+  margin-right: 32px;
+}
+
+.pagination-actions {
+  margin-left: 20px;
+}
+
+.pagination-button {
+  font-size: 24px;
+  color: rgb(0, 0, 0, 0.70);
+  padding: 8px;
+}
+
+.pagination-button:hover {
+  background-color: rgb(247, 247, 247);
+  border-radius: 50%;
+}
+
+.pagination-button.disabled {
+  color: rgb(0, 0, 0, 0.26);
+  background-color: transparent;
+  cursor: default;
+}

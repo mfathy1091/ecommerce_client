@@ -1,0 +1,44 @@
+.btn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  opacity: 0.9;
+  justify-content: center;
+  
+  transition: opacity 0.3s;
+}
+
+.btn-block {
+  width: 100%;
+}
+.btn-lg {
+  font-size: 16px;
+  padding: 8px  16px;
+  border-radius: 2px;
+}
+
+.btn-md {
+  font-size: 14px;
+  padding: 6px  14px;
+  border-radius: 2px;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 4px  12px;
+  border-radius: 2px;
+  
+}
+button:hover {
+  opacity: 1;
+}
+
+button:disabled, button:hover:disabled{
+  opacity: .5;
+}
+

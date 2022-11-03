@@ -17,6 +17,11 @@ export const sidebarLinks = [
     title: 'PSS',
     links: [
       {
+        name: 'Products',
+        path: 'products',
+        icon: <MdOutlinePersonSearch />,
+      },
+      {
         name: 'Beneficiaries',
         path: 'beneficiaries',
         icon: <MdOutlinePersonSearch />,

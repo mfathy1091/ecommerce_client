@@ -21,7 +21,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/"
 
   const usernameRef = useRef(); // use it to set focus on username field
-  const fields = ['username', 'Password']
+  
   const inititalDirtyFields = {
     username: false,
     password: false,

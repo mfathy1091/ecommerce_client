@@ -21,6 +21,8 @@ import Unauthorized from './pages/Unauthorized';
 import Page404 from './pages/Page404';
 import BeneficiaryCreate from './pages/beneficiaries/BeneficiaryCreate';
 import BeneficiaryList from './pages/beneficiaries/BeneficiaryList';
+import ProductList from './pages/Products/ProductList'
+import ProductCreate from './pages/Products/ProductCreate';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PersistLogin from './components/PersistLogin';
 import CurrentUserProfile from './pages/CurrentUserProfile/CurrentUserProfile';
@@ -64,26 +66,26 @@ const {isLoggedIn} = useContext(AuthContext);
     <div>
       <Routes>
         <Route path='/login' element={<Login />} />
-        
+        <Route path='/' element={<HomeLayout />}></Route>
         
         {/* <Route path='/' element={isLoggedIn ? <HomeLayout /> : <Login />} /> */}
         
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />} >
-            <Route path='/' element={<HomeLayout />}>
+            <Route path='/admin' element={<AdminLayout />}>
               <Route path='profile' element={<CurrentUserProfile />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="beneficiaries" element={<BeneficiaryList />} />
               <Route path="beneficiaries/:beneficiaryId" element={<BeneficiaryProfile />} />
               <Route path="beneficiaries/create" element={<BeneficiaryCreate />} />
+
+              <Route path="products" element={<ProductList />} />
+              <Route path="products/create" element={<ProductCreate />} />
               
               <Route index path="ps-cases" element={<PsCaseList />} />
               <Route path="ps-cases/:psCaseId/*" element={<PsCaseShow />} />
               <Route path="ps-cases/create/" element={<PsIntakeCreate />} />
               <Route path="*" element={<Page404 />} />
-            </Route>
-
-            <Route path='/admin' element={<AdminLayout />}>
               <Route path="users" element={<UserList />} />
               
               <Route path='users/edit/:userId' element={<UserCreate />} />

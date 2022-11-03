@@ -2,10 +2,11 @@ import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useContext, useState } from 'react';
 import AuthContext from '../contexts/AuthProvider';
-import { useMainContext } from '../contexts/MainProvider'
+import { useMainContext } from '../contexts/MainProvider';
 import { sidebarLinks } from './data/homeData'
 import Modal from '../components/Modal/Modal';
 import { Navbar, Footer, Sidebar, ThemeSettings, LoadingComponent } from '../components'
+import HomeNavBar from './components/HomeNavbar'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -54,26 +55,10 @@ const HomeLayout = () => {
           }
 
 
-          {/* SideBar */}
-          {activeMenu ? (
-            <div className='w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white'>
-              <Sidebar 
-                links={sidebarLinks}
-              />
-            </div>
-          ) : (
-            <div className='w-0 dark:bg-secondary-dark-bg'>
-              <Sidebar 
-                links={sidebarLinks}
-              />
-            </div>
-          )}
 
-
-          {/* Right Section */}
+          {/* Main Section */}
           <div className={
-            `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full
-            ${activeMenu ? 'md:ml-72' : 'flex-2'}`
+            `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full flex-2`
           }>
             <ToastContainer
               position="top-right"
@@ -97,7 +82,7 @@ const HomeLayout = () => {
 
             {/* Navbar */}
             <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
-              <Navbar />
+              <HomeNavBar />
             </div>
 
             {/* Main content */}

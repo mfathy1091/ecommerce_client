@@ -8,4 +8,6 @@
 
 ### colors (light)
 border: #e0e0e0
-text: rgba(0, 0, 0, 0.87)
+text: rgba(0, 0, 0, 0.87)    
+
+//

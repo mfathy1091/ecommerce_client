@@ -1,38 +1,46 @@
-import { FaRoad } from 'react-icons/fa'
 import axios from '../api/axios'
 import useAuth from './useAuth'
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const useRefreshToken = () => {
-  const { setAuth, setCurrentUser } = useAuth();
+  const { setAccessToken, setCurrentUser, setIsLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const refresh = async () => {
-    const res = await axios.get('/refresh-token', {
-      // to allow the request sending along the cookie that contains the refreshToken
-      withCredentials: true 
-    });
+    try {
+      const res = await axios.get('/auth/refresh-token', 
+      {
+        withCredentials: true // to allow the request sending along the cookie that contains the refreshToken
+      });
 
-    setAuth(prev => {
-      console.log(JSON.stringify(prev));
-      console.log(res.data.accessToken);
-      // overrider the auth State by replacing the accessToken field
-      return { 
-        ...prev, 
-        accessToken: res.data.accessToken,
-      }
-    })
-    setCurrentUser(prev => {
-      console.log(JSON.stringify(prev));
-      console.log(res.data.accessToken);
-      // overrider the authSatate by replacing the accessToken field
-      return { 
-        ...prev, 
-        username: res.data.user.username,
-        fullName: res.data.user.fullName,
-        email: res.data.user.email,
-        avatarUrl: res.data.user.avatarUrl
-      }
-    })
-    return res.data.accessToken
+      // after refresh - all states are gone, so re-initiate them
+      setAccessToken(prev => {
+        console.log(`Expired Token: ${JSON.stringify(prev)}`)
+        console.log(`New Token: ${res.data.accessToken}`)
+        return res.data.accessToken;
+      })
+      setCurrentUser(prev => {
+        return { 
+          ...prev, 
+          username: res.data.user.username,
+          fullName: res.data.user.fullName,
+          email: res.data.user.email,
+          avatar: res.data.user.avatar
+        }
+      })
+
+      setIsLoggedIn(true)
+
+      return res
+
+    } catch (err) {
+      console.log(`Error from useRefreshToken: ${err}`)
+      if(err.response.status===401){
+        navigate('/login', { state: { from: location }, replace: true })
+      }     
+    }
+    
   }
 
 

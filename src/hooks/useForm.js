@@ -31,7 +31,7 @@ const useForm = (inititalDirtyFields, schema, callback) => {
     })
     .finally( () => {
       setErrors(updatedErrors)
-      console.log(updatedErrors)
+      // console.log(updatedErrors)
     });
   }
 
@@ -48,7 +48,7 @@ const useForm = (inititalDirtyFields, schema, callback) => {
     })
     .finally( () => {
       setErrors(updatedErrors)
-      console.log(updatedErrors)
+      // console.log(updatedErrors)
     });
     return 
   }
@@ -64,6 +64,8 @@ const useForm = (inititalDirtyFields, schema, callback) => {
           ...values,
           [name]: value,
         }
+        // console.log(updatedValues);
+        
         setValues(updatedValues);
         setIsValid(await schema.isValid(updatedValues));
         
@@ -130,7 +132,7 @@ const useForm = (inititalDirtyFields, schema, callback) => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(values)
+      // console.log(values)
 
       validateAll(values);
 

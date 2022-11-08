@@ -70,7 +70,7 @@ const Navbar = () => {
             onClick={() => handleClick('userProfile')}
           >
             <img
-              src={currentUser.avatarUrl}
+              src={currentUser.avatar}
               alt='avatar-picture'
               className='h-7 w-7 rounded-full'
             />

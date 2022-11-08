@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Header } from '../../components';
+import { Header, Input } from '../../components';
 import Container from '../../components/Container/Container';
-import Table from '../../components/Table';
 import { toast } from 'react-toastify';
 import DataTable from '../../components/DataTable/DataTable';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -18,7 +17,7 @@ const location = useLocation();
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [users, setUsers] = useState([]);
 
-  const [stringToSearch, setStringToSearch] = useState('')
+  const [searchKeyword, setSearchKeyword] = useState('')
 
 
   const handleChangePage = (page) => {
@@ -45,7 +44,7 @@ const location = useLocation();
 
     try {
       const res = await axiosPrivate.get(
-        `/users?stringToSearch=${stringToSearch}&page=${page}&limit=${rowsPerPage}`, 
+        `/users?searchKeyword=${searchKeyword}&page=${page}&limit=${rowsPerPage}`, 
         {
           signal: controller.signal // this allows us to cancel the request
         }
@@ -55,7 +54,9 @@ const location = useLocation();
     } catch (err) {
       console.log(err);
       // if 403 (expired refreshToken)
-      navigate('/login', { state: { from: location }, replace: true })
+      if(err.response.status === 401){
+        navigate('/login', { state: { from: location }, replace: true })
+      }
     }
   }
 
@@ -73,11 +74,11 @@ const location = useLocation();
       isMounted = false;
       controller.abort();
     }
-	}, [stringToSearch, page, rowsPerPage])
+	}, [searchKeyword, page, rowsPerPage])
 
 
   const columns = [
-    { headerText: 'Full Name', value: 'full_name'},
+    { headerLabel: 'Full Name', value: 'full_name'},
   ]
     
   return (
@@ -90,7 +91,7 @@ const location = useLocation();
           </p>
 
           <Button 
-            onClick={() => {navigate('/admin/users/create')}}
+            onClick={() => {navigate('/users/create')}}
             className='btn btn-primary btn-md'
           >
             Add
@@ -98,10 +99,10 @@ const location = useLocation();
         </div>
 
         <div>
-          <input type="text" placeholder='Search'
-            className='my-input' 
-            // onChange={ debounce() }
-            onChange={ e => setStringToSearch(e.target.value) }
+          <Input 
+            type="text" 
+            label='Search'
+            onChange={ e => setSearchKeyword(e.target.value) }
           />
         </div>
 

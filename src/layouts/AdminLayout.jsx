@@ -3,12 +3,20 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthProvider';
 import { useMainContext } from '../contexts/MainProvider'
-import { sidebarLinks } from './data/adminData'
+import { sidebarLinks } from './data'
+import styled from 'styled-components';
 
 import { Navbar, Footer, Sidebar, ThemeSettings, LoadingComponent } from '../components'
 import { Outlet } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const MainContainer = styled.div`
+  padding: 20px;
+  background-color: #f2f1f2;
+  height: 100%;
+  /* #f2f1f2 */
+`
 
 const AdminLayout = () => {
   const authContext = useContext(AuthContext);
@@ -79,13 +87,13 @@ const AdminLayout = () => {
           </div>
 
           {/* Main content */}
-          <div>
+          <MainContainer>
             {themeSettings && <ThemeSettings />}
             {isLoading && <LoadingComponent />}
             <Outlet />
             
 
-          </div>
+          </MainContainer>
 
         </div>
       </div>

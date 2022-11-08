@@ -1,12 +1,13 @@
 .data-table {
   width: 100%; 
-  margin-top: 2rem;
-  border: 1px solid rgb(243, 243, 243);
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
 table th, table td {
   border-bottom: 1px solid #ddd;
   text-align: center;
+  
 }
 
 .data-row:hover {
@@ -16,15 +17,17 @@ table th, table td {
 th {
   font-size: 16px;
   font-weight: 500;
-  padding: 16px;
+  padding: 8px;
   font-family: "DM sans", "sans-serif";
   color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
 }
 
 td {
   font-size: 14px;
   font-weight: 500;
   color: #777E89;
+  background-color: rgb(250,249,250);
 }
 
 .no-data-message {
@@ -32,4 +35,20 @@ td {
   color: #777E89;
   margin-top: 24px;
   margin-bottom: 16px;
+}
+
+.loading-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
 }

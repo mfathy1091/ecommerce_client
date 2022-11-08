@@ -101,7 +101,7 @@ const CurrentUserProfileEdit = () => {
         
         return {
           ...prev, 
-          avatarUrl: res.data.avatarUrl
+          avatar: res.data.avatar
         }
       })
       console.log(res.data.url)
@@ -131,7 +131,7 @@ const CurrentUserProfileEdit = () => {
         username: user,
         password: pwd, 
         confirmPassword: matchPwd,
-        avatar_url: inputFileRef.url? inputFileRef: user.avatarUrl
+        avatar: inputFileRef.url? inputFileRef: user.avatar
       }),
       {
         withCredentials: true
@@ -179,7 +179,7 @@ const CurrentUserProfileEdit = () => {
               onChange={handleChangeAvatar}
             >
               <img
-                src={currentUser.avatarUrl}
+                src={currentUser.avatar}
                 alt='avatar-picture'
               />
               <AiFillCamera />

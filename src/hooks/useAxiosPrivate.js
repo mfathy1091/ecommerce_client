@@ -7,7 +7,7 @@ import useAuth from "./useAuth"
 // attach iterceptors to req and res of privateAxios instance
 const useAxiosPrivate = () => {
   const refreshToken = useRefreshToken();
-  const { auth } = useAuth();
+  const { accessToken } = useAuth();
 
   
   useEffect(() => {
@@ -16,7 +16,7 @@ const useAxiosPrivate = () => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
       config => {
         if(!config.headers['Authorization']){
-          config.headers['Authorization'] = `Bearer ${auth?.accessToken}`
+          config.headers['Authorization'] = `Bearer ${accessToken}`
         }
         // finally return
         return config;
@@ -52,7 +52,7 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     }
-  }, [auth, refreshToken]) // attach them whenever the auth changes or refreshToken() is called
+  }, [accessToken, refreshToken]) // attach them whenever the authValues changes or refreshToken() is called
 
 
   return axiosPrivate

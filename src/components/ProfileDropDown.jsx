@@ -38,7 +38,7 @@ const ProfileDropDown = () => {
       </div>
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
-          src={currentUser.avatarUrl}
+          src={currentUser.avatar}
           alt='avatar-picture'
           className='h-16 w-16 rounded-full'
         />

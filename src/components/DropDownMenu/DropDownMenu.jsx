@@ -62,7 +62,7 @@ const DropDownMenu = () => {
           onClick={() => setOpen(!open)}
         >
           <img
-            src={currentUser.avatarUrl}
+            src={currentUser.avatar}
             alt='avatar-picture'
             className='h-7 w-7 rounded-full'
           />

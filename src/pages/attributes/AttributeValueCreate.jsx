@@ -1,52 +1,46 @@
 import { useNavigate } from "react-router-dom"
 import { Container, Input, LoadingButton } from "../../components"
 import { useState } from "react"
-import { Header } from "../../components"
 // import useAxiosFunction from '../../hooks/useAxiosFunction';
 import { toast } from 'react-toastify';
 import { useMainContext } from "../../contexts/MainProvider"
-import { productSchema } from "../../validations/productSchema";
+import { attributeSchema } from "../../validations/attributeSchema"
 import useForm from "../../hooks/useForm"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { useParams } from "react-router-dom";
 
-const Select = styled.select`
-  padding: 5px;
-  width: 100%;
-  border: 1px  solid #efefef;
-  margin-bottom: 20px;
+const SubHeader = styled.h1`
+  margin: 15px 0 30px 0;
+  font-size: 16px;
+  font-weight: 500;
 `
-
-const TextArea = styled.textarea`
-  
-`
-
-const ProductCreate = () => {
-  const { isIntakeOpened, isLoading, setIsLoading, activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useMainContext();
+const AttributeValueCreate = ({attribute, callBack}) => {
   const [ isSubmitting, setIsSubmitting ] = useState(false); 
   const axiosPrivate = useAxiosPrivate();
-  const navigate = useNavigate()
-  
+  const { attributeId } = useParams();
+
   const inititalDirtyFields = {
-    category_id: false,
     name: false,
-    description: false,
+    slug: false,
   }
 
-
-
-  const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, productSchema, async (e) => {
+  const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, attributeSchema, async (e) => {
     e.preventDefault();
     setIsSubmitting(true)
     try {
-      const res = await axiosPrivate.post('/products', {
-        category_id: values.category_id,
+      const res = await axiosPrivate.post('/attribute-values', {
+        attributeId: attributeId,
         name: values.name,
-        description: values.description,
+        slug: values.slug,
       });
       
       toast.success('Created!')
-      navigate('/products')
+      callBack();
+      setValues({
+        name: '',
+        slug: '',
+      })
 
     } catch (err) {
       console.log(err)
@@ -77,43 +71,28 @@ const ProductCreate = () => {
   
   return (
     <div>
-      <Header category="Products" title="Create Product" />
-      <Container>
+      <SubHeader>Add New Attribute Value</SubHeader>
       <form onSubmit={handleSubmit}>
-      
-      <Select 
-        value={values.category_id}
-        onChange={handleChange}
-        name='category_id'
-      >
-        <option disabled>Select Category</option>
-        <option value='2'>Sunglasses</option>
-        <option value='3'>Eyeglasses</option>
-        <option value='4'>Accessories</option>
-      </Select>
-
       <Input 
           name="name" 
-          label="Product Name" 
+          label="Name" 
           type='text' 
-          placeholder="Product Name" 
-          value={values.name} 
+          placeholder="Name" value={values.name} 
           onChange={handleChange} 
-          // pattern="^"
           required={true}
           error={errors.name}
         />
 
         <Input 
-          name="description" 
-          label="Description" 
+          name="slug" 
+          label="Slug" 
           type='text' 
-          placeholder="Description" 
-          value={values.description} 
-          onChange={handleChange}
+          placeholder="Slug" value={values.slug} 
+          onChange={handleChange} 
           required={true}
-          error={errors.description}
-        />
+          error={errors.slug}
+        />    
+        
 
         <LoadingButton 
           onClick={ (e) => {} }
@@ -122,14 +101,12 @@ const ProductCreate = () => {
           disabled={!isValid}
           loading={isSubmitting}
         >
-          Create  
+          Add New {attribute.name}
         </LoadingButton>
       </form>
         
-
-      </Container>
     </div>
   )
 }
 
-export default ProductCreate
+export default AttributeValueCreate

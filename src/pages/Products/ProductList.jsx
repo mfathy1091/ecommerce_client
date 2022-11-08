@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Header } from '../../components';
-import Table from '../../components/Table';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import axios from '../../api/axios';
 import { Container, Button, Input, DataTable } from '../../components';
 
 const ProductList = () => {
@@ -16,7 +16,7 @@ const location = useLocation();
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [products, setProducts] = useState([]);
 
-  const [stringToSearch, setStringToSearch] = useState('')
+  const [searchKeyword, setSearchKeyword] = useState('')
 
 
   const handleChangePage = (page) => {
@@ -43,7 +43,7 @@ const location = useLocation();
 
     try {
       const res = await axiosPrivate.get(
-        `/products?stringToSearch=${stringToSearch}&page=${page}&limit=${rowsPerPage}`, 
+        `/products?searchKeyword=${searchKeyword}&page=${page}&limit=${rowsPerPage}`, 
         {
           signal: controller.signal // this allows us to cancel the request
         }
@@ -52,8 +52,9 @@ const location = useLocation();
       isMounted && setTotalRows(res.data.totalRows);
     } catch (err) {
       console.log(err);
-      // if 401 (expired refreshToken)
-      navigate('/login', { state: { from: location }, replace: true })
+      if(err.response.status===401){
+        // navigate('/login', { state: { from: location }, replace: true })
+      }      
     }
 
 
@@ -73,18 +74,18 @@ const location = useLocation();
       isMounted = false;
       controller.abort();
     }
-	}, [stringToSearch, page, rowsPerPage])
+	}, [searchKeyword, page, rowsPerPage])
 
 
   const columns = [
-    { headerText: 'Name', value: 'product_name'},
-    { headerText: 'Price', value: 'price' },
+    { headerLabel: 'Name', value: 'name'},
   ]
 
   const handleClick = (e) => {
     e.preventDefault();
     console.log('button clicked')
   }
+
 
   return (
     <div>
@@ -109,7 +110,7 @@ const location = useLocation();
           <Input 
             type="text" 
             label='Search'
-            onChange={ e => setStringToSearch(e.target.value) }
+            onChange={ e => setSearchKeyword(e.target.value) }
           />
         </div>
 
@@ -124,7 +125,6 @@ const location = useLocation();
           onRowsPerPageChange={handleChangeRowsPerPage}
           hoverable={true}
         />
-
 
 
       </Container>

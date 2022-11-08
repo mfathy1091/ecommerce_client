@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api'
+const BASE_URL = 'http://localhost:5000/api'
 // import success from '@/interceptors/response/success.js'
 // import failure from '@/interceptors/response/failure.js'
 
@@ -18,4 +18,3 @@ export const axiosPrivate = axios.create({
 
 
 // HTTP.interceptors.response.use(success, failure)
-

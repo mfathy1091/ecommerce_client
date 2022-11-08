@@ -2,11 +2,12 @@ import axios from "../api/axios";
 import useAuth from "./useAuth";
 
 const useLogout = () => {
-  const { setAuth, setCurrentUser } = useAuth();
+  const { setAccessToken, setCurrentUser, setIsLoggedIn } = useAuth();
 
   const logout = async () => {
-    setAuth({});
+    setAccessToken('');
     setCurrentUser({});
+    setIsLoggedIn(false);
     try {
       const res = await axios.post('auth/logout', {
         withcredentials: true // to send the jwt cookie with the request

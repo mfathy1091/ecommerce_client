@@ -7,7 +7,6 @@ import DataTable from '../../../components/DataTable/DataTable';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useMainContext } from "../../../contexts/MainProvider"
-import TablePagination from '../../../components/TablePagination';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import Button from '../../../components/Button/Button';
 
@@ -60,24 +59,24 @@ const PsCaseList = () => {
   const psCasesGrid = [
     { 
       field: 'name',
-      headerText: 'Name',
+      headerLabel: 'Name',
       width: '150',
       textAlign: 'Center' 
     },
 		{ 
       field: 'file_id',
-      headerText: 'File #',
+      headerLabel: 'File #',
       width: '150',
       textAlign: 'Center' 
     },
   ];
 
   const columns = [
-    { headerText: 'Referral Source', value: 'referral_source'},
-    { headerText: 'Referral Date', value: 'referral_date'},
-    { headerText: 'Created By', value: 'created_by'},
-    { headerText: 'Assigned To', value: 'assigned_to'},
-    { headerText: 'Assigned By', value: 'assigned_by'},
+    { headerLabel: 'Referral Source', value: 'referral_source'},
+    { headerLabel: 'Referral Date', value: 'referral_date'},
+    { headerLabel: 'Created By', value: 'created_by'},
+    { headerLabel: 'Assigned To', value: 'assigned_to'},
+    { headerLabel: 'Assigned By', value: 'assigned_by'},
   ]
     
   return (

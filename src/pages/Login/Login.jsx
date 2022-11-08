@@ -3,6 +3,8 @@ import './login.css'
 import { useRef, useState, useEffect, useContext } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 import axios from '../../api/axios';
+import {axiosPublic, axiosPrivate} from '../../api/axiosNew'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
@@ -11,8 +13,9 @@ import useForm from '../../hooks/useForm';
 import { validate } from '../../utils/validate';
 import { loginSchema } from '../../validations/LoginValidation';
 
+
 const Login = () => {
-  const { setAuth, setCurrentUser, setIsLoggedIn } = useAuth();
+  const { accessToken, setAccessToken, setCurrentUser, setIsLoggedIn } = useAuth();
   const [ isSubmitting, setIsSubmitting ] = useState(false); 
 
   const navigate = useNavigate();
@@ -30,32 +33,28 @@ const Login = () => {
   const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, loginSchema, async (e) => {
     e.preventDefault();
 
-    
-
-
     setIsSubmitting(true);
 
     try {
       const res = await axios.post(
         "/auth/login",
-        JSON.stringify(values), 
         {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true
-        }
+          username: values.username,
+          password: values.password,
+        },
+        { withCredentials: true } // to send along the cookie contains the refreshToken
       );
-      const accessToken = res?.data?.accessToken;
-      setAuth( {accessToken} );
+      // axiosPrivate.defaults.headers.common['Authorization'] = `Bearer ${res.data['accessToken']}`
+      setAccessToken(res?.data?.accessToken);
       setCurrentUser(res?.data?.user)
       setIsLoggedIn(true);
-      console.log(res?.data?.user)
 
       navigate(from, { replace: true })
 
     
 
     } catch (err) {
-      console.log(err)
+      //console.log(err)
       const responseStatus = err?.response?.status;
       // handle error with no response
       if(responseStatus === 0){

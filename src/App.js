@@ -11,16 +11,18 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import UserList from './pages/users/UserList';
 import UserCreate from './pages/users/UserCreate';
-import { HomeLayout, AdminLayout } from './layouts'
-import BeneficiaryProfile from './pages/beneficiaries/BeneficiaryProfile';
+import AdminLayout from './layouts/AdminLayout'
+import BeneficiaryProfile from './pages/attributes/BeneficiaryProfile';
 import PsCaseShow from './pages/PsCases/PsCaseShow/PsCaseShow';
 import PsCaseList from './pages/PsCases/PsCaseList/PsCaseList';
 import PsIntakeCreate from './pages/PsCases/PsIntakeCreate';
 import RequireAuth from './components/RequireAuth';
 import Unauthorized from './pages/Unauthorized';
 import Page404 from './pages/Page404';
-import BeneficiaryCreate from './pages/beneficiaries/BeneficiaryCreate';
-import BeneficiaryList from './pages/beneficiaries/BeneficiaryList';
+import AttributeShow from './pages/attributes/AttributeShow';
+import AttributeCreate from './pages/attributes/AttributeCreate';
+import AttributeValueCreate from './pages/attributes/AttributeValueCreate';
+import AttributeList from './pages/attributes/AttributeList';
 import ProductList from './pages/Products/ProductList'
 import ProductCreate from './pages/Products/ProductCreate';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -66,19 +68,18 @@ const {isLoggedIn} = useContext(AuthContext);
     <div>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<HomeLayout />}></Route>
         
         {/* <Route path='/' element={isLoggedIn ? <HomeLayout /> : <Login />} /> */}
         
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />} >
-            <Route path='/admin' element={<AdminLayout />}>
+            <Route path='/' element={<AdminLayout />}>
               <Route path='profile' element={<CurrentUserProfile />} />
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="beneficiaries" element={<BeneficiaryList />} />
-              <Route path="beneficiaries/:beneficiaryId" element={<BeneficiaryProfile />} />
-              <Route path="beneficiaries/create" element={<BeneficiaryCreate />} />
-
+              <Route path="attributes" element={<AttributeList />} />
+              <Route path="attributes/show/:attributeId" element={<AttributeShow />} />
+              <Route path="attributes/create" element={<AttributeCreate />} />
+              <Route path="attributes/:attributeId/values/create" element={<AttributeValueCreate />} />
               <Route path="products" element={<ProductList />} />
               <Route path="products/create" element={<ProductCreate />} />
               
@@ -87,6 +88,8 @@ const {isLoggedIn} = useContext(AuthContext);
               <Route path="ps-cases/create/" element={<PsIntakeCreate />} />
               <Route path="*" element={<Page404 />} />
               <Route path="users" element={<UserList />} />
+
+              <Route path="beneficiaries/:beneficiaryId" element={<BeneficiaryProfile />} />
               
               <Route path='users/edit/:userId' element={<UserCreate />} />
               <Route path='users/create' element={<UserCreate />} />

@@ -2,20 +2,11 @@ import './dataTable.css'
 import { FaEye, FaEdit } from 'react-icons/fa'
 
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import TablePagination from '../TablePagination/TablePagination'
 
-const DataTable = (props) => {
-  const { columns, rows, path, totalRows, page, rowsPerPage, onPageChange, onRowsPerPageChange, hoverable } = props;
-  const [isLoading, setIsLoading] = useState(true);
+const Table = (props) => {
+  const { columns, rows, path, hoverable } = props;
 
-  const handleChangePage = (page) => {
-    onPageChange(page);
-  }
-
-  const handleChangeRowsPerPage = (rowsPerPage) => {
-    onRowsPerPageChange(rowsPerPage);
-  }
+  console.log(rows);
 
   if(rows?.length >= 1){
     return (
@@ -30,18 +21,6 @@ const DataTable = (props) => {
           <tbody>
             {rows.map((row, index) => <TableRow key={index} row={row} columns={columns} path={path} hoverable={hoverable} />)}
             
-            <tr>
-              <td colSpan={columns.length+1}>
-                <TablePagination
-                  totalRows={totalRows}
-                  page={page}
-                  rowsPerPage={rowsPerPage} 
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </td>
-              
-            </tr>
           </tbody>
         </table>
       </div>
@@ -66,7 +45,12 @@ const TableRow = ({row, columns, path, hoverable}) => {
   return (
     <tr className={`data-row ${isNew ? 'new' : ''}`}>
       {columns.map((columnItem, index) => {
-        return <td key={index}>{row[`${columnItem.value}`]}</td>
+        return(
+          
+          <td key={index}>
+            {row[`${columnItem.value}`]}
+          </td>
+        ) 
       })}
       <td>
         <button
@@ -88,4 +72,4 @@ const TableRow = ({row, columns, path, hoverable}) => {
   )
 }
 
-export default DataTable
+export default Table

@@ -6,13 +6,13 @@ const AuthContext = createContext({});
 // (2) combine the context and reducer through having AuthProvider
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({});
+  const [accessToken, setAccessToken] = useState();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // return provider
   return (
-    <AuthContext.Provider value={{ auth, setAuth, currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{ accessToken, setAccessToken, currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn }}>
       { children }
     </AuthContext.Provider>
   )

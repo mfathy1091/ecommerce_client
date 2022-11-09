@@ -16,6 +16,11 @@ export const sidebarLinks = [
     title: 'Products',
     links: [
       {
+        name: 'Products',
+        path: 'products',
+        icon: <FiFolder />,
+      },
+      {
         name: 'attributes',
         path: 'attributes',
         icon: <FiFolder />,

@@ -1,7 +1,5 @@
 .data-table {
   width: 100%; 
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
 }
 
 table th, table td {
@@ -12,15 +10,6 @@ table th, table td {
 
 .data-row:hover {
   background: rgb(247, 247, 247);
-}
-
-th {
-  font-size: 16px;
-  font-weight: 500;
-  padding: 8px;
-  font-family: "DM sans", "sans-serif";
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #fff;
 }
 
 td {

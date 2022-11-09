@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { Container, Button, Input, Table, Header } from '../../components';
+import { Container, Button, Input, Table, PageHeader } from '../../components';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
@@ -61,7 +61,7 @@ const navigate = useNavigate();
       
 
       <HeaderContainer>
-      <Header>Attributes</Header>
+        <PageHeader category="" title="Attributes" />
         <Button 
           onClick={() => {navigate('/attributes/create')}}
           className='btn btn-primary btn-md'

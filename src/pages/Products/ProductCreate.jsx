@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import { Container, Input, LoadingButton } from "../../components"
+import { Container, Input, LoadingButton, PageHeader } from "../../components"
 import { useState } from "react"
-import { Header } from "../../components"
 // import useAxiosFunction from '../../hooks/useAxiosFunction';
 import { toast } from 'react-toastify';
 import { useMainContext } from "../../contexts/MainProvider"
@@ -77,57 +76,53 @@ const ProductCreate = () => {
   
   return (
     <div>
-      <Header category="Products" title="Create Product" />
-      <Container>
+      <PageHeader category="Products" title="Create Product" />
       <form onSubmit={handleSubmit}>
       
-      <Select 
-        value={values.category_id}
-        onChange={handleChange}
-        name='category_id'
-      >
-        <option disabled>Select Category</option>
-        <option value='2'>Sunglasses</option>
-        <option value='3'>Eyeglasses</option>
-        <option value='4'>Accessories</option>
-      </Select>
-
-      <Input 
-          name="name" 
-          label="Product Name" 
-          type='text' 
-          placeholder="Product Name" 
-          value={values.name} 
-          onChange={handleChange} 
-          // pattern="^"
-          required={true}
-          error={errors.name}
-        />
+        <Select 
+          value={values.category_id}
+          onChange={handleChange}
+          name='category_id'
+        >
+          <option disabled>Select Category</option>
+          <option value='2'>Sunglasses</option>
+          <option value='3'>Eyeglasses</option>
+          <option value='4'>Accessories</option>
+        </Select>
 
         <Input 
-          name="description" 
-          label="Description" 
-          type='text' 
-          placeholder="Description" 
-          value={values.description} 
-          onChange={handleChange}
-          required={true}
-          error={errors.description}
-        />
+            name="name" 
+            label="Product Name" 
+            type='text' 
+            placeholder="Product Name" 
+            value={values.name} 
+            onChange={handleChange} 
+            // pattern="^"
+            required={true}
+            error={errors.name}
+          />
 
-        <LoadingButton 
-          onClick={ (e) => {} }
-          className='btn btn-primary btn-md'
-          disabledOnLoading={true}
-          disabled={!isValid}
-          loading={isSubmitting}
-        >
-          Create  
-        </LoadingButton>
-      </form>
-        
+          <Input 
+            name="description" 
+            label="Description" 
+            type='text' 
+            placeholder="Description" 
+            value={values.description} 
+            onChange={handleChange}
+            required={true}
+            error={errors.description}
+          />
 
-      </Container>
+          <LoadingButton 
+            onClick={ (e) => {} }
+            className='btn btn-primary btn-md'
+            disabledOnLoading={true}
+            disabled={!isValid}
+            loading={isSubmitting}
+          >
+            Create  
+          </LoadingButton>
+        </form>
     </div>
   )
 }

@@ -1,10 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Header } from '../../components';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import axios from '../../api/axios';
-import { Container, Button, Input, DataTable } from '../../components';
+import { Container, Button, Input, DataTable, PageHeader } from '../../components';
+import styled from 'styled-components';
+
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const ProductList = () => {
 const axiosPrivate = useAxiosPrivate();
@@ -89,46 +95,35 @@ const location = useLocation();
 
   return (
     <div>
-      <Header category="Page" title="Products" />
-      <Container>
-        <div className='card-header flex justify-between mb-5'>
-          <p className='text-xl tracking-tight text-slate-900 dark:text-neutral-200'>
-            Products
-          </p>
+      <HeaderContainer>
+        <PageHeader category="" title="Products" />
+        <Button 
+          onClick={() => {navigate('/products/create')}}
+          className='btn btn-primary btn-md'
+        >
+          Add
+        </Button>
+      </HeaderContainer>
 
-
-          <Button 
-            onClick={() => {navigate('/products/create')}}
-            className='btn btn-primary btn-md'
-          >
-            Add
-          </Button>
-
-        </div>
-
-        <div>
-          <Input 
-            type="text" 
-            label='Search'
-            onChange={ e => setSearchKeyword(e.target.value) }
-          />
-        </div>
-
-        <DataTable 
-          columns={columns}
-          rows={products}
-          path='/products'
-          totalRows={totalRows}
-          page={page}
-          rowsPerPage={rowsPerPage} 
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          hoverable={true}
+      <div>
+        <Input 
+          type="text" 
+          label='Search'
+          onChange={ e => setSearchKeyword(e.target.value) }
         />
+      </div>
 
-
-      </Container>
-
+      <DataTable 
+        columns={columns}
+        rows={products}
+        path='/products'
+        totalRows={totalRows}
+        page={page}
+        rowsPerPage={rowsPerPage} 
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        hoverable={true}
+      />
 
     </div>
   );

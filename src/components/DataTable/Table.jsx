@@ -1,7 +1,20 @@
 import './dataTable.css'
 import { FaEye, FaEdit } from 'react-icons/fa'
-
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+
+const Container = styled.div`
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+`
+const HeaderLabel = styled.th`
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px;
+  font-family: "DM sans", "sans-serif";
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+  `
 
 const Table = (props) => {
   const { columns, rows, path, hoverable } = props;
@@ -10,12 +23,14 @@ const Table = (props) => {
 
   if(rows?.length >= 1){
     return (
-      <div>
+      <Container>
         <table className='data-table'>
           <thead>
             <tr>
-              {columns.map((column, index) => <th key={index}>{column.headerLabel}</th>)}
-              <th>Action</th>
+              {columns.map((column, index) => 
+                <HeaderLabel key={index}>{column.headerLabel}</HeaderLabel>
+              )}
+              <HeaderLabel>Action</HeaderLabel>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +38,7 @@ const Table = (props) => {
             
           </tbody>
         </table>
-      </div>
+      </Container>
     )
   }else{
     return (

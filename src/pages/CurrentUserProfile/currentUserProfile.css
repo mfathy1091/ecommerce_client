@@ -77,25 +77,8 @@ input:disabled {
   background-color: inherit;
 }
 
-input {
-  width: 100%;
-}
 
-.save-button {
-  width: 64px;
-  height: 36px;
-  background-color: #228891;
-  border-radius: 4px;
-  color: white;
-  font-size: 14px;
-  margin-left: 36px;
-  margin-right: 36px;
-  transition: background-color 0.3s;
-}
 
-.save-button:hover {
-  background-color: #1E4D5F;
-}
 
 .edit-button {
   margin-left: 36px;

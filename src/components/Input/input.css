@@ -1,6 +1,6 @@
 .form-group {
   position: relative;
-  width: 100%;
+  width: 50%;
   margin-bottom: 36px;
   transition: all 0.3s;
   margin-top: 16px;
@@ -31,7 +31,6 @@
   opacity: 1;
   /* transform: translateX(10px) translateY(-30px); */
   pointer-events: none;
-  
   transform-origin: 0 0;
   transition: all 0.3s;
   
@@ -67,3 +66,24 @@
 /* .form-group:focus-within {
   transform: scale(1.05, 1.05);
 } */
+
+
+.instructions {
+  font-size: 14px;
+  border-radius: 0.5rem;
+  background: rgb(255, 240, 240);
+  color: red;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -5px;
+  margin-bottom: 5px;
+}
+
+.instructions > svg {
+  margin-right: 0.5rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}

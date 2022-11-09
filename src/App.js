@@ -15,7 +15,6 @@ import AdminLayout from './layouts/AdminLayout'
 import BeneficiaryProfile from './pages/attributes/BeneficiaryProfile';
 import PsCaseShow from './pages/PsCases/PsCaseShow/PsCaseShow';
 import PsCaseList from './pages/PsCases/PsCaseList/PsCaseList';
-import PsIntakeCreate from './pages/PsCases/PsIntakeCreate';
 import RequireAuth from './components/RequireAuth';
 import Unauthorized from './pages/Unauthorized';
 import Page404 from './pages/Page404';
@@ -85,7 +84,6 @@ const {isLoggedIn} = useContext(AuthContext);
               
               <Route index path="ps-cases" element={<PsCaseList />} />
               <Route path="ps-cases/:psCaseId/*" element={<PsCaseShow />} />
-              <Route path="ps-cases/create/" element={<PsIntakeCreate />} />
               <Route path="*" element={<Page404 />} />
               <Route path="users" element={<UserList />} />
 

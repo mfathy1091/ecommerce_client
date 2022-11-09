@@ -21,7 +21,6 @@ const TextArea = styled.textarea`
 `
 
 const ProductCreate = () => {
-  const { isIntakeOpened, isLoading, setIsLoading, activeMenu, themeSettings, setThemeSettings, currentColor, currentMode } = useMainContext();
   const [ isSubmitting, setIsSubmitting ] = useState(false); 
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate()
@@ -78,8 +77,8 @@ const ProductCreate = () => {
     <div>
       <PageHeader category="Products" title="Create Product" />
       <form onSubmit={handleSubmit}>
-      
-        <Select 
+
+      <Select 
           value={values.category_id}
           onChange={handleChange}
           name='category_id'
@@ -92,9 +91,9 @@ const ProductCreate = () => {
 
         <Input 
             name="name" 
-            label="Product Name" 
+            label="User Name" 
             type='text' 
-            placeholder="Product Name" 
+            placeholder="User Name" 
             value={values.name} 
             onChange={handleChange} 
             // pattern="^"
@@ -112,6 +111,7 @@ const ProductCreate = () => {
             required={true}
             error={errors.description}
           />
+          
 
           <LoadingButton 
             onClick={ (e) => {} }

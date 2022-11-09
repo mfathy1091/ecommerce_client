@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './input.css'
 import { validateInput } from '../../utils/validator';
 import { FaInfoCircle } from 'react-icons/fa';
-
+import styled from 'styled-components';
 
 const Input = ({ id, name, error,value, label, validators, type='text', onChange, className }) => {
   

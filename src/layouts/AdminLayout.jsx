@@ -12,6 +12,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MainContainer = styled.div`
+  display: flex;
+  position: relative;
+`
+const Left = styled.div`
+  position: fixed;
+  background-color: var(--bg-secondary-dark-bg); 
+  width: 18rem;
+`
+
+const Right = styled.div`
+min-height: 100vh;
+width: 100%;
+background-color: var(--bg-main-dark-bg);
+`
+
+
+const PageContainer = styled.div`
   padding: 20px;
   background-color: #f2f1f2;
   height: 100%;
@@ -25,7 +42,7 @@ const AdminLayout = () => {
 
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
-      <div className='flex relative dark:bg-main-dark-bg'>
+      <MainContainer>
 
         {/* Settings Icon */}
         {authContext.isLoggedIn &&
@@ -44,28 +61,16 @@ const AdminLayout = () => {
         }
 
 
-        {/* SideBar */}
-        {activeMenu ? (
-          <div className='w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white'>
-            <Sidebar 
-              links={sidebarLinks}
-            />
-          </div>
-        ) : (
-          <div className='w-0 dark:bg-secondary-dark-bg'>
-            <Sidebar 
-              links={sidebarLinks}
-            />
-            
-          </div>
-        )}
+        {/* Sidebar */}
+        {activeMenu && 
+          <Left>
+            <Sidebar links={sidebarLinks}/>
+          </Left>
+        }
 
 
         {/* Right Section */}
-        <div className={
-          `dark:bg-main-dark-bg bg-main-bg min-h-screen w-full 
-					${activeMenu ? 'md:ml-72' : 'flex-2'}`
-        }>
+        <Right className={`${activeMenu ? 'md:ml-72' : 'flex-2'}`}>
 
           <ToastContainer
             position="top-right"
@@ -87,16 +92,16 @@ const AdminLayout = () => {
           </div>
 
           {/* Main content */}
-          <MainContainer>
+          <PageContainer>
             {themeSettings && <ThemeSettings />}
             {isLoading && <LoadingComponent />}
             <Outlet />
             
 
-          </MainContainer>
+          </PageContainer>
 
-        </div>
-      </div>
+        </Right>
+      </MainContainer>
 
     </div>
   )

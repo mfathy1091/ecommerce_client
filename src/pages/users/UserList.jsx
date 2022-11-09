@@ -1,11 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Header, Input } from '../../components';
-import Container from '../../components/Container/Container';
 import { toast } from 'react-toastify';
-import DataTable from '../../components/DataTable/DataTable';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import Button from '../../components/Button/Button';
+
+import { Container, Button, Input, DataTable, PageHeader } from '../../components';
+import styled from 'styled-components';
+
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const UserList = () => {
 const axiosPrivate = useAxiosPrivate();
@@ -83,45 +88,35 @@ const location = useLocation();
     
   return (
     <div>
-      <Header category="Page" title="Users" />
-      <Container>
-        <div className='card-header flex justify-between mb-5'>
-          <p className='text-xl tracking-tight text-slate-900 dark:text-neutral-200'>
-            Users
-          </p>
+      <HeaderContainer>
+        <PageHeader category="" title="Users" />
+        <Button 
+          onClick={() => {navigate('/users/create')}}
+          className='btn btn-primary btn-md'
+        >
+          Add
+        </Button>
+      </HeaderContainer>
 
-          <Button 
-            onClick={() => {navigate('/users/create')}}
-            className='btn btn-primary btn-md'
-          >
-            Add
-          </Button>
-        </div>
-
-        <div>
-          <Input 
-            type="text" 
-            label='Search'
-            onChange={ e => setSearchKeyword(e.target.value) }
-          />
-        </div>
-
-        <DataTable 
-          columns={columns}
-          rows={users}
-          path='/admin/users'
-          totalRows={totalRows}
-          page={page}
-          rowsPerPage={rowsPerPage} 
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          hoverable={true}
+      <div>
+        <Input 
+          type="text" 
+          label='Search'
+          onChange={ e => setSearchKeyword(e.target.value) }
         />
+      </div>
 
-
-
-      </Container>
-
+      <DataTable 
+        columns={columns}
+        rows={users}
+        path='/admin/users'
+        totalRows={totalRows}
+        page={page}
+        rowsPerPage={rowsPerPage} 
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        hoverable={true}
+      />
 
     </div>
   );

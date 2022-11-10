@@ -10,6 +10,11 @@ export const sidebarLinks = [
         path: 'users',
         icon: <FiFolder />,
       },
+      {
+        name: 'roles',
+        path: 'roles',
+        icon: <FiFolder />,
+      },
     ]
   },
   {

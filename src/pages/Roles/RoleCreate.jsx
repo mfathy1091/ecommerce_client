@@ -4,47 +4,33 @@ import { useState } from "react"
 // import useAxiosFunction from '../../hooks/useAxiosFunction';
 import { toast } from 'react-toastify';
 import { useMainContext } from "../../contexts/MainProvider"
-import { productSchema } from "../../validations/productSchema";
+import { roleSchema } from "../../validations/roleSchema";
 import useForm from "../../hooks/useForm"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import styled from 'styled-components'
 
-const SelectContainer = styled.select`
-  padding: 5px;
-  width: 100%;
-  border: 1px  solid #efefef;
-  margin-bottom: 20px;
-`
 
-const TextArea = styled.textarea`
-  
-`
-
-const ProductCreate = () => {
+const RoleCreate = () => {
   const [ isSubmitting, setIsSubmitting ] = useState(false); 
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate()
   
   const inititalDirtyFields = {
-    category_id: false,
     name: false,
-    description: false,
   }
 
 
 
-  const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, productSchema, async (e) => {
+  const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, roleSchema, async (e) => {
     e.preventDefault();
     setIsSubmitting(true)
     try {
-      const res = await axiosPrivate.post('/products', {
-        category_id: values.category_id,
+      const res = await axiosPrivate.post('/roles', {
         name: values.name,
-        description: values.description,
       });
       
       toast.success('Created!')
-      navigate('/products')
+      navigate('/roles')
 
     } catch (err) {
       console.log(err)
@@ -75,43 +61,19 @@ const ProductCreate = () => {
   
   return (
     <div>
-      <PageHeader category="Products" title="Create Product" />
+      <PageHeader category="Roles" title="Create Role" />
       <form onSubmit={handleSubmit}>
-
-        <SelectContainer 
-          value={values.category_id}
-          onChange={handleChange}
-          name='category_id'
-        >
-          <option disabled>Select Category</option>
-          <option value='2'>Sunglasses</option>
-          <option value='3'>Eyeglasses</option>
-          <option value='4'>Accessories</option>
-        </SelectContainer>
-
         <Input 
             name="name" 
-            label="User Name" 
+            label="Name" 
             type='text' 
-            placeholder="User Name" 
+            placeholder="Name" 
             value={values.name} 
             onChange={handleChange} 
             // pattern="^"
             required={true}
             error={errors.name}
           />
-
-          <Input 
-            name="description" 
-            label="Description" 
-            type='text' 
-            placeholder="Description" 
-            value={values.description} 
-            onChange={handleChange}
-            required={true}
-            error={errors.description}
-          />
-          
 
           <LoadingButton 
             onClick={ (e) => {} }
@@ -127,4 +89,4 @@ const ProductCreate = () => {
   )
 }
 
-export default ProductCreate
+export default RoleCreate

@@ -24,6 +24,9 @@ import AttributeValueCreate from './pages/attributes/AttributeValueCreate';
 import AttributeList from './pages/attributes/AttributeList';
 import ProductList from './pages/Products/ProductList'
 import ProductCreate from './pages/Products/ProductCreate';
+
+import RoleList from './pages/Roles/RoleList'
+import RoleCreate from './pages/Roles/RoleCreate';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PersistLogin from './components/PersistLogin';
 import CurrentUserProfile from './pages/CurrentUserProfile/CurrentUserProfile';
@@ -81,7 +84,9 @@ const {isLoggedIn} = useContext(AuthContext);
               <Route path="attributes/:attributeId/values/create" element={<AttributeValueCreate />} />
               <Route path="products" element={<ProductList />} />
               <Route path="products/create" element={<ProductCreate />} />
-              
+              <Route path="roles" element={<RoleList />} />
+              <Route path="roles/create" element={<RoleCreate />} />
+
               <Route index path="ps-cases" element={<PsCaseList />} />
               <Route path="ps-cases/:psCaseId/*" element={<PsCaseShow />} />
               <Route path="*" element={<Page404 />} />

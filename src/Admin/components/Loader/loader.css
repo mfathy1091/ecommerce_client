@@ -1,0 +1,19 @@
+.loader {
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  animation: an1 0.8s ease infinite;
+}
+
+@keyframes an1 {
+  0% {
+    transform: rotate(0turn);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+

@@ -1,5 +1,5 @@
-import { AuthProvider } from './contexts/AuthProvider';
-import { MainProvider } from './contexts/MainProvider'
+import { AuthProvider } from './Admin/contexts/AuthProvider';
+import { MainProvider } from './Admin/contexts/MainProvider'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

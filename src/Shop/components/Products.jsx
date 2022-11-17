@@ -5,10 +5,13 @@ import ProductItem from './ProductItem'
 import { publicAxios } from '../api'
 
 const Container = styled.div`
-  display: flex;
-  padding: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  /* width: 1200px; */
+  /* height: 100vh; */
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+  padding: 20px 5%;
 `
 const Products = ({ catSlug, filters, sort }) => {
   const [products, setProducts] = useState([]);

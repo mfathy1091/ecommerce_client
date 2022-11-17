@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Announcement from '../components/Announcement'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
@@ -8,14 +8,16 @@ import Slider from '../components/Slider'
 import styled from 'styled-components'
 import image1 from './../../assets/10_client_background.png'
 import image2 from './../../assets/12_client_background.jpg'
+import ImageSection from '../components/ImageSection'
+import Slider2 from '../components/Slider2'
+import { BsWindowSidebar } from 'react-icons/bs'
+import Locations from '../components/Locations'
+import Slider3 from '../components/Slider3'
+import Services from '../components/Services'
+import Footer2 from '../components/Footer2'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-`
 const Cell = styled.div`
-  background-color: #f7f7f7;
+  background-color: #f2f2f2;
   min-width: 50%;
   display: flex;
   align-items: center;
@@ -24,101 +26,86 @@ const Cell = styled.div`
 
 const Row = styled.div`
   display: flex;
- @media (max-width: 768px){
-  flex-direction: column;
-  ${Cell} {
-    min-width: 100vw;
+  @media (max-width: 768px){
+    flex-direction: column;
+    ${Cell} {
+      min-width: 100vw;
   }
- }
+}
 `
 
 
-
-
-
-const Image = styled.img`
-  width: 100%;
-`
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
-const Title = styled.span`
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
-`
-const Paragraph = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  color: rgb(153, 153, 153);
-  line-height: 27px;
-  text-align: center;
-  margin: 30px 0;
-  @media(max-width: 768px) {
-    margin: 10px 0;
-  }
-`
-
-const Link = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-  color: rgb(153, 153, 153);
-  text-decoration: underline;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  &:hover {
-    color: white;
-    border-radius: 8px;
-    background-color: teal;
-    padding: 8px;
-    text-decoration: none;
-  }
-`
 
 const Home = () => {
+  const contactRef = useRef(null);
+
+  const navbarLinks = [
+    { 
+      url: '/',
+      label:'Home' 
+    }, 
+    { 
+      url: '', 
+      label: 'Sunglasses',
+      links : [
+        { url: '/products/eyeglasses/Men', label: 'Men', className: 'dropdown-link'  },
+        { url: '/products/eyeglasses/Women', label: 'Women', className: 'dropdown-link' },
+      ]
+    },
+    {
+      url: '/products/eyeglasses', 
+      label: 'Eyeglasses' 
+    },
+  ]
+
+  const navbarBtns = [
+    { 
+      ref: contactRef,
+      label: 'Contact', 
+    },
+  ]
+
+  const scrollToRef = (elementRef) => {
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: 'smooth'
+    })
+  }
+
   return (
     <div>
+      {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
       <Announcement />
-      <Navbar />
+      <Navbar 
+        links={navbarLinks} 
+        scrollFunc={scrollToRef} 
+        contactRef={contactRef} 
+      />
+      <ImageSection id='home'/>
+      <Slider3 
+        imageSrc='/images/img-home-11.jpg' 
+        title={'TRENDY WOMEN’S SUNGLASSES'} 
+        subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
+        url={'/products/sunglasses/women'}
+      />
+      <Products catSlug={'sunglasses'} filters={[]} sort={[]} />
+
+      <Slider3 
+        imageSrc='/images/img-home-12.jpg' 
+        title={"MEN'S EYEWARE"} 
+        subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
+        flipped={true} 
+        url={'/products/eyeglasses'}
+      />
+      <Products catSlug={'eyeglasses'} filters={[]} sort={[]} />
+
+    
       <Slider />
       <Categories />
-      <Container>
-        <Row>
-          <Cell>
-            <Details>
-              <Title>Eyeglases</Title>
-              <Paragraph>
-                Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.
-              </Paragraph>
-              <Link>SHOP GLASSES</Link>
-            </Details>
-          </Cell>
-          <Cell>
-            <Image src={image1}></Image>
-          </Cell>
-        </Row>
-        <Row>
-          <Cell>
-            <Image src={image2}></Image>
-          </Cell>
-          <Cell>
-            <Details>
-              <Title>Sunglasses</Title>
-              <Paragraph>
-                Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.
-              </Paragraph>
-              <Link>SHOP GLASSES</Link>
-            </Details>
-          </Cell>
-        </Row>
-      </Container>
-      <Footer />
+      <Services />
+      <Locations />
+      <Footer ref={contactRef} />
+      <Footer2 />
     </div>
   )
 }

@@ -5,11 +5,14 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
   display: flex;
-  background-color: #f8f4f4;
+  background-color: #f7f7f7;;
+  /* #cabdbd */
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${mobile({
-    flexDirection: 'column'
-  })}
+  flexDirection: 'column'
+})}
 `
 const Left = styled.div`
   flex: 1;
@@ -33,7 +36,7 @@ const SocialIcon = styled.div`
   height: 40px;
   border-radius: 50%;
   color: white;
-  background-color: #${props=>props.color};
+  background-color: #${props => props.color};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,8 +48,8 @@ const Center = styled.div`
   padding: 20px;
 
   ${mobile({
-    display: 'none'
-  })}
+  display: 'none'
+})}
 `
 
 const Title = styled.h3`
@@ -71,8 +74,8 @@ const Right = styled.div`
   padding: 20px;
 
   ${mobile({
-    backgroundColor: '#fff'
-  })}
+  backgroundColor: '#fff'
+})}
 `
 
 const ContactItem = styled.div`
@@ -86,9 +89,9 @@ const Payment = styled.img`
 
 `
 
-const Footer = () => {
+const Footer = (props, ref) => {
   return (
-    <Container>
+    <Container ref={ref}>
       <Left>
         <Logo>CARERA</Logo>
         <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Description>
@@ -121,7 +124,8 @@ const Footer = () => {
         <Payment src="https://www.pngitem.com/pimgs/m/5-55223_visa-mastercard-logo-png-transparent-png.png" />
       </Right>
     </Container>
+
   )
 }
 
-export default Footer
+export default React.forwardRef(Footer);

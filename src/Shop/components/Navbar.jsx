@@ -1,31 +1,31 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { Search, ShoppingCartOutlined } from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { mobile } from "../responsive"
+import { FaBars, FaTimes, FaCaretDown } from 'react-icons/fa'
+import Dropdown from './Dropdown'
 
+import { MdClose, MdOutlineMenu } from "react-icons/md";
+import { BiWindowOpen } from 'react-icons/bi'
 const Container = styled.div`
-  height: 60px;
-  ${mobile({
-  height: '50px'
-})}
-`
-const Wrapper = styled.div`
-  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  min-height: 70px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mobile({
-  padding: '10px 0'
-})}
+  padding: 0 2% 0 2%;
+  margin-bottom: -70px;
+  z-index: 999;
 `
 
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-`
+
+
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
@@ -35,8 +35,6 @@ const Language = styled.span`
 `
 
 const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
   margin-left: 25px;
   padding: 5px;
   ${mobile({
@@ -44,86 +42,276 @@ const SearchContainer = styled.div`
 })}
 `
 
-const Input = styled.input`
-  border: none;
-  ${mobile({
-  width: '50px'
-})}
-`
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
+
+const NavList = styled.ul`
+  list-style: none;
+  /* height: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px; */
+  
+  /* text-align: center; */
+  /* justify-content: space-between;
+  align-items: center; */
+  
+  @media(max-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: ${props => props.left};
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    padding: 10px;
+  }
 `
 
-const Logo = styled.h1`
+const SubNavList = styled(NavList)`
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: none;
+
+  @media(max-width: 768px) {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 0;
+  }
+`
+
+const NavItem = styled.li`
+  position: relative;
+  float: left;
+
+  &:hover > ${SubNavList}{
+    display: initial;
+  }
+
+  &:focus-within > ${SubNavList}{
+    display: initial;
+  }
+
+  @media(max-width: 768px) {
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+  }
+`
+
+const SubNavItem = styled.li`
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  @media(max-width: 768px) {
+    background-color: #eee;
+    border: none;
+    padding-left: 30px;
+  }
+`
+
+
+
+const NavLink = styled(Link)`
+  box-sizing: border-box;
+  /* height: 100%; */
+  padding: 24px;
+  color: #333;
+  display: block;
+  justify-content: start;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.2s ease;
+
+
+  &:hover {
+    color: #1abc9c;
+    background-color: #fff;
+  }
+
+  @media(max-width: 768px) {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s ease-out;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transition: all 0.2s ease-out;
+      background-color: #efefef39;
+    }
+  }
+`
+
+const SubNavLink = styled(NavLink)`
+  @media(max-width: 768px) {
+    border: none;
+    font-size: 14px;
+    font-weight: 300;
+  }
+`
+
+const LogoLink = styled(Link)`
   font-family: 'Montserrat';
   font-size: 32px;
   font-weight: 800;
+  font-style: italic;
   text-decoration: none;
-  color: rgba(0, 0, 0, 1);
+  color: #333;
   transition: all 0.3s ease;
-
+  justify-self: start;
+  
   &:hover {
-    color: rgba(0, 0, 0, 0.5);
+    color: #cabdbd;
   }
 
-  ${mobile({
-  fontSize: '24px'
-})}
+  @media(max-width: 768px) {
+    transform: scale(75%);
+  }
+
 `
 
-const Right = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  ${mobile({
-  justifyContent: 'center'
-})}
-`
 
-const MenuItem = styled.div`
-  font-size: 14px;
+
+
+const MenuShowBtn = styled.div`
+font-weight: 200;
+  color: #333;
+  display: none;
+  font-size: 32px;
   cursor: pointer;
-  margin-left: 25px;
-  ${mobile({
-  fontSize: '12px',
-  marginLeft: "10px"
-})}
+  padding: 10px;
+
+  @media(max-width: 768px) {
+    display: block;
+  }
 `
 
-const Navbar = () => {
+const MenuCloseBtn = styled.div`
+  font-weight: 200;
+  color: #333;
+  display: none;
+  font-size: 32px;
+  cursor: pointer;margin-bottom: 12px;
+
+  @media(max-width: 768px) {
+    display: block;
+  }
+`
+
+const Navbar = ({ links, scrollFunc, contactRef }) => {
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+  const menuRef = useRef();
+
+  const handleScrollToRef = (refElement) => {
+    scrollFunc(refElement);
+    closeMobileMenu();
+  }
+
+  const toggleMenu = () => {
+    // menuRef.current.classList.toggle('responsive_nav')
+    setShowMenu(prev => !prev)
+    console.log(showMenu);
+  }
+
+  const closeMobileMenu = () => {
+    setShowMenu(false)
+  }
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth < 768) {
+      setDropdown(false)
+    } else {
+      setDropdown(true)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth < 768) {
+      setDropdown(false)
+    } else {
+      setDropdown(false)
+    }
+  }
+
   return (
     <Container>
-      <Wrapper>
-        <Left>
-          <Language>EN</Language>
-          <SearchContainer>
-            <Input placeholder='Search' />
-            <Search style={{ color: 'gray', fontSize: 16 }} />
-          </SearchContainer>
-        </Left>
-        <Center>
-          <Link to="/" style={{ textDecoration: 'none' }} >
-            <Logo>CARERA</Logo>
-          </Link>
-        </Center>
-        <Right>
-          <Link to={`/login`}>
-            <MenuItem>SIGN IN</MenuItem>
-          </Link>
-          <Link to={`/admin`}>
-            <MenuItem>Admin</MenuItem>
-          </Link>
-          <Link to={`/cart`}>
-            <MenuItem>
-              <Badge badgeContent={4} color="success">
-                <ShoppingCartOutlined />
-              </Badge>
-            </MenuItem>
-          </Link>
-        </Right>
-      </Wrapper>
+
+      <LogoLink to="/" onClick={closeMobileMenu} >
+        CARERA
+      </LogoLink>
+      <NavList ref={menuRef} left={showMenu ? '0' : '-100%'}>
+        {showMenu &&
+          <MenuCloseBtn>
+            <MdClose onClick={closeMobileMenu} />
+          </MenuCloseBtn>
+        }
+        <NavItem>
+          <NavLink onClick={() => handleScrollToRef(contactRef)} className="link" to="">
+            Contact
+          </NavLink>
+        </NavItem>
+
+        {links.map((item) => {
+          return (
+            <NavItem key={item.label}>
+              <NavLink to={item.url}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                {item.label}
+                {item?.links && ' +'}
+              </NavLink>
+              {/* {item?.links && dropdown && <Dropdown items={item.links} />} */}
+              {item?.links &&
+                <SubNavList>
+                  {item?.links.map((subItem) => {
+                    return (
+                      <SubNavItem key={subItem.label}>
+                        <SubNavLink to={subItem.url}
+                          onMouseEnter={handleMouseEnter}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          {subItem.label}
+                          {subItem?.links && <FaCaretDown />}
+                        </SubNavLink>
+                      </SubNavItem>
+                    )
+                  })}
+                </SubNavList>
+              }
+            </NavItem>
+          );
+        })}
+
+      </NavList>
+
+      {/* <Language>EN</Language>
+      <SearchContainer>
+        <Search style={{ color: 'gray', fontSize: 16 }} />
+      </SearchContainer>
+      <Link to={`/login`}>
+        <NavItem>SIGN IN</NavItem>
+      </Link>
+      <Link to={`/admin`}>
+        <NavItem>Admin</NavItem>
+      </Link>
+      <Link to={`/cart`}>
+        <NavItem>
+          <Badge badgeContent={4} color="success">
+            <ShoppingCartOutlined />
+          </Badge>
+        </NavItem>
+      </Link> */}
+      <MenuShowBtn onClick={toggleMenu}>
+        {!showMenu && <MdOutlineMenu />}
+      </MenuShowBtn>
+
     </Container>
   )
 }

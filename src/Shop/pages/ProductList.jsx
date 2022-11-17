@@ -7,9 +7,12 @@ import Footer from '../components/Footer'
 import { colors, frameMaterials, frameShapes, frameTypes, frameBrands } from '../data'
 import { useLocation } from 'react-router-dom'
 import { mobile } from "../responsive"
+import Footer2 from '../components/Footer2'
+// import { navbarLinks } from './Home'
+
 
 const Container = styled.div`
-
+  height: 100%;
 `
 
 const Title = styled.h1`
@@ -73,11 +76,26 @@ const ProductList = () => {
       [name]: value,
     })
   }
+
+  
+  // const navbarLinks = [
+  //   { url: '/', label:'Home' }, 
+  //   { 
+  //     url: '', 
+  //     label: 'Sunglasses',
+  //     links : [
+  //       { url: '/products/eyeglasses/Men', label: 'Men', className: 'dropdown-link'  },
+  //       { url: '/products/eyeglasses/Women', label: 'Women', className: 'dropdown-link' },
+  //     ]
+  //   },
+  //   { url: '/products/eyeglasses', label: 'Eyeglasses' },
+  //   { url: '#contact', label: 'Contact' },
+  // ]
   
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      {/* <Navbar links={navbarLinks}/> */}
       <Title>Frames</Title>
       <FilterContainer>
         <Filter>
@@ -130,6 +148,7 @@ const ProductList = () => {
       </FilterContainer>
       <Products catSlug={catSlug} filters={filters} sort={sort} />
       <Footer />
+      <Footer2 />
     </Container>
   )
 }

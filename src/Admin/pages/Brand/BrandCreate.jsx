@@ -24,9 +24,11 @@ const BrandCreate = () => {
   const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, brandSchema, async (e) => {
     e.preventDefault();
     setIsSubmitting(true)
+    const spacesReplaced = values.name.replaceAll(' ', '-').toLowerCase();
     try {
       const res = await axiosPrivate.post('/brands', {
         name: values.name,
+        slug: spacesReplaced
       });
       
       toast.success('Created!')

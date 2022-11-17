@@ -1,3 +1,7 @@
+### ISSUES
+---------
+1- create brand makes the server hang if no slug provided
+
 ### Profile image 
 ```
 <img

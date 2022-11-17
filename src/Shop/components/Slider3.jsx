@@ -10,10 +10,18 @@ const Slider = styled.div`
   opacity: ${props=>props.inView ? '1' : '0'};
   transform: scale(${props=>props.inView ? '100%' : '85%'});
   transition: 1s;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 const Image = styled.img`
   width: 50%;
+
+  @media(max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const Content = styled.div`

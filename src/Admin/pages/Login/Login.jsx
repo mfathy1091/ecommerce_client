@@ -118,18 +118,7 @@ const Login = () => {
 
   return (
     <div className='flex items-center h-screen w-full justify-center flex-col'>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
-        {/* Same as */}
+
       <ToastContainer />
 
       <div className='sm:w-full md:w-full lg:w-1/2 xl:w-1/4 md:m-0 m-4 p-5 bg-white rounded-xl mb-3 shadow dark:bg-secondary-dark-bg dark:text-neutral-200' >

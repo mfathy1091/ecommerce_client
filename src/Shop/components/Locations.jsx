@@ -23,6 +23,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #08081d;
+  @media(max-width: 768px) {
+  flex-direction: column;
+}
 `
 
 const LocationContainer = styled.div`
@@ -31,7 +34,10 @@ const LocationContainer = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 5px;
-
+  @media(max-width: 768px) {
+  justify-content: space-between;
+  margin: 20px;
+}
 `
 
 const Title = styled.h1`

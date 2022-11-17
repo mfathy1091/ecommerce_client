@@ -75,7 +75,7 @@ const AdminLayout = () => {
         <Right className={`${activeMenu ? 'md:ml-72' : 'flex-2'}`}>
 
           <ToastContainer
-            position="top-right"
+            position="top-center"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -84,9 +84,7 @@ const AdminLayout = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            />
-            {/* Same as */}
-          <ToastContainer />
+          />
 
           {/* Navbar */}
           <div className='static bg-main-bg dark:bg-main-dark-bg navbar w-full'>

@@ -15,24 +15,10 @@ import Locations from '../components/Locations'
 import Slider3 from '../components/Slider3'
 import Services from '../components/Services'
 import Footer2 from '../components/Footer2'
+import insuranceCompanies from '../images/insurance_companies.png'
+import ProductSlider from '../components/ProductSlider'
+import ContractSlider from '../components/ContractSlider'
 
-const Cell = styled.div`
-  background-color: #f2f2f2;
-  min-width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const Row = styled.div`
-  display: flex;
-  @media (max-width: 768px){
-    flex-direction: column;
-    ${Cell} {
-      min-width: 100vw;
-  }
-}
-`
 
 
 
@@ -82,13 +68,18 @@ const Home = () => {
         contactRef={contactRef} 
       />
       <ImageSection id='home'/>
+      <ContractSlider />
       <Slider3 
         imageSrc='/images/img-home-11.jpg' 
         title={'TRENDY WOMEN’S SUNGLASSES'} 
         subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
         url={'/products/sunglasses/women'}
       />
-      <Products catSlug={'sunglasses'} filters={[]} sort={[]} />
+
+      <ProductSlider catSlug={'sunglasses'} title={'SUNGLASSES'} />
+      <ProductSlider catSlug={'eyeglasses'} title={'EYEGLASSES'} />
+
+      {/* <Products catSlug={'sunglasses'} filters={[]} sort={[]} /> */}
 
       <Slider3 
         imageSrc='/images/img-home-12.jpg' 
@@ -99,11 +90,13 @@ const Home = () => {
       />
       <Products catSlug={'eyeglasses'} filters={[]} sort={[]} />
 
-    
-      <Slider />
-      <Categories />
       <Services />
+
+      {/* <Slider /> */}
+      {/* <Categories /> */}
       <Locations />
+
+
       <Footer ref={contactRef} />
       <Footer2 />
     </div>

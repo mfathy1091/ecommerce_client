@@ -65,8 +65,8 @@ const Image = styled.img`
   transition: 0.3s ease-in-out;
   transform-origin: right;
 `
-const Container = styled.div`
-  /* max-width: 25%; */
+const Container = styled(Link)`
+  max-width: 250px;
   background-color: #fff;
   //min-width: 300px;
   /* height: 400px; */
@@ -96,6 +96,10 @@ const Container = styled.div`
 
   &:hover ${Title}{
     color: #333;
+  }
+  
+  @media(max-width: 768px) {
+    max-width: 100%;
   }
 
 `
@@ -129,8 +133,7 @@ const Icon = styled.div`
 
 const Product = ({item}) => {
   return (
-    <Link to={`/product/${item.id}`}>
-      <Container>
+      <Container to={`/product/${item.id}`}>
         <ImageContainer>
           <Image src={item.image} />
         </ImageContainer>
@@ -146,7 +149,6 @@ const Product = ({item}) => {
           </Details>
       </Container>
     
-    </Link>
   )
 }
 

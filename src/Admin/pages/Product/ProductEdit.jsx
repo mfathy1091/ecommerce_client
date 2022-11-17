@@ -162,15 +162,15 @@ const ProductEdit = () => {
       
       if (productId) {
         res = await axiosPrivate.put('/products/'+productId, data);
-        toast.success('Updated!')
+        toast.success('Updated!');
       } else {
         res = await axiosPrivate.post('/products/', data);
-        toast.success('Created!')
+        toast.success('Created!');
         navigate('/admin/product/list')
       }
 
     } catch (err) {
-
+      toast.error(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -278,9 +278,9 @@ const ProductEdit = () => {
               defaultValue={0}
               label='Select Category'
               options={[
-                {value: 2, label: 'Sunglasses'},
-                {value: 3, label: 'Eyeglasses'},
-                {value: 4, label: 'Accessories'},
+                {value: '2', label: 'Sunglasses'},
+                {value: '3', label: 'Eyeglasses'},
+                {value: '4', label: 'Accessories'},
               ]}
               error={errors.categoryId}
             />
@@ -326,7 +326,6 @@ const ProductEdit = () => {
           {productId ? 'Update' : 'Ceate'}
         </LoadingButton>
       </form>
-
     </div>
   )
 }

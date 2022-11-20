@@ -14,7 +14,7 @@ const Container = styled.div`
   top: 0;
   min-height: 70px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
@@ -60,7 +60,7 @@ const NavList = styled.ul`
     left: ${props => props.left};
     width: 100%;
     height: 100vh;
-    background: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
@@ -72,7 +72,8 @@ const SubNavList = styled(NavList)`
   position: absolute;
   left: 0;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(0, 0, 0, 0.85);
+
   display: none;
 
   @media(max-width: 768px) {
@@ -104,8 +105,9 @@ const NavItem = styled.li`
 const SubNavItem = styled.li`
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.85);
+
   @media(max-width: 768px) {
-    background-color: #eee;
     border: none;
     padding-left: 30px;
   }
@@ -117,7 +119,7 @@ const NavLink = styled(Link)`
   box-sizing: border-box;
   /* height: 100%; */
   padding: 24px;
-  color: #333;
+  color: rgb(200, 200, 200);
   display: block;
   justify-content: start;
   align-items: center;
@@ -128,7 +130,6 @@ const NavLink = styled(Link)`
 
   &:hover {
     color: teal;
-    background-color: #fff;
   }
 
   @media(max-width: 768px) {
@@ -156,11 +157,11 @@ const SubNavLink = styled(NavLink)`
 
 const LogoLink = styled(Link)`
   font-family: 'Montserrat';
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 600;
   font-style: italic;
   text-decoration: none;
-  color: #333;
+  color: rgb(220, 220, 220);
   transition: all 0.3s ease;
   justify-self: start;
   
@@ -256,6 +257,18 @@ const Navbar = ({ links, scrollFunc, contactRef }) => {
             Contact
           </NavLink>
         </NavItem>
+
+        {/* <img class="product__img img-lazyload js lazyautosizes lazyloaded" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512]" data-sizes="auto" alt="" data-srcset="
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_180x.jpg?v=1611855963 180w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_360x.jpg?v=1611855963 360w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_540x.jpg?v=1611855963 540w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_720x.jpg?v=1611855963 720w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_900x.jpg?v=1611855963 900w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1080x.jpg?v=1611855963 1080w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1296x.jpg?v=1611855963 1296w, 
+        //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1512x.jpg?v=1611855963 1512w" 
+        
+        sizes="370px" srcset="//cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_180x.jpg?v=1611855963 180w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_360x.jpg?v=1611855963 360w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_540x.jpg?v=1611855963 540w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_720x.jpg?v=1611855963 720w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_900x.jpg?v=1611855963 900w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1080x.jpg?v=1611855963 1080w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1296x.jpg?v=1611855963 1296w, //cdn.shopify.com/s/files/1/0358/3593/6906/products/PLDD371_807_P02_1512x.jpg?v=1611855963 1512w"> */}
 
         {links.map((item) => {
           return (

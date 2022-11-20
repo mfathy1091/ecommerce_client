@@ -107,7 +107,7 @@ const ProductEdit = () => {
   const [uploading, setUploading] = useState(false);
   const [brands, setBrands] = useState({});
 
-  const uploadImage = async (file) => {
+  const uploadImageHandler = async (file) => {
     try {
       setUploading(true);
       let formData = new FormData();
@@ -206,7 +206,7 @@ const ProductEdit = () => {
   }, [])
 
   const handleImageChange = async (e) => {
-    const image = await uploadImage(e.target.files[0]);
+    const image = await uploadImageHandler(e.target.files[0]);
   }
 
   

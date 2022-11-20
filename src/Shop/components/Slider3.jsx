@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Slider = styled.div`
   display: flex;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: #f7f7f7;
   opacity: ${props=>props.inView ? '1' : '0'};
   transform: scale(${props=>props.inView ? '100%' : '85%'});
   transition: 1s;
@@ -55,20 +55,25 @@ const Subtitle = styled.p`
 `
 
 const StyledLink = styled(Link)`
-  font-size: 14px;
-  font-weight: 400;
-  color: rgb(153, 153, 153);
-  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
+  color: #000;
+  border-radius: 8px;
+  border: 1px solid teal;
+  padding: 8px;
+  text-decoration: none;
+  text-transform: uppercase;
   transition: all 0.3s ease;
+  color: teal;
+
+  opacity: 0.8;
   &:hover {
-    color: #000;
-    font-weight: 500;
-    border-radius: 8px;
-    background-color: #cabdbd;
-    padding: 8px;
-    text-decoration: none;
+    background-color: teal;
+    opacity: 1;
+    color: white;
   }
+
 `
 
 const Slider3 = ({ imageSrc, title, subtitle, flipped, url }) => {
@@ -100,7 +105,9 @@ const Slider3 = ({ imageSrc, title, subtitle, flipped, url }) => {
   }
 
   return (
-    <Slider ref={ref} inView={inView}>{renderContent()}</Slider>
+    <Slider ref={ref} inView={inView}>
+      {renderContent()}
+    </Slider>
   )
 }
 

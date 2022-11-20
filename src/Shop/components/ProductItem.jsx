@@ -23,15 +23,15 @@ const Overlay = styled.div`
   })}
 `
 
-const Details = styled.div`
-  padding: 10px;
+const DetailsContainer = styled.div`
+  padding: 24px 20px 40px 20px;
 
 `
 
 const Brand = styled.h1`
   text-align: center;
   font-size: 20px;
-  font-weight:400;
+  font-weight:500;
   color: #666;
   font-family: "Nunito",sans-serif;
   text-transform: uppercase;
@@ -52,6 +52,7 @@ const ImageContainer = styled.div`
   height: 100%;
   overflow: hidden;
   
+  
 `
 const Image = styled.img`
   /* width: 300px;
@@ -66,12 +67,13 @@ const Image = styled.img`
   transform-origin: right;
 `
 const Container = styled(Link)`
-  max-width: 250px;
-  background-color: #fff;
+  max-width: 400px;
   //min-width: 300px;
   /* height: 400px; */
   display: flex;
   flex-direction: column;
+  background-color: #f7f7f7;
+  margin: 0 20px 20px 20px;
 
 
   /* height: 100%;
@@ -139,14 +141,14 @@ const Product = ({item}) => {
         </ImageContainer>
 
 
-          <Details>
+          <DetailsContainer>
             <Brand>
               {item.brandName}
             </Brand>
             <Title>
             {item.brandName} {item.name}
             </Title>
-          </Details>
+          </DetailsContainer>
       </Container>
     
   )

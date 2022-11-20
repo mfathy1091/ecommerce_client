@@ -63,6 +63,12 @@ const Option = styled.option`
   
 `
 
+const ProductsContainer = styled.div`
+  height: 100vh;
+`
+
+
+
 const ProductList = () => {
   const location = useLocation();
   const catSlug = location.pathname.split("/")[2];
@@ -146,7 +152,9 @@ const ProductList = () => {
           </SelectsContainer>
         </Filter>
       </FilterContainer>
-      <Products catSlug={catSlug} filters={filters} sort={sort} />
+      <ProductsContainer>
+        <Products catSlug={catSlug} filters={filters} sort={sort} />
+      </ProductsContainer>
       <Footer />
       <Footer2 />
     </Container>

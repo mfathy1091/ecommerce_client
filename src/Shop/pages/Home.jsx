@@ -8,7 +8,7 @@ import Slider from '../components/Slider'
 import styled from 'styled-components'
 import image1 from './../../assets/10_client_background.png'
 import image2 from './../../assets/12_client_background.jpg'
-import ImageSection from '../components/ImageSection'
+import ImageSection from '../components/HeroSection'
 import Slider2 from '../components/Slider2'
 import { BsWindowSidebar } from 'react-icons/bs'
 import Locations from '../components/Locations'
@@ -75,12 +75,6 @@ const Home = () => {
         subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
         url={'/products/sunglasses/women'}
       />
-
-      <ProductSlider catSlug={'sunglasses'} title={'SUNGLASSES'} />
-      <ProductSlider catSlug={'eyeglasses'} title={'EYEGLASSES'} />
-
-      {/* <Products catSlug={'sunglasses'} filters={[]} sort={[]} /> */}
-
       <Slider3 
         imageSrc='/images/img-home-12.jpg' 
         title={"MEN'S EYEWARE"} 
@@ -88,7 +82,10 @@ const Home = () => {
         flipped={true} 
         url={'/products/eyeglasses'}
       />
-      <Products catSlug={'eyeglasses'} filters={[]} sort={[]} />
+      <ProductSlider catSlug={'sunglasses'} title={'SUNGLASSES'} />
+      <ProductSlider catSlug={'eyeglasses'} title={'EYEGLASSES'} />
+
+      {/* <Products catSlug={'sunglasses'} filters={[]} sort={[]} /> */}
 
       <Services />
 

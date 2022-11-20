@@ -13,15 +13,45 @@ const Container = styled.div`
   padding: 30px 50px;
   
 `
+const ContainerTitle = styled.div`
+  margin: 20px;
+`
 
-const ContainerTitle = styled.h1`
-  text-align: center;
-  font-size: 18px;
-  
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #333;
-  padding-bottom: 50px;
+const Title = styled.h1`
+    display: inline-block;
+    margin-bottom: 0;
+    color: teal;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position:relative;
+
+  &:before{
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    content: '';
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 50px;
+    height: 1px;
+    background: teal;
+  }
+
+  &:after{
+    position: absolute;
+    top: 50%;
+    left: -60px;
+    content: '';
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 50px;
+    height: 1px;
+    background: teal;
+  }
 `
 
 const StyledCarousel = styled(Carousel)`
@@ -82,7 +112,11 @@ const ProductSlider = ({catSlug , title}) => {
 
   return (
     <Container>
-      <ContainerTitle>{title}</ContainerTitle>
+      <ContainerTitle>
+        <Title>
+          {title}
+        </Title>
+      </ContainerTitle>
       <StyledCarousel 
         responsive={responsive}
         infinite={true}

@@ -5,9 +5,8 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
   display: flex;
-  background-color: #f7f7f7;;
+  background-color: #f7f7f7;
   /* #cabdbd */
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${mobile({

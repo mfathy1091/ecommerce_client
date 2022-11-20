@@ -3,29 +3,82 @@ import styled from 'styled-components'
 import { MdLocationOn } from 'react-icons/md'
 
 const Container = styled.div`
-padding: 50px 20px;
+  background-color: #fff;
+  width: 90%;
+  height: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media(max-width: 768px) {
+    
+  }
+`
+
+
+const Left = styled.div`
+  width: 60%;
+  height: 600px;
+  background: url("/images/home-15.jpg") no-repeat center / cover;
+  border-radius: 8px;
+
+  @media(max-width: 768px) {
+
+  }
+`
+
+const Right = styled.div`
+margin: -10%;
+  width: 50%;
+  min-height: 400px;
+  padding: 30px;
+  display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  background-color: #08081d;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+  opacity: 1;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  gap: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+
+
+
+  @media(max-width: 768px) {
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin:  10% 10%;
+    width: 80%;
+    height: 100%;
+  }
 `
 
 const ContainerTitle = styled.h1`
   text-align: center;
-  font-size: 16px;
-  
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 400;
   letter-spacing: 2px;
-  color: rgb(220, 220, 220);
-  padding-bottom: 50px;
+  color: teal;
+  position: relative;
+
+  @media(max-width: 768px) {
+    font-size: 20px;
+
+  }
 `
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
-  background-color: #08081d;
+  gap:40px;
   @media(max-width: 768px) {
-  flex-direction: column;
-}
+    flex-direction: column;
+    gap: 0px;
+    
+  }
 `
 
 const LocationContainer = styled.div`
@@ -36,22 +89,40 @@ const LocationContainer = styled.div`
   gap: 5px;
   @media(max-width: 768px) {
   justify-content: space-between;
-  margin: 20px;
+  margin-bottom: 10px;
 }
 `
 
 const Title = styled.h1`
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  color: #1abc9c;
+  color: #333;
+  position: relative;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+
+  ::after {
+    position: absolute;
+    bottom: -40%;
+    content: '';
+    background: teal;
+    width: 30px;
+    height: 2px;
+    left: 0;
+  }
 `
+
 const Subtitle = styled.ul`
-  font-size: 16px;
-  font-weight: 400;
-  color: rgb(200, 200, 200);
-  line-height: 27px;
-  text-align: left;
+  > * {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333	;
+    line-height: 27px;
+    text-align: left;
+  }
+  
+
   @media(max-width: 768px) {
     margin: 10px 0;
   }
@@ -69,52 +140,60 @@ const ContactItem = styled.div`
   }
 `
 
+
+
+
 const Locations = () => {
   return (
     <Container>
-      <ContainerTitle>
-        OUR BRANCHES
-      </ContainerTitle>
-      <Wrapper>
-        <LocationContainer>
-          <Title>
-            Sidi Bisher
-          </Title>
+      <Left></Left>
+      <Right>
+        <ContainerTitle>
+          OUR BRANCHES
+        </ContainerTitle>
+        <Wrapper>
 
-          <ContactItem>
-            <MdLocationOn /> 
-            <Subtitle>
-              <li>629 Elbkbashy Elesawy st.</li> 
-              <li>Alexandria</li> 
-            </Subtitle>
-          </ContactItem>
-        </LocationContainer>
-        <LocationContainer>
-          <Title>
-            Mostafa Kamel
-          </Title>
-          <ContactItem>
-            <MdLocationOn /> 
-            <Subtitle>
-              <li>8 Ahmed Shawky st.</li> 
-              <li>Alexandria</li> 
-            </Subtitle>
-          </ContactItem>
-        </LocationContainer>
-        <LocationContainer>
-          <Title>
-            Sidi Krir vilage
-          </Title>
-          <ContactItem>
-            <MdLocationOn /> 
-            <Subtitle>
-              <li>25 Alexandria - Matrouh st.</li> 
-              <li>Alexandria</li> 
-            </Subtitle>
-          </ContactItem>
 
-        </LocationContainer>
-      </Wrapper>
+          <LocationContainer>
+            <Title>
+              Sidi Bisher
+            </Title>
+
+            <ContactItem>
+              {/* <MdLocationOn />  */}
+              <Subtitle>
+                <li>629 Elbkbashy Elesawy st.</li>
+                <li>Alexandria</li>
+              </Subtitle>
+            </ContactItem>
+          </LocationContainer>
+          <LocationContainer>
+            <Title>
+              Mostafa Kamel
+            </Title>
+            <ContactItem>
+              {/* <MdLocationOn />  */}
+              <Subtitle>
+                <li>8 Ahmed Shawky st.</li>
+                <li>Alexandria</li>
+              </Subtitle>
+            </ContactItem>
+          </LocationContainer>
+          <LocationContainer>
+            <Title>
+              Agami
+            </Title>
+            <ContactItem>
+              {/* <MdLocationOn />  */}
+              <Subtitle>
+                <li>25 Alexandria - Matrouh st.</li>
+                <li>Alexandria</li>
+              </Subtitle>
+            </ContactItem>
+
+          </LocationContainer>
+        </Wrapper>
+      </Right>
     </Container>
   )
 }

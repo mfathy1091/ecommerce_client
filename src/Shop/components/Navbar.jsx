@@ -127,7 +127,7 @@ const NavLink = styled(Link)`
 
 
   &:hover {
-    color: #1abc9c;
+    color: teal;
     background-color: #fff;
   }
 
@@ -165,7 +165,7 @@ const LogoLink = styled(Link)`
   justify-self: start;
   
   &:hover {
-    color: #cabdbd;
+    color: teal;
   }
 
   @media(max-width: 768px) {

@@ -16,9 +16,16 @@ const Wrapper = styled.div`
   padding: 50px;
   display: flex;
   ${mobile({
-    padding: '10px', flexDirection: 'column'
-  })}
+  padding: '10px', flexDirection: 'column'
+})}
 `
+
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 
 const ImgContainer = styled.div`
   flex: 1;
@@ -30,17 +37,37 @@ const Image = styled.img`
   max-height: 90vh;
   object-fit: contain;
   ${mobile({
-    height: 'auto',
-    maxHeight: '40vh'
-  })}
+  height: 'auto',
+  maxHeight: '40vh'
+})}
+`
+
+const ThumbContainer = styled.div`
+    display: flex;
+    margin: 10px;
+
+`
+const Thumb = styled.div`
+  height: 50px;
+  width: 75px;
+  margin: 5px;
+`
+const ThumbImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+`
+
+const Right = styled.div`
+  
 `
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 50px;
   ${mobile({
-    padding: '10px',
-  })}
+  padding: '10px',
+})}
 `
 const Title = styled.h1`
   font-weight: 200;
@@ -61,8 +88,8 @@ const FilterContainer = styled.div`
   width: 50%;
   margin: 30px 0;
   ${mobile({
-    width: '100%',
-  })}
+  width: '100%',
+})}
 `
 const Filter = styled.div`
   display: flex;
@@ -78,7 +105,7 @@ const FilterColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: ${props=>props.color};
+  background-color: ${props => props.color};
   margin: 0 5px;
   cursor: pointer;
 `
@@ -90,8 +117,8 @@ const AddContainer = styled.div`
   justify-content: space-between;
   font-weight: 700;
   ${mobile({
-    width: '100%',
-  })}
+  width: '100%',
+})}
 `
 
 const AmountContainer = styled.div`
@@ -126,13 +153,15 @@ const Button = styled.button`
 
 const Product = () => {
   const { productId } = useParams();
-  const [product, setProduct]  = useState({})
+  const [product, setProduct] = useState({})
+  const [selectedImage, setSelectedImage] = useState()
 
-  useEffect( () => {
+  useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicAxios.get('/products/'+productId);
+        const res = await publicAxios.get('/products/' + productId);
         setProduct(res.data)
+        setSelectedImage(res.data.images[0])
       } catch (error) {
         console.log(error)
       }
@@ -146,35 +175,51 @@ const Product = () => {
       {/* <Navbar /> */}
       <Announcement />
       <Wrapper>
-        <ImgContainer>
-          <Image src={product.image} />
-        </ImgContainer>
-        <InfoContainer>
-          <Title>{product.brandName} - {product.name}</Title>
-          <Description>{product.description}</Description>
-          {/* <Price>{product.price} EGP</Price> */}
-          <Price>500 EGP</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              {/* {product.colors.map((color) => (
+        <Left>
+          <ImgContainer>
+            <Image src={selectedImage?.url} />
+          </ImgContainer>
+          <ThumbContainer>
+            {product?.images?.map((image) => {
+              return (
+                <Thumb key={image.url}>
+                  <ThumbImage src={image.url} onClick={ ()=> setSelectedImage(image)} />
+                </Thumb>
+              )
+
+            })}
+          </ThumbContainer>
+        </Left>
+        <Right>
+          <InfoContainer>
+            <Title>{product.brandName} - {product.name}</Title>
+            <Description>{product.description}</Description>
+            {/* <Price>{product.price} EGP</Price> */}
+            <Price>500 EGP</Price>
+            <FilterContainer>
+              <Filter>
+                <FilterTitle>Color</FilterTitle>
+                {/* {product.colors.map((color) => (
                 <FilterColor color={color} key={color}/>
               ))} */}
-              <FilterColor color="black" />
-              <FilterColor color='darkblue' />
-              <FilterColor color='gray' />
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button>ADD TO CART</Button>
-          </AddContainer>
-          
-        </InfoContainer>
+                <FilterColor color="black" />
+                <FilterColor color='darkblue' />
+                <FilterColor color='gray' />
+              </Filter>
+            </FilterContainer>
+            <AddContainer>
+              <AmountContainer>
+                <Remove />
+                <Amount>1</Amount>
+                <Add />
+              </AmountContainer>
+              <Button>ADD TO CART</Button>
+            </AddContainer>
+
+          </InfoContainer>
+        </Right>
+
+
       </Wrapper>
       <Footer />
     </Container>

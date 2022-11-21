@@ -5,6 +5,6 @@ export const productSchema = yup.object().shape({
   categoryId: yup.number().required().positive().integer(),
   name: yup.string().required(),
   description: yup.string().required(),
-  image: yup.string().url().required(),
+  images: yup.array(),
 })
 

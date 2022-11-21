@@ -13,7 +13,7 @@ import { Container, Button, LoadingButton, Input, PageHeader } from '../../compo
 import { FaInfoCircle } from 'react-icons/fa';
 import InputSelect from "../../components/Input/InputSelect";
 import Loader from "../../components/Loader/Loader";
-// import ImageHolder from '../../../images/image-holder.jpg'
+// import ImageHolder from '../../../imagesUrls/image-holder.jpg'
 import ImageHolder from "./../../../assets/image-holder.jpg"
 
 const HeaderContainer = styled.div`
@@ -33,6 +33,23 @@ const SelectContainer = styled.select`
 const TextArea = styled.textarea`
   
 `
+
+const ThumbContainer = styled.div`
+    display: flex;
+    margin: 10px;
+
+`
+const Thumb = styled.div`
+  height: 50px;
+  width: 75px;
+  margin: 5px;
+`
+const ThumbImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+`
+
 const ImageInput = styled.div`
   margin: 0 auto;
 `
@@ -85,7 +102,7 @@ const inititalDirtyFields = {
   categoryId: false,
   name: false,
   description: false,
-  image: false
+  imagesUrls: false
 }
 
 const FormContainer = styled.div`
@@ -106,12 +123,13 @@ const ProductEdit = () => {
   const { productId } = useParams();
   const [uploading, setUploading] = useState(false);
   const [brands, setBrands] = useState({});
+  const [selectedImage, setSelectedImage] = useState()
 
-  const uploadImageHandler = async (file) => {
+  const uploadImageHandler = async (e) => {
     try {
       setUploading(true);
       let formData = new FormData();
-      formData.append("avatar", file);
+      formData.append("avatar", e.target.files[0]);
 
       // upload to cloudinary
       const res = await axiosPrivate.post("/upload/avatar", formData, {
@@ -126,13 +144,28 @@ const ProductEdit = () => {
       });
 
       console.log(res.data.url)
-      setValues( prev => {
-        return {
-          ...prev,
-          image: res.data.url
+
+
+      setValues(prev => {
+        if(values.imagesUrls) {
+          return {
+            ...prev,
+            imagesUrls: [
+              ...prev?.imagesUrls,
+              res.data.url
+            ]
+          }
+        } else {
+          return {
+            ...prev,
+            imagesUrls: [
+              res.data.url
+            ]
+          }
         }
+
       })
-        
+
 
     } catch (err) {
       console.log(err);
@@ -155,13 +188,13 @@ const ProductEdit = () => {
         categoryId: values.categoryId,
         name: values.name,
         description: values.description,
-        image: values.image,
+        imagesUrls: values.imagesUrls,
       }
-      
+
       let res
-      
+
       if (productId) {
-        res = await axiosPrivate.put('/products/'+productId, data);
+        res = await axiosPrivate.put('/products/' + productId, data);
         toast.success('Updated!');
       } else {
         res = await axiosPrivate.post('/products/', data);
@@ -178,7 +211,7 @@ const ProductEdit = () => {
   });
 
 
-  useEffect( () => {
+  useEffect(() => {
     const getBrands = async () => {
       try {
         const res = await axiosPrivate.get('/brands/');
@@ -193,7 +226,7 @@ const ProductEdit = () => {
 
     const getProduct = async () => {
       try {
-        const res = await axiosPrivate.get('/products/'+productId);
+        const res = await axiosPrivate.get('/products/' + productId);
         setProduct(res.data)
         setValues(res.data)
       } catch (error) {
@@ -202,23 +235,20 @@ const ProductEdit = () => {
     }
 
     getBrands();
-    if(productId) getProduct();
+    if (productId) getProduct();
   }, [])
 
-  const handleImageChange = async (e) => {
-    const image = await uploadImageHandler(e.target.files[0]);
-  }
 
-  
+
   console.log(errors);
- 
+
   return (
     <div>
       <HeaderContainer>
         <PageHeader category="Products" title={productId ? 'Update Product' : 'Ceate Product'} />
         {productId &&
-          <Button 
-            onClick={() => {navigate('/product/'+productId)}}
+          <Button
+            onClick={() => { navigate('/product/' + productId) }}
             className='btn btn-primary btn-md'
           >
             Show In Shop
@@ -226,40 +256,51 @@ const ProductEdit = () => {
         }
 
       </HeaderContainer>
-      
+
       <form onSubmit={handleSubmit}>
         <FormContainer>
+          <ThumbContainer>
+            {values?.imagesUrls?.map((image) => {
+              return (
+                <Thumb key={image}>
+                  <ThumbImage key={image} src={image} onClick={() => setSelectedImage(image)} />
+                </Thumb>
+              )
+
+            })}
+          </ThumbContainer>
+
           <ImageInput>
             <ImagePreview>
               <Image
-              src={
-                values.image
-                ? values.image
-                : ImageHolder
-              } 
+                src={
+                  values.image
+                    ? values.image
+                    : ImageHolder
+                }
                 alt="picture-placeholder"
               />
               {uploading ? <Loader color='000' /> : ''}
             </ImagePreview>
-              <ImageBrowse>
-                <UploadIcon htmlFor="file">
-                  Image <MdDriveFolderUpload />
-                </UploadIcon>
-                <input
-                  style={{ display: 'none' }}
-                  type="file"
-                  ref={inputFileRef}
-                  id='file'
-                  onChange={handleImageChange}
-                />
-                <span className={errors.image ? "flex items-center instructions" : "flex items-center offscreen"}>
-                  <FaInfoCircle /> {errors.image}
-                </span>
-              </ImageBrowse>
+            <ImageBrowse>
+              <UploadIcon htmlFor="file">
+                Image <MdDriveFolderUpload />
+              </UploadIcon>
+              <input
+                style={{ display: 'none' }}
+                type="file"
+                ref={inputFileRef}
+                id='file'
+                onChange={uploadImageHandler}
+              />
+              <span className={errors.image ? "flex items-center instructions" : "flex items-center offscreen"}>
+                <FaInfoCircle /> {errors.image}
+              </span>
+            </ImageBrowse>
           </ImageInput>
 
           <FormInput>
-            <InputSelect 
+            <InputSelect
               onChange={handleChange}
               name='brandId'
               value={values.brandId}
@@ -271,16 +312,16 @@ const ProductEdit = () => {
           </FormInput>
 
           <FormInput>
-            <InputSelect 
+            <InputSelect
               onChange={handleChange}
               name='categoryId'
               value={values.categoryId}
               defaultValue={0}
               label='Select Category'
               options={[
-                {value: '2', label: 'Sunglasses'},
-                {value: '3', label: 'Eyeglasses'},
-                {value: '4', label: 'Accessories'},
+                { value: '2', label: 'Sunglasses' },
+                { value: '3', label: 'Eyeglasses' },
+                { value: '4', label: 'Accessories' },
               ]}
               error={errors.categoryId}
             />

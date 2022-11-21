@@ -45,7 +45,7 @@ const DropDownMenu = () => {
   const links = [
     {
       title: 'My Profile',
-      path: '/profile',
+      path: '/admin/profile',
       icon: <BiUserCircle />,
     },
   ]

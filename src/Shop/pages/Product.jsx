@@ -7,13 +7,15 @@ import { Remove, Add } from '@material-ui/icons'
 import { useParams } from 'react-router-dom'
 import { publicAxios } from '../api'
 import { mobile } from "../responsive"
+import Services from '../components/Services'
+import Footer2 from '../components/Footer2'
 
 const Container = styled.div`
   
 `
 
 const Wrapper = styled.div`
-  padding: 50px;
+  padding: 10% 10%;
   display: flex;
   ${mobile({
   padding: '10px', flexDirection: 'column'
@@ -21,14 +23,21 @@ const Wrapper = styled.div`
 `
 
 const Left = styled.div`
+  margin: 0 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+
+  
 `
 
+const LeftContainer = styled.div`
+`
 
 const ImgContainer = styled.div`
-  flex: 1;
+  max-width: 550px;
+  max-height: 550px;
 `
 
 const Image = styled.img`
@@ -43,8 +52,11 @@ const Image = styled.img`
 `
 
 const ThumbContainer = styled.div`
-    display: flex;
-    margin: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
 
 `
 const Thumb = styled.div`
@@ -59,29 +71,62 @@ const ThumbImage = styled.img`
 `
 
 const Right = styled.div`
-  
+  flex: 1;
+  margin: 0 20px;
+  max-width: 550px;
+
 `
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 0 50px;
   ${mobile({
   padding: '10px',
 })}
 `
 const Title = styled.h1`
-  font-weight: 200;
-  font-size: 32px;
+  font-weight: 600;
+  font-size: 42px;
+  color: rgb(57, 57, 57);
+  margin-bottom: 14px;
 `
+
+const Price = styled.p`
+  font-weight: 600;
+  font-size: 22px;
+  color: teal;
+  margin-bottom: 14px;
+
+`
+
 const Description = styled.p`
-  margin: 20px 0;
+  margin-bottom: 28px;
+  color: rgb(138, 138, 138);
+  font-weight: 500;
+  font-size: 15px;
+`
+const Attribute = styled.div`
+  margin-bottom: 7px;
+  display: flex;
 `
 
-const Price = styled.span`
-  font-weight: 100;
-  font-size: 40px;
+const AttributeName = styled.p`
+  margin-right: 8px;
+  color: rgb(22, 22, 22);
+  font-weight: 600;
+  font-size: 15px;
 `
 
+const AttributeValue = styled.p`
+  color: rgb(86, 86, 86);
+  font-weight: 400;
+  font-size: 15px;
+`
+const Separator = styled.div`
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+  margin-bottom: 28px;
+
+`
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -176,52 +221,74 @@ const Product = () => {
       <Announcement />
       <Wrapper>
         <Left>
-          <ImgContainer>
-            <Image src={selectedImage?.url} />
-          </ImgContainer>
-          <ThumbContainer>
-            {product?.images?.map((image) => {
-              return (
-                <Thumb key={image.url}>
-                  <ThumbImage src={image.url} onClick={ ()=> setSelectedImage(image)} />
-                </Thumb>
-              )
+          <LeftContainer>
+            <ImgContainer>
+              <Image src={selectedImage?.url} />
+            </ImgContainer>
+            <ThumbContainer>
+              {product?.images?.map((image) => {
+                return (
+                  <Thumb key={image.url}>
+                    <ThumbImage src={image.url} onClick={() => setSelectedImage(image)} />
+                  </Thumb>
+                )
 
-            })}
-          </ThumbContainer>
+              })}
+            </ThumbContainer>
+          </LeftContainer>
+
         </Left>
         <Right>
           <InfoContainer>
             <Title>{product.brandName} - {product.name}</Title>
+            <Price>EGP 500</Price>
             <Description>{product.description}</Description>
             {/* <Price>{product.price} EGP</Price> */}
-            <Price>500 EGP</Price>
-            <FilterContainer>
+
+            <Separator />
+            <Attribute>
+              <AttributeName>BRAND: </AttributeName>
+              <AttributeValue>{product.brandName}</AttributeValue>
+            </Attribute>
+            <Attribute>
+              <AttributeName>CATEGORIES: </AttributeName>
+              <AttributeValue>{product.categoryName}</AttributeValue>
+            </Attribute>
+            {product?.attributes?.map((attribute) => {
+              return (
+                <Attribute key={attribute.attributeName}>
+                  <AttributeName>{attribute.attributeName}: </AttributeName>
+                  <AttributeValue>{attribute.attributeValueName}</AttributeValue>
+                </Attribute>
+              )
+            })}
+
+
+            {/* <FilterContainer>
               <Filter>
                 <FilterTitle>Color</FilterTitle>
-                {/* {product.colors.map((color) => (
-                <FilterColor color={color} key={color}/>
-              ))} */}
                 <FilterColor color="black" />
                 <FilterColor color='darkblue' />
                 <FilterColor color='gray' />
               </Filter>
-            </FilterContainer>
-            <AddContainer>
+            </FilterContainer> */}
+            {/* <AddContainer>
               <AmountContainer>
                 <Remove />
                 <Amount>1</Amount>
                 <Add />
               </AmountContainer>
               <Button>ADD TO CART</Button>
-            </AddContainer>
+            </AddContainer> */}
 
           </InfoContainer>
         </Right>
 
 
       </Wrapper>
+      <Services />
       <Footer />
+      <Footer2 />
     </Container>
   )
 }

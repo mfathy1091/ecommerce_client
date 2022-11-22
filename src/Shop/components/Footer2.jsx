@@ -9,6 +9,7 @@ const Container = styled.div`
   align-items: center;
   color: #999;
   padding-left: 20px;
+  
 `
 
 const Footer2 = () => {

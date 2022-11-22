@@ -13,7 +13,7 @@ import { Container, Button, LoadingButton, Input, PageHeader } from '../../compo
 import { FaInfoCircle } from 'react-icons/fa';
 import InputSelect from "../../components/Input/InputSelect";
 import Loader from "../../components/Loader/Loader";
-// import ImageHolder from '../../../imagesUrls/image-holder.jpg'
+// import ImageHolder from '../../../images/image-holder.jpg'
 import ImageHolder from "./../../../assets/image-holder.jpg"
 
 const HeaderContainer = styled.div`
@@ -102,7 +102,7 @@ const inititalDirtyFields = {
   categoryId: false,
   name: false,
   description: false,
-  imagesUrls: false
+  images: false
 }
 
 const FormContainer = styled.div`
@@ -122,44 +122,74 @@ const ProductEdit = () => {
   const [product, setProduct] = useState();
   const { productId } = useParams();
   const [uploading, setUploading] = useState(false);
-  const [brands, setBrands] = useState({});
+  const [brands, setBrands] = useState([]);
+  const [attributes, setAttributes] = useState([]);
   const [selectedImage, setSelectedImage] = useState()
 
+  const handleMap = () => {
+
+    console.log(values.attributeValues)
+    let attr = Object.keys(values.attributeValues).map((key) => values.attributeValues[key])
+
+    console.log(attr)
+  }
+  
+  const handleAttributeValuesChange = async (e) => {
+    const { name, value } = e.target;
+
+    setValues(prev => {
+      if (values.attributeValues) {
+        return {
+          ...prev,
+          attributeValues: [
+            ...prev?.attributeValues,
+            { id: value }
+          ]
+        }
+      } else {
+        return {
+          ...prev,
+          attributeValues: [
+            { id: value }
+          ]
+        }
+      }
+    })
+
+  
+
+    console.log(values.attributeValues)
+
+    // let attributeValues = Object.keys(updatedAttributeValues).map((key) => updatedAttributeValues[key])
+
+  
+
+  }
   const uploadImageHandler = async (e) => {
     try {
       setUploading(true);
       let formData = new FormData();
       formData.append("avatar", e.target.files[0]);
 
-      // upload to cloudinary
-      const res = await axiosPrivate.post("/upload/avatar", formData, {
-        // onUploadProgress: (x) => {
-        //   if (x.total < 1024000)
-        //     return toast.info("Uploading", {
-        //       className: "bg-upload",
-        //       bodyClassName: "bg-upload",
-        //       autoClose: 7000,
-        //     });
-        // },
-      });
+      const res = await axiosPrivate.post("/upload/avatar", formData);
 
       console.log(res.data.url)
 
 
       setValues(prev => {
-        if(values.imagesUrls) {
+        if (values.images) {
           return {
             ...prev,
-            imagesUrls: [
-              ...prev?.imagesUrls,
-              res.data.url
+            images: [
+              ...prev?.images,
+              { url: res.data.url }
             ]
           }
         } else {
           return {
             ...prev,
-            imagesUrls: [
-              res.data.url
+            images: [
+              { url: res.data.url }
             ]
           }
         }
@@ -179,16 +209,23 @@ const ProductEdit = () => {
   };
 
 
+
+
   const { values, setValues, errors, isValid, handleChange, handleSubmit } = useForm(inititalDirtyFields, productSchema, async (e) => {
     e.preventDefault();
     setIsSubmitting(true)
+
+
+
+
     try {
       let data = {
         brandId: values.brandId,
         categoryId: values.categoryId,
         name: values.name,
         description: values.description,
-        imagesUrls: values.imagesUrls,
+        images: values.images,
+        attributeValues: values.attributeValues
       }
 
       let res
@@ -212,6 +249,26 @@ const ProductEdit = () => {
 
 
   useEffect(() => {
+    const getAttributes = async () => {
+      try {
+        const res = await axiosPrivate.get('/attributes/');
+        const mappedData = res.data.map((attribute) => {
+
+          return {
+            value: attribute.id,
+            label: attribute.name,
+            values: attribute.values.map((value) => {
+              return { value: value.id, label: value.name }
+            })
+          }
+        })
+        setAttributes(mappedData)
+        console.log(mappedData);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     const getBrands = async () => {
       try {
         const res = await axiosPrivate.get('/brands/');
@@ -235,7 +292,10 @@ const ProductEdit = () => {
     }
 
     getBrands();
-    if (productId) getProduct();
+    getAttributes();
+    if (productId) {
+      getProduct();
+    }
   }, [])
 
 
@@ -260,10 +320,10 @@ const ProductEdit = () => {
       <form onSubmit={handleSubmit}>
         <FormContainer>
           <ThumbContainer>
-            {values?.imagesUrls?.map((image) => {
+            {values?.images?.map((image) => {
               return (
-                <Thumb key={image}>
-                  <ThumbImage key={image} src={image} onClick={() => setSelectedImage(image)} />
+                <Thumb key={image.url}>
+                  <ThumbImage key={image.url} src={image.url} onClick={() => setSelectedImage(image)} />
                 </Thumb>
               )
 
@@ -353,6 +413,25 @@ const ProductEdit = () => {
               error={errors.description}
             />
           </FormInput>
+
+
+
+          {attributes.map((attribute) => {
+            return (
+              <FormInput key={attribute.label}>
+                <InputSelect
+                  key={attribute.label}
+                  onChange={handleAttributeValuesChange}
+                  name={attribute.label}
+                  //value={values?.attributes}
+                  defaultValue={0}
+                  options={attribute.values}
+                  label={attribute.label}
+                  error={errors.brandId}
+                />
+              </FormInput>
+            )
+          })}
         </FormContainer>
 
 

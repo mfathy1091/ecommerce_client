@@ -2,6 +2,12 @@
 ---------
 1- create brand makes the server hang if no slug provided
 
+### Inage sizes
+* Small Thumbnails:  200px x 200px 
+* Medium Product Images: 640px x 640px 
+* Large Product Images: 1024px x 1024px -  Images work best at this size
+* Our smallest product image recommendation is 520px x 520px 
+
 ### Profile image 
 ```
 <img

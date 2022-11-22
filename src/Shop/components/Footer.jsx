@@ -4,9 +4,9 @@ import { Facebook, EmailOutlined, Phone, Room } from '@material-ui/icons'
 import { mobile } from "../responsive"
 
 const Container = styled.div`
+  padding: 16px;
   display: flex;
-  background-color: #f7f7f7;
-  /* #cabdbd */
+  background-color: #f2f2f2;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${mobile({

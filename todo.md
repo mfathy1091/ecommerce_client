@@ -1,6 +1,9 @@
 ### ISSUES
 ---------
 1- create brand makes the server hang if no slug provided
+2- if a product not exist, you can see the page
+http://127.0.0.1:8000/product/5
+
 
 ### Inage sizes
 * Small Thumbnails:  200px x 200px 

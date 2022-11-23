@@ -85,6 +85,8 @@ const ContractSlider = () => {
     {image: '/images/contracts/4.jpeg'},
     {image: '/images/contracts/5.jpeg'},
     {image: '/images/contracts/6.jpeg'},
+    {image: '/images/contracts/axa.png'},
+    {image: '/images/contracts/med-right.png'},
   ]
 
   const responsive = {

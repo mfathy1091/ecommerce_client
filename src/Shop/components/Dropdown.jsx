@@ -22,7 +22,7 @@ const Dropdown = ({items}) => {
         {items.map((item, i) => {
           return (
             <li key={i}>
-            <Link 
+            <Link key={i}
               className='dropdown-link' to={item.url} 
               onClick={() => setClick(false)}
             >

@@ -22,36 +22,34 @@ const Wrapper = styled.div`
 })}
 `
 
-const Left = styled.div`
-  margin: 0 20px;
+
+
+const ImagesContainer = styled.div`
+  max-width: 500px;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  
+  margin: 25px;
 `
 
-const LeftContainer = styled.div`
+const BigImage = styled.div`
+  max-width: 100%;
+  min-width: 290px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+    ${mobile({
+    height: 'auto',
+    maxHeight: '40vh'
+    })}
+  }
 `
 
-const ImgContainer = styled.div`
-  max-width: 550px;
-  max-height: 550px;
-`
 
-const Image = styled.img`
-  width: 100%;
-  height: auto;
-  max-height: 90vh;
-  object-fit: contain;
-  ${mobile({
-  height: 'auto',
-  maxHeight: '40vh'
-})}
-`
-
-const ThumbContainer = styled.div`
+const ThumbsContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -59,33 +57,37 @@ const ThumbContainer = styled.div`
   margin: 10px 0;
 
 `
-const Thumb = styled.div`
-  height: 50px;
-  width: 75px;
-  margin: 5px;
-`
+
 const ThumbImage = styled.img`
-  height: 100%;
-  width: 100%;
   object-fit: cover;
+  width: 90px;
+  height: 100%;
+  display: block;
+  margin: 5px;
+  border: 1px solid  ${props=> props.active ? 'lightseagreen' : '#ddd'};
+  opacity:${props=> props.active ? '1' : '0.7'};
+  border-radius: 5px;
+  :hover {
+    transform: scale(0.95);
+    cursor: pointer;
+  }
 `
 
-const Right = styled.div`
-  flex: 1;
-  margin: 0 20px;
-  max-width: 550px;
 
-`
+const DetailsContainer = styled.div`
+  margin: 25px;
 
-const InfoContainer = styled.div`
   flex: 1;
+  max-width: 500px;
   ${mobile({
   padding: '10px',
 })}
 `
 const Title = styled.h1`
-  font-weight: 600;
-  font-size: 42px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 32px;
   color: rgb(57, 57, 57);
   margin-bottom: 14px;
 `
@@ -196,7 +198,7 @@ const Button = styled.button`
 
 
 
-const Product = () => {
+const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({})
   const [selectedImage, setSelectedImage] = useState()
@@ -220,26 +222,26 @@ const Product = () => {
       {/* <Navbar /> */}
       <Announcement />
       <Wrapper>
-        <Left>
-          <LeftContainer>
-            <ImgContainer>
-              <Image src={selectedImage?.url} />
-            </ImgContainer>
-            <ThumbContainer>
-              {product?.images?.map((image) => {
+          <ImagesContainer>
+            <BigImage>
+              <img src={selectedImage?.url} />
+            </BigImage>
+            <ThumbsContainer>
+              {product?.images?.map((image, i) => {
                 return (
-                  <Thumb key={image.url}>
-                    <ThumbImage src={image.url} onClick={() => setSelectedImage(image)} />
-                  </Thumb>
+                    <ThumbImage 
+                      key={i} 
+                      src={image.url} 
+                      onClick={() => setSelectedImage(image)} 
+                      active={image.url === selectedImage.url}
+                    />
                 )
 
               })}
-            </ThumbContainer>
-          </LeftContainer>
+            </ThumbsContainer>
+          </ImagesContainer>
 
-        </Left>
-        <Right>
-          <InfoContainer>
+          <DetailsContainer>
             <Title>{product.brandName} - {product.name}</Title>
             <Price>EGP 500</Price>
             <Description>{product.description}</Description>
@@ -254,9 +256,9 @@ const Product = () => {
               <AttributeName>CATEGORIES: </AttributeName>
               <AttributeValue>{product.categoryName}</AttributeValue>
             </Attribute>
-            {product?.attributes?.map((attribute) => {
+            {product?.attributes?.map((attribute, i) => {
               return (
-                <Attribute key={attribute.attributeName}>
+                <Attribute key={i}>
                   <AttributeName>{attribute.attributeName}: </AttributeName>
                   <AttributeValue>{attribute.attributeValueName}</AttributeValue>
                 </Attribute>
@@ -281,8 +283,7 @@ const Product = () => {
               <Button>ADD TO CART</Button>
             </AddContainer> */}
 
-          </InfoContainer>
-        </Right>
+          </DetailsContainer>
 
 
       </Wrapper>
@@ -293,4 +294,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default ProductDetails

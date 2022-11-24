@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "../Shop/pages/Product";
+import ProductDetails from "../Shop/pages/ProductDetails";
 import Home from "../Shop/pages/Home";
 
 import ProductList from "../Shop/pages/ProductList";
@@ -14,7 +14,7 @@ const ShopRouter = [
     <Route exact path='/register' element={<Register/>} />
     <Route exact path='/login' element={<Login/>} />
     <Route path='/products/:category' element={<ProductList/>} />
-    <Route path='/product/:productId' element={<Product/>} />
+    <Route path='/product/:productId' element={<ProductDetails/>} />
     <Route exact path='/cart' element={<Cart/>} />
 </>
 

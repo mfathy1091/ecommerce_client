@@ -41,7 +41,6 @@ import CategoryCreate from './Admin/pages/Category/CategoryCreate';
 import Dashboard from './Admin/pages/Dashboard/Dashboard';
 import PersistLogin from './Admin/components/PersistLogin';
 import CurrentUserProfile from './Admin/pages/CurrentUserProfile/CurrentUserProfile';
-import adminRoutes from './router/adminRouter'
 import shopRoutes from './router/shopRouter'
 
 

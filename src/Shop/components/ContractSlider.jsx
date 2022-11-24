@@ -120,9 +120,9 @@ const ContractSlider = () => {
         autoPlay={true}
         autoPlaySpeed={3000}
       >
-      {items.map((item) => (
-        <ContractItem key={item.image}>
-          <Image src={item.image} />
+      {items.map((item, i) => (
+        <ContractItem key={i}>
+          <Image src={item.image} key={i} />
         </ContractItem>
       ))}
       </StyledCarousel>

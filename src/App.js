@@ -26,6 +26,9 @@ import AttributeList from './Admin/pages/Attribute/AttributeList';
 import ProductList from './Admin/pages/Product/ProductList'
 import ProductEdit from './Admin/pages/Product/ProductEdit';
 
+import EyeglassesList from './Admin/pages/Eyeglasses/EyeglassesList';
+import EyeglassesEdit from './Admin/pages/Eyeglasses/EyeglassesEdit';
+
 import RoleList from './Admin/pages/Role/RoleList'
 import RoleCreate from './Admin/pages/Role/RoleCreate';
 
@@ -101,6 +104,10 @@ const {isLoggedIn} = useContext(AuthContext);
               <Route path="product/list" element={<ProductList />} />
               <Route path="product/edit/:productId" element={<ProductEdit />} />
               <Route path="product/create" element={<ProductEdit />} />
+
+              <Route path="eyeglasses/list" element={<EyeglassesList />} />
+              <Route path="eyeglasses/edit/:productId" element={<EyeglassesEdit />} />
+              <Route path="eyeglasses/create" element={<EyeglassesEdit />} />
 
               <Route path="role/list" element={<RoleList />} />
               <Route path="role/create" element={<RoleCreate />} />

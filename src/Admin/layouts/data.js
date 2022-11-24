@@ -21,16 +21,11 @@ export const sidebarLinks = [
     ]
   },
   {
-    title: 'Products',
+    title: 'Shop',
     links: [
       {
         name: 'Categories',
         path: 'admin/category/list',
-        icon: <BiCategory />,
-      },
-      {
-        name: 'Products',
-        path: 'admin/product/list',
         icon: <BiCategory />,
       },
       {
@@ -41,6 +36,16 @@ export const sidebarLinks = [
       {
         name: 'brands',
         path: 'admin/brand/list',
+        icon: <BiCategory />,
+      },
+      {
+        name: 'Products',
+        path: 'admin/product/list',
+        icon: <BiCategory />,
+      },
+      {
+        name: 'Eyeglasses',
+        path: 'admin/eyeglasses/list',
         icon: <BiCategory />,
       },
     ]

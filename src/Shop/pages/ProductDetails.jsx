@@ -11,10 +11,11 @@ import Services from '../components/Services'
 import Footer2 from '../components/Footer2'
 
 const Container = styled.div`
-  
 `
 
 const Wrapper = styled.div`
+  justify-content: center;
+
   padding: 10% 10%;
   display: flex;
   ${mobile({

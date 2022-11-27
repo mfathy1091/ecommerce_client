@@ -15,6 +15,7 @@ import InputSelect from "../../components/Input/InputSelect";
 import Loader from "../../components/Loader/Loader";
 // import ImageHolder from '../../../images/image-holder.jpg'
 import ImageHolder from "./../../../assets/image-holder.jpg"
+import { getEffectiveTypeRoots } from "typescript";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -124,6 +125,9 @@ const ProductEdit = () => {
   const [uploading, setUploading] = useState(false);
   const [brands, setBrands] = useState([]);
   const [attributes, setAttributes] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState({});
+  const [selectedAttributes, setSelectedAttributes] = useState([]);
   const [selectedImage, setSelectedImage] = useState()
 
   const handleMap = () => {
@@ -133,7 +137,7 @@ const ProductEdit = () => {
 
     console.log(attr)
   }
-  
+
   const handleAttributeValuesChange = async (e) => {
     const { name, value } = e.target;
 
@@ -156,13 +160,13 @@ const ProductEdit = () => {
       }
     })
 
-  
+
 
     console.log(values.attributeValues)
 
     // let attributeValues = Object.keys(updatedAttributeValues).map((key) => updatedAttributeValues[key])
 
-  
+
 
   }
   const uploadImageHandler = async (e) => {
@@ -215,6 +219,8 @@ const ProductEdit = () => {
     e.preventDefault();
     setIsSubmitting(true)
 
+    let mappedValues = Object.keys(selectedAttributes).map((key) => selectedAttributes[key])
+
 
 
 
@@ -222,10 +228,12 @@ const ProductEdit = () => {
       let data = {
         brandId: values.brandId,
         categoryId: values.categoryId,
+        typeId: values.typeId,
         name: values.name,
         description: values.description,
         images: values.images,
-        attributeValues: values.attributeValues
+        //attributeValues: values.attributeValues
+        attributeValues: mappedValues
       }
 
       let res
@@ -246,7 +254,31 @@ const ProductEdit = () => {
     }
 
   });
+  const getTypes = async () => {
+    try {
+      const res = await axiosPrivate.get('/types/');
+      const mappedData = res.data.map((type) => {
+        return {
+          value: type.id,
+          label: type.name,
+          attributes: type.attributes.map((attribute) => {
+            return {
+              value: attribute.id,
+              label: attribute.name,
+              values: attribute.values.map((value) => {
+                return { value: value.id, label: value.name }
+              })
+            }
+          })
 
+        }
+      })
+      setTypes(mappedData)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     const getAttributes = async () => {
@@ -269,6 +301,8 @@ const ProductEdit = () => {
       }
     }
 
+
+
     const getBrands = async () => {
       try {
         const res = await axiosPrivate.get('/brands/');
@@ -281,26 +315,63 @@ const ProductEdit = () => {
       }
     }
 
+
+
+    getBrands();
+    getAttributes();
+    getTypes()
+
+  }, [])
+
+  useEffect(()=>{
     const getProduct = async () => {
       try {
         const res = await axiosPrivate.get('/products/' + productId);
         setProduct(res.data)
         setValues(res.data)
+
+        var selectedAttributes = res.data.attributes.reduce(
+          (obj, item) => Object.assign(obj, { [item.attributeName]: item.attributeValueId }), {});
+
+        setSelectedAttributes(selectedAttributes)
+        console.log('hiiiii');
+        await getTypes()
+        console.log(types)
+        setSelectedType(types?.find(type => type.value == res.data.typeId));
+
       } catch (error) {
         console.log(error)
       }
     }
 
-    getBrands();
-    getAttributes();
     if (productId) {
       getProduct();
     }
-  }, [])
+  }, [types])
+
 
 
 
   console.log(errors);
+
+  const handleChangeType = (e) => {
+    setSelectedType(types.find(type => type.value == e.target.value));
+    console.log('changed')
+    console.log(types);
+    values.typeId = e.target.value
+  }
+
+  const handleChangeAttribute = (e) => {
+    const { value, name } = e.target
+    setSelectedAttributes(prev => {
+      return {
+        ...prev,
+        [name]: value
+      }
+    })
+
+    console.log(selectedAttributes);
+  }
 
   return (
     <div>
@@ -414,19 +485,27 @@ const ProductEdit = () => {
             />
           </FormInput>
 
-
-
-          {attributes.map((attribute) => {
+          <FormInput>
+            <InputSelect
+              onChange={handleChangeType}
+              name='typeId'
+              value={values.typeId}
+              defaultValue={0}
+              options={types}
+              label='Select Type'
+              error={errors.typeId}
+            />
+          </FormInput>
+          {types && selectedType && selectedType.attributes?.map((attribute, i) => {
             return (
-              <FormInput key={attribute.label}>
+              <FormInput key={i}>
                 <InputSelect
-                  key={attribute.label}
-                  onChange={handleAttributeValuesChange}
+                  onChange={handleChangeAttribute}
                   name={attribute.label}
-                  //value={values?.attributes}
+                  value={selectedAttributes[attribute.label]}
                   defaultValue={0}
                   options={attribute.values}
-                  label={attribute.label}
+                  label={`Select ${attribute.label}`}
                   error={errors.brandId}
                 />
               </FormInput>

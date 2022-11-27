@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ProductItem from './ProductItem'
+import ProductItem from './Product'
 import { publicAxios } from '../api'
 import styled from 'styled-components';
 

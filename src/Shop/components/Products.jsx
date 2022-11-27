@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { popularProducts } from '../data'
-import ProductItem from './ProductItem'
+import ProductItem from './Product'
 import { publicAxios } from '../api'
 
 const Container = styled.div`

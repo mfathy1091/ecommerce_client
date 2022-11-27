@@ -68,8 +68,6 @@ const Image = styled.img`
 `
 const Container = styled(Link)`
   max-width: 400px;
-  //min-width: 300px;
-  /* height: 400px; */
   display: flex;
   flex-direction: column;
   background-color: #f7f7f7;

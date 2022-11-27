@@ -8,6 +8,9 @@ module.exports = {
         },
 
         extend: {
+            colors: {
+                primary: '#4A3AFF'
+            },
             fontSize: {
                 14: '14px',
             },

@@ -18,6 +18,7 @@ import Footer2 from '../components/Footer2'
 import insuranceCompanies from '../images/insurance_companies.png'
 import ProductSlider from '../components/ProductSlider'
 import ContractSlider from '../components/ContractSlider'
+import Navbar2 from '../components/Navbar2/Navbar2'
 
 
 
@@ -61,12 +62,13 @@ const Home = () => {
   return (
     <div>
       {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
-      <Announcement />
-      <Navbar 
+      {/* <Announcement /> */}
+      <Navbar2 />
+      {/* <Navbar 
         links={navbarLinks} 
         scrollFunc={scrollToRef} 
         contactRef={contactRef} 
-      />
+      /> */}
       <ImageSection id='home'/>
       <ContractSlider />
       <Slider3 

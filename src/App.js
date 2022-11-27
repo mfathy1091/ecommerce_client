@@ -113,10 +113,10 @@ const {isLoggedIn} = useContext(AuthContext);
 
               <Route path="brand/list" element={<BrandList />} />
               <Route path="brand/create" element={<BrandCreate />} />
-           
+          
               <Route path="category/list" element={<CategoryList />} />
               <Route path="category/create" element={<CategoryCreate />} />
-   
+  
               <Route path="user/list" element={<UserList />} />
               <Route path='user/edit/:userId' element={<UserCreate />} />
               <Route path='user/create' element={<UserCreate />} />

@@ -13,17 +13,23 @@ const NavLinks = () => {
         links.map(link => (
           <div>
             <div className='px-3 text-left md:cursor-pointer group'>
-              <h1 className='py-7 flex justify-between items-center md:pr-0 pr-5'
+              <h1 className='uppercase py-7 flex justify-between items-center md:pr-0 pr-5 group bg-slate-100'
                 onClick={() => {
                   heading !== link.name ? setHeading(link.name) : setHeading('');
                   setSubHeading('');
                 }}
               >
                 {link.name}
-                <span className='md:mt-1 md:ml-2 inline'>
-                  {heading === link.name ? <FaChevronUp /> : <FaChevronDown />}
+                {/* mobile - click */}
+                <span className={`text-2xl md:hidden inline ease-in duration-150 ${heading === link.name ? 'rotate-180 bg-slate-200 rounded-full' : ''}` }>
+                  <FaChevronDown className='p-1.5' />
+                </span>
+                {/* large - hover */}
+                <span className={`text-2xl  md:ml-2 md:block hidden ease-in duration-150 group-hover:rotate-180`}>
+                  <FaChevronDown className='p-1.5' />
                 </span>
               </h1>
+              {/* large menu */}
               {link.submenu && (
                 <div>
                   <div className='absolute top-20 hidden group-hover:md:block hover:md:block'>
@@ -47,25 +53,26 @@ const NavLinks = () => {
               )
               }
             </div>
+            
             {/* Mobile menus */}
-            <div className={`${heading === link.name ? 'md:hidden' : 'hidden'}`}>
+            <div className={`${heading === link.name ? 'md:hidden' : 'hidden'} mx-3 border-l-1`}>
               {/* sublinks */}
               {link.submenu && (
                 link.sublinks.map((slinks) => (
                   <div>
-                    <div>
+                    <div className='mx-7'>
                       <h1
                         onClick={() => subHeading !== slinks.head ? setSubHeading(slinks.head) : setSubHeading('')}
-                        className='py-4 pl-7 font-semibold md:pr-0 pr-5 flex justify-between items-center'
+                        className='py-4 md:pr-0 flex justify-between items-center'
                       >
                         {slinks.head}
-                        <span className='md:mt-1 md:ml-2 inline'>
-                          {subHeading === slinks.head ? <FaChevronUp /> : <FaChevronDown />}
+                        <span className={`text-2xl md:mt-1 md:ml-2 inline ease-in duration-150 rounded-full ${subHeading === slinks.head ? 'rotate-180 bg-slate-200' : ''}`}>
+                          <FaChevronDown className='p-1.5' />
                         </span>
                       </h1>
-                      <div className={`${subHeading === slinks.head ? "md:hidden" : "hidden"}`}>
+                      <div className={`${subHeading === slinks.head ? "md:hidden" : "hidden"} pl-7 border-l-1`}>
                         {slinks.sublink.map(slink => (
-                          <li className='py-3 pl-14'>
+                          <li className='py-3'>
                             <Link to={slink.link} className={''}>
                               {slink.name}
                             </Link>
@@ -77,8 +84,10 @@ const NavLinks = () => {
                 ))
               )
               }
+              
             </div>
           </div>
+          
         ))
       }
     </>

@@ -9,16 +9,13 @@ import { MdClose, MdOutlineMenu } from "react-icons/md";
 const LogoLink = styled(Link)`
   font-family: 'Montserrat';
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 700;
   font-style: italic;
   text-decoration: none;
-  color: rgb(220, 220, 220);
+  color: rgb(58, 58, 58);
   transition: all 0.3s ease;
   justify-self: start;
   
-  &:hover {
-    color: teal;
-  }
 
   @media(max-width: 768px) {
     transform: scale(75%);
@@ -46,10 +43,9 @@ const Navbar2 = () => {
 
         <ul className="md:flex hidden uppercase items-center gap-8 font-['Poppins']">
           <li>
-            <Link to="/" className='py-7 px-3 inline-block' >
+            <Link to="/" className='uppercase py-7 px-3 inline-block' >
               Home
             </Link>
-
           </li>
           <NavLinks />
         </ul>

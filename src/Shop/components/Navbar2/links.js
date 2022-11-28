@@ -1,28 +1,50 @@
 const links = [
   {
-    name: 'Men', submenu: true,
+    name: 'Sunglasses', submenu: true,
     sublinks: [
       {
-        head: 'TopWear',
+        head: 'Men',
         sublink: [
-          { name: 'T-shirt', link: '/' },
-          { name: 'Casual Shirts', link: '/' },
-          { name: 'Formal Shirts', link: '/' },
-          { name: 'T-shirt', link: '/' },
+          { name: 'All', link: '/' },
+          { name: 'MAYBACH', link: '/' },
+          { name: 'Parada', link: '/' },
+          { name: 'Gucci', link: '/' },
         ]
       },
       {
-        head: 'bottomwear',
+        head: 'Women',
         sublink: [
-          { name: 'T-shirt', link: '/' },
-          { name: 'Casual Shirts', link: '/' },
-          { name: 'Formal Shirts', link: '/' },
-          { name: 'T-shirt', link: '/' },
+          { name: 'All', link: '/' },
+          { name: 'MAYBACH', link: '/' },
+          { name: 'Parada', link: '/' },
+          { name: 'Gucci', link: '/' },
         ]
-      }
+      },
     ]
   },
-  { name: 'Sunglasses' },
+  {
+    name: 'Eyeglasses', submenu: true,
+    sublinks: [
+      {
+        head: 'Men',
+        sublink: [
+          { name: 'All', link: '/' },
+          { name: 'MAYBACH', link: '/' },
+          { name: 'Parada', link: '/' },
+          { name: 'Gucci', link: '/' },
+        ]
+      },
+      {
+        head: 'Women',
+        sublink: [
+          { name: 'All', link: '/' },
+          { name: 'MAYBACH', link: '/' },
+          { name: 'Parada', link: '/' },
+          { name: 'Gucci', link: '/' },
+        ]
+      },
+    ]
+  },
 
 ]
 

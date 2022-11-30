@@ -60,16 +60,16 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   color: #000;
   border-radius: 8px;
-  border: 1px solid teal;
+  border: 1px solid var(--primary-color);
   padding: 8px;
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  color: teal;
+  color: var(--primary-color);
 
   opacity: 0.8;
   &:hover {
-    background-color: teal;
+    background-color: var(--primary-color);
     opacity: 1;
     color: white;
   }

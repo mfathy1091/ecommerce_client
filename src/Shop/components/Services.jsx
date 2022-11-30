@@ -7,11 +7,12 @@ import { FaBolt, FaWrench } from 'react-icons/fa'
 
 import { BsHourglassSplit, BsCalendar3 } from 'react-icons/bs'
 
-const Container = styled.div`
-  padding: 3rem 9rem;
+const Container = styled.ul`
+  padding: 35px 15px;
   position: relative;
-  background-color: #f7f7f7;
+  background-color: #000;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 
@@ -24,9 +25,11 @@ const Container = styled.div`
 
 
 
-const ItemContainer = styled.div`
+const Item = styled.li`
     position: relative;
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
 
 @media(max-width: 768px) {
   justify-content: space-between;
@@ -38,7 +41,7 @@ const ItemContainer = styled.div`
 const IconContainer = styled.div`
 height: 70px;
 width: 70px;
-display: flex;
+display: block;
 justify-content: center;
 align-items: center;
 
@@ -47,14 +50,14 @@ align-items: center;
 }
 svg {
   font-size: 40px;
-  color: teal;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 `
 
 
 const DetailsContainer = styled.div`
-display: flex;
+display: block;
 flex-direction: column;
 justify-content: center;
 align-items: start;
@@ -64,7 +67,7 @@ align-items: start;
 const Title = styled.h1`
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: rgb(220, 220, 220);
   margin-bottom: 3px;
   letter-spacing: 0.5px;
 `
@@ -78,39 +81,37 @@ const Subtitle = styled.p`
 
 const Services = () => {
 
-
+  const items = [
+    {
+      title: "Open 7 Days a Week",
+      subtitle: "10 AM – 8 PM",
+      icon: <BsCalendar3 />
+    },
+    {
+      title: "Immediate Service",
+      subtitle: "We make glasses right away",
+      icon: <BsHourglassSplit />
+    },
+    {
+      title: "Repairs and Adjustments",
+      subtitle: "Free adjustment services",
+      icon: <FaWrench />
+    },
+  ]
 
   return (
     <Container>
-        <ItemContainer>
+      {items.map((item, i) => (
+        <Item>
           <IconContainer>
-            <BsCalendar3 />
+            {item.icon}
           </IconContainer>
           <DetailsContainer>
-            <Title>Open 7 Days a Week</Title>
-            <Subtitle>10 AM – 8 PM</Subtitle>
+            <Title>{item.title}</Title>
+            <Subtitle>{item.subtitle}</Subtitle>
           </DetailsContainer>
-        </ItemContainer>
-
-        <ItemContainer>
-          <IconContainer>
-            <BsHourglassSplit />
-          </IconContainer>
-          <DetailsContainer>
-            <Title>Immediate Service</Title>
-            <Subtitle>We make glasses right away</Subtitle>
-          </DetailsContainer>
-        </ItemContainer>
-
-        <ItemContainer>
-          <IconContainer>
-            <FaWrench />
-          </IconContainer>
-          <DetailsContainer>
-            <Title>Repairs and Adjustments</Title>
-            <Subtitle>Free adjustment services</Subtitle>
-          </DetailsContainer>
-        </ItemContainer>
+        </Item>
+      ))}
     </Container>
   )
 }

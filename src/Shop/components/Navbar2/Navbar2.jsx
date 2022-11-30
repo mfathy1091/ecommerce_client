@@ -11,7 +11,7 @@ import { BiSearch } from "react-icons/bi";
 
 
 const Container = styled.nav`
-padding: 0 5%;
+  padding: 0 5%;
   position: sticky;
   top: 0;
   min-height: 70px;
@@ -30,6 +30,7 @@ padding: 0 5%;
 `
 
 const Logo = styled.div`
+  margin-top: 0px;
   height: 70px;
   transition: all 0.3s ease;
   display: flex;

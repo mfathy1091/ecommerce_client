@@ -19,7 +19,7 @@ const Container = styled.div`
 
 
 const Left = styled.div`
-  width: 60%;
+  width: 70%;
   height: 600px;
   background: url("/images/home-15.jpg") no-repeat center / cover;
   border-radius: 8px;
@@ -30,8 +30,8 @@ const Left = styled.div`
 `
 
 const Right = styled.div`
-margin: -10%;
-  width: 50%;
+  margin: -10%;
+  width: 70%;
   min-height: 400px;
   padding: 30px;
   display: flex;
@@ -60,9 +60,8 @@ margin: -10%;
 const ContainerTitle = styled.h1`
   text-align: center;
   font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  color: teal;
+  font-weight: 500;
+  letter-spacing: 3px;
   position: relative;
 
   @media(max-width: 768px) {
@@ -96,7 +95,7 @@ const LocationContainer = styled.div`
 const Title = styled.h1`
   text-align: center;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   color: #333;
   position: relative;
   margin-bottom: 20px;
@@ -106,7 +105,7 @@ const Title = styled.h1`
     position: absolute;
     bottom: -40%;
     content: '';
-    background: teal;
+    background: var(--primary-color);
     width: 30px;
     height: 2px;
     left: 0;

@@ -89,13 +89,12 @@ const Home = () => {
 
       {/* <Products catSlug={'sunglasses'} filters={[]} sort={[]} /> */}
 
-      <Services />
 
       {/* <Slider /> */}
       {/* <Categories /> */}
       <Locations />
 
-
+      <Services />
       <Footer ref={contactRef} />
       <Footer2 />
     </div>

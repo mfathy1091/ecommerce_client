@@ -10,47 +10,35 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 30px 50px;
+  height: 100%;
+
 `
 
 const ContainerTitle = styled.div`
-  margin: 20px;
+  margin: 20px 20px 40px 20px;
 `
 
 const Title = styled.h1`
     display: inline-block;
-    margin-bottom: 0;
-    color: teal;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 2px;
+    color: var(--primary-text-color);
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 3px;
     text-transform: uppercase;
     position:relative;
+    font-family: 'Raleway', sans-serif;
 
-  &:before{
+    /* ::after {
     position: absolute;
-    top: 50%;
-    right: -60px;
+    bottom: -15%;
     content: '';
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    width: 50px;
-    height: 1px;
-    background: teal;
-  }
-
-  &:after{
-    position: absolute;
-    top: 50%;
-    left: -60px;
-    content: '';
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    width: 50px;
-    height: 1px;
-    background: teal;
-  }
+    background: var(--primary-text-color);
+    width: 40%;
+    transform: translateX(80%);
+    height: 2px;
+    left: 0;
+    right: 0;
+  } */
 `
 
 const StyledCarousel = styled(Carousel)`

@@ -19,39 +19,32 @@ const ContainerTitle = styled.div`
 
 const Title = styled.h1`
     display: inline-block;
-    margin-bottom: 0;
-    color: teal;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 2px;
+    color: var(--primary-text-color);
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 3px;
     text-transform: uppercase;
     position:relative;
 
-  &:before{
+  /* ::before{
     position: absolute;
     top: 50%;
     right: -60px;
     content: '';
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
     width: 50px;
     height: 1px;
-    background: teal;
+    background: var(--primary-color);
   }
 
-  &:after{
+  ::after {
     position: absolute;
     top: 50%;
     left: -60px;
     content: '';
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    background: var(--primary-color);
     width: 50px;
     height: 1px;
-    background: teal;
-  }
+  } */
 `
 
 const StyledCarousel = styled(Carousel)`

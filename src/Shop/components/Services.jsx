@@ -34,6 +34,8 @@ const Item = styled.li`
 @media(max-width: 768px) {
   justify-content: space-between;
   margin: 20px;
+  width: 100%;
+
 }
 `
 
@@ -41,9 +43,10 @@ const Item = styled.li`
 const IconContainer = styled.div`
 height: 70px;
 width: 70px;
-display: block;
+display: flex;
 justify-content: center;
 align-items: center;
+flex: 1;
 
 @media(max-width: 768px) {
   margin-bottom: 10px;
@@ -57,10 +60,11 @@ svg {
 
 
 const DetailsContainer = styled.div`
-display: block;
+display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: start;
+flex: 3;
 `
 
 

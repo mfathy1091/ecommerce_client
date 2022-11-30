@@ -19,8 +19,8 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   z-index: -2;
-  position: absolute;
-  top: 30px;
+  // position: absolute;
+  // top: 30px;
   left: 0;
 `
 
@@ -30,8 +30,8 @@ const ImageOverlay = styled.div`
   height: 100vh;
   z-index: -1;
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 30px;
+  // position: absolute;
+  // top: 30px;
   left: 0;
 `
 
@@ -44,13 +44,13 @@ const Details = styled.div`
 `
 const Title = styled.span`
   color: white;
-  font-size: 56px;
+  font-size: 60px;
   padding: 15px;
 `
 
 const Paragraph = styled.span`
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   padding: 15px;
 
 `
@@ -61,7 +61,7 @@ const HeroSection = () => {
   return (
     <Container>
       {/* <Video src="/videos/video-2.mp4" autoPlay loop muted /> */}
-      <Image src="/images/img-home-8.jpg" />
+      <Image src="/images/hero-2.jpg" />
 
       <ImageOverlay>
         <Details>

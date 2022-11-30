@@ -66,10 +66,9 @@ const ThumbImage = styled.img`
   display: block;
   margin: 5px;
   border: 1px solid  ${props=> props.active ? 'lightseagreen' : '#ddd'};
-  opacity:${props=> props.active ? '1' : '0.7'};
+  /* opacity:${props=> props.active ? '1' : '0.7'}; */
   border-radius: 5px;
   :hover {
-    transform: scale(0.95);
     cursor: pointer;
   }
 `

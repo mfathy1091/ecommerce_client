@@ -8,7 +8,7 @@ import Slider from '../components/Slider'
 import styled from 'styled-components'
 import image1 from './../../assets/10_client_background.png'
 import image2 from './../../assets/12_client_background.jpg'
-import ImageSection from '../components/HeroSection'
+import HeroSection from '../components/HeroSection'
 import Slider2 from '../components/Slider2'
 import { BsWindowSidebar } from 'react-icons/bs'
 import Locations from '../components/Locations'
@@ -62,14 +62,14 @@ const Home = () => {
   return (
     <div>
       {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
-      {/* <Announcement /> */}
+      <Announcement />
       <Navbar2 />
       {/* <Navbar 
         links={navbarLinks} 
         scrollFunc={scrollToRef} 
         contactRef={contactRef} 
       /> */}
-      <ImageSection id='home'/>
+      <HeroSection/>
       <ContractSlider />
       <Slider3 
         imageSrc='/images/img-home-11.jpg' 

@@ -1,74 +1,108 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import NavButton from './NavButton'
+import NavMenu from './NavMenu'
 import NavLinks from './NavLinks'
-// import logo from "../../assets/logo.png"
-import { MdClose, MdOutlineMenu } from "react-icons/md";
+import NavButton from './NavButton'
 
-const LogoLink = styled(Link)`
-  font-family: 'Montserrat';
-  font-size: 26px;
-  font-weight: 700;
-  font-style: italic;
-  text-decoration: none;
-  color: rgb(58, 58, 58);
-  transition: all 0.3s ease;
-  justify-self: start;
-  
+import logo from "../../../assets/logo-2.png"
+import { MdClose, MdOutlineMenu } from "react-icons/md";
+import { BiSearch } from "react-icons/bi";
+
+
+const Container = styled.nav`
+padding: 0 5%;
+  position: sticky;
+  top: 0;
+  min-height: 70px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  //margin-bottom: -70px;
+  z-index: 1000;
 
   @media(max-width: 768px) {
-    transform: scale(75%);
+    
   }
 `
 
+const Logo = styled.div`
+  height: 70px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  img {
+    height: 70%;
+    border-radius: 5px;
+  }
+
+  @media(max-width: 768px) {
+    height: 50px;
+    img {
+    }
+  }
+
+  
+`
+const MenuList = styled.ul`
+  list-style: none;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  font-family: 'Poppins';
+  background-color: white;
+    /* height: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px; */
+  
+  /* text-align: center; */
+
+  @media(max-width: 768px) {
+    align-items: flex-start;
+    //display: block;
+    position: absolute;
+    top: 70px;
+    left: ${props => props.left};
+    width: 100%;
+    height: 100vh;
+    
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    padding: 10px;
+  }
+`
+
+
 const Navbar2 = () => {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef();
 
   return (
-    <nav className='bg-white'>
-      <div className='flex items-center font-medium justify-around'>
-        <div className='z-50 p-5 md:w-auto w-full flex justify-between'>
-          {/* <img src={logo} alt="logo" className='md:cursor-pointer h-9'/> */}
-          <LogoLink to="/" className='md:cursor-pointer h-9'
-          // onClick={closeMobileMenu} 
-          >
-            CARERA
-          </LogoLink>
-          <div className='text-3xl md:hidden' onClick={() => setOpen(!open)}>
-            {open ? <MdClose /> : <MdOutlineMenu /> }
-          </div>
-        </div>
-
-
-        <ul className="md:flex hidden uppercase items-center gap-8 font-['Poppins']">
-          <li>
-            <Link to="/" className='uppercase py-7 px-3 inline-block' >
-              Home
-            </Link>
-          </li>
-          <NavLinks />
-        </ul>
-        <div className='md:block hidden'>
-          <NavButton />
-        </div>
-        { /* Mobile nav */}
-        <ul 
-          className={`md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4
-          duration-500 ${open ? 'left-0' : 'left-[-100%]'}`}>
-          <li>
-            <Link to="/" className='py-7 px-3 inline-block' >
-              Home
-            </Link>
-
-          </li>
-          <NavLinks />
-          <div className='py-5'>
-            <NavButton />
-          </div>
-        </ul>
+    <Container className=''>
+      <div
+        className='text-3xl md:hidden'
+        onClick={() => setOpen(!open)}
+      >
+        {open ? <MdClose /> : <MdOutlineMenu />}
       </div>
-    </nav>
+
+      <Logo>
+        <img src={logo} alt="logo" className='md:cursor-pointer' />
+      </Logo>
+
+      <MenuList ref={menuRef} left={open ? '0' : '-100%'}>
+        <NavLinks />
+      </MenuList>
+      <div className='md:flex justify-between items-center gap-10'>
+        <BiSearch className='text-2xl' />
+        {/* <NavButton className='hidden md:visible' /> */}
+      </div>
+    </Container>
   )
 }
 

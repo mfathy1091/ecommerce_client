@@ -13,14 +13,15 @@ const Container = styled.div`
   justify-content: center;
   
   @media(max-width: 768px) {
-    
+    flex-direction: column;
+    width: 100%;
   }
 `
 
 
 const Left = styled.div`
-  width: 70%;
-  height: 600px;
+  width: 100%;
+  height: 50vh;
   background: url("/images/home-15.jpg") no-repeat center / cover;
   border-radius: 8px;
 
@@ -51,7 +52,7 @@ const Right = styled.div`
     top: 50%;
     left: 0;
     right: 0;
-    margin:  10% 10%;
+    margin:  -10% 5% 0 5%;
     width: 80%;
     height: 100%;
   }

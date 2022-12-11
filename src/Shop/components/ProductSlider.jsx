@@ -14,18 +14,30 @@ const Container = styled.div`
   
 `
 const ContainerTitle = styled.div`
-  margin: 20px;
+  margin: 20px 20px 60px 20px;
 `
 
 const Title = styled.h1`
     display: inline-block;
     color: var(--primary-text-color);
-    font-size: 32px;
-    font-weight: 300;
+    font-size: 20px;
+    font-weight: 400;
     letter-spacing: 3px;
     text-transform: uppercase;
     position:relative;
+    font-family: 'Nunito', sans-serif;
 
+  ::after {
+    position: absolute;
+    bottom: -35%;
+    content: '';
+    background: var(--primary-text-color);
+    width: 40px;
+    height: 3px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
   /* ::before{
     position: absolute;
     top: 50%;

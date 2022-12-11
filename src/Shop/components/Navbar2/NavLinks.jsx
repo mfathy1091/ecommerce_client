@@ -15,10 +15,9 @@ const Container = styled.div`
     float: left; */
     flex-direction: column;
     width: 100%;
+    height: 100vh;
   }
 `
-
-
 
 const MenuHead = styled.h1`
   text-transform: uppercase;

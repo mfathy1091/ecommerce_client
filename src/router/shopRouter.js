@@ -6,17 +6,20 @@ import ProductList from "../Shop/pages/ProductList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "../Shop/pages/Register";
 import Login from "../Shop/pages/Login";
-import Cart from "../Shop/pages/Cart"; 
+import Cart from "../Shop/pages/Cart";
+import Layout from "../Shop/components/Layout/Layout";
 
 const ShopRouter = [
-<>
-<Route exact path='/' element={<Home/>} />
-    <Route exact path='/register' element={<Register/>} />
-    <Route exact path='/login' element={<Login/>} />
-    <Route path='/products/:category' element={<ProductList/>} />
-    <Route path='/product/:productId' element={<ProductDetails/>} />
-    <Route exact path='/cart' element={<Cart/>} />
-</>
+  <>
+    <Route path='/' element={<Layout />}>
+      <Route exact path='' element={<Home />} />
+      <Route exact path='/register' element={<Register />} />
+      <Route exact path='/login' element={<Login />} />
+      <Route path='/products/:category' element={<ProductList />} />
+      <Route path='/product/:productId' element={<ProductDetails />} />
+      <Route exact path='/cart' element={<Cart />} />
+    </Route>
+  </>
 
 ]
 

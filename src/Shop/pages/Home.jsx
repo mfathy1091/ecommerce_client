@@ -62,8 +62,8 @@ const Home = () => {
   return (
     <div>
       {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
-      <Announcement />
-      <Navbar2 />
+      {/* <Announcement /> */}
+      {/* <Navbar2 /> */}
       {/* <Navbar 
         links={navbarLinks} 
         scrollFunc={scrollToRef} 

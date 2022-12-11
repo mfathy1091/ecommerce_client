@@ -33,7 +33,7 @@ const Item = styled.li`
 
 @media(max-width: 768px) {
   justify-content: space-between;
-  margin: 20px;
+  padding: 20px;
   width: 100%;
 
 }
@@ -46,10 +46,8 @@ width: 70px;
 display: flex;
 justify-content: center;
 align-items: center;
-flex: 1;
 
 @media(max-width: 768px) {
-  margin-bottom: 10px;
 }
 svg {
   font-size: 40px;

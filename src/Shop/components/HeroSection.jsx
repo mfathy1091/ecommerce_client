@@ -36,14 +36,14 @@ const ImageOverlay = styled.div`
 
 const Details = styled.div`
   position: absolute;
-  bottom: 30%;
+  top: 30%;
   left: 10%;
   display: flex;
   flex-direction: column;
 `
 const Title = styled.span`
   color: white;
-  font-size: 60px;
+  font-size: 30px;
   padding: 15px;
 `
 

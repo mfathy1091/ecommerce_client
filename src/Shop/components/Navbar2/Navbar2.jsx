@@ -14,7 +14,7 @@ const Container = styled.nav`
   padding: 0 5%;
   position: sticky;
   top: 0;
-  min-height: 70px;
+  height: 70px;
   width: 100%;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,6 @@ const Container = styled.nav`
   z-index: 1000;
 
   @media(max-width: 768px) {
-    
   }
 `
 
@@ -66,11 +65,10 @@ const MenuList = styled.ul`
     align-items: flex-start;
     //display: block;
     position: absolute;
-    top: 70px;
+    bottom: 10px;
     left: ${props => props.left};
     width: 100%;
-    height: 100vh;
-    
+    background-color: blue;
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
@@ -84,6 +82,7 @@ const Navbar2 = () => {
   const menuRef = useRef();
 
   return (
+    
     <Container className=''>
       <div
         className='text-3xl md:hidden'
@@ -97,7 +96,7 @@ const Navbar2 = () => {
       </Logo>
 
       <MenuList ref={menuRef} left={open ? '0' : '-100%'}>
-        <NavLinks />
+        < NavLinks />
       </MenuList>
       <div className='md:flex justify-between items-center gap-10'>
         <BiSearch className='text-2xl' />

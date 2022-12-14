@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { v, b } from "../../../styles/variables";
 
 import { FaReact } from "react-icons/fa";
-import { HiMenuAlt3 } from "react-icons/hi";
+import { HiMenuAlt2 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
+import { BiSearch } from "react-icons/bi";
 
 const btnReset = css`
     cursor: pointer;
@@ -19,18 +20,19 @@ const btnReset = css`
     padding: 0;
 `;
 
+
+
 export const SHeaderHeight = styled.div`
-    height: ${v.headerHeight};
 `;
 
 export const SHeaderFixed = styled.div`
-    position: fixed;
+    position: sticky;
     left: 0;
     right: 0;
     top: 0;
     height: ${v.headerHeight};
     background: ${({ theme }) => theme.bg};
-    z-index: 10;
+    z-index: 10000;
 `;
 
 export const SHeader = styled.header`
@@ -50,15 +52,44 @@ export const SHeader = styled.header`
     }
 `;
 
-export const SLeft = styled.div``;
-export const SCenter = styled.div`
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+export const SLeft1 = styled.div`
     display: none;
     @media ${b.md} {
         display: flex;
     }
+`;
+
+export const SCenterLeft = styled.div`
+    display: none;
+
+`;
+
+export const SCenterRight = styled.div`
+    display: none;
+    @media ${b.md} {
+        display: flex;
+    }
+`;
+
+
+
+
+export const SLeft = styled.div`
+display: flex;
+`;
+export const SCenter = styled.div`
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    Nav {
+      display: none;
+      @media ${b.md} {
+        display: flex;
+      }
+    }
+
 `;
 export const SRight = styled.div`
     display: flex;
@@ -67,17 +98,37 @@ export const SRight = styled.div`
 `;
 
 // Left
-export const SLogoLink = styled(Link)`
+
+export const SLogoLinkLeft = styled(Link)`
+  display: none;
+  @media ${b.md} {
     display: flex;
-    width: 40px;
+    height: 40px;
     color: inherit;
     text-decoration: none;
+    img {
+      display: block;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 `;
-export const SLogo = styled(FaReact)`
-    color: ${({ theme }) => theme.primary};
-    display: block;
-    width: 100%;
-    height: 100%;
+
+export const SLogoLinkCenter = styled(Link)`
+    display: flex;
+    height: 35px;
+    color: inherit;
+    text-decoration: none;
+
+    img {
+      display: block;
+      height: 100%;
+      object-fit: contain;
+    }
+    @media ${b.md} {
+      display: none;
+    }
+
 `;
 
 // Center
@@ -86,7 +137,8 @@ export const SLogo = styled(FaReact)`
 // Right
 export const SCTAButton = styled.button`
     ${btnReset}
-    background: ${({ theme }) => theme.primary};
+    /* background: ${({ theme }) => theme.primary}; */
+    background: var(--primary-color);
     padding: calc(${v.smSpacing} - 2px) ${v.lgSpacing};
     border-radius: ${v.borderRadius};
     display: none;
@@ -106,29 +158,34 @@ export const SMenuToggleButton = styled.button`
 
 const iconStyles = css`
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 28px;
+    height: 28px;
 `;
-export const SMenuIcon = styled(HiMenuAlt3)`
+export const SSearchIcon = styled(BiSearch)`
     ${iconStyles}
 `;
+
+export const SMenuIcon = styled(HiMenuAlt2)`
+    ${iconStyles}
+`;
+
 export const SCloseIcon = styled(IoMdClose)`
     ${iconStyles}
 `;
 
 // Menu
 export const SMenu = styled.div`
-    position: fixed;
-    top: ${v.headerHeight};
-    left: 100%;
-    right: 0;
-    bottom: 0;
-    background: ${({ theme }) => theme.overlay};
-    width: 100%;
-    height: calc(100% - ${v.headerHeight});
-    transition: 0.3s ease left;
-    padding: ${v.lgSpacing};
-    @media ${b.md} {
-        display: none;
-    }
+  position: fixed;
+  top: ${v.headerHeight};
+  left: 100%;
+  right: 0;
+  bottom: 0;
+  background: #e7887b;
+  width: 100%;
+  height: calc(100% - ${v.headerHeight});
+  transition: 0.3s ease left;
+  z-index: 1000;
+  @media ${b.md} {
+    display: none;
+  }
 `;

@@ -12,6 +12,9 @@ const Container = styled.div`
   padding: 30px 50px;
   height: 100%;
 
+@media (max-width: 768px) {
+  padding: 30px 10px;
+}
 `
 
 const ContainerTitle = styled.div`
@@ -43,19 +46,35 @@ const Title = styled.h1`
 
 const StyledCarousel = styled(Carousel)`
   width: 100%;
+  padding-bottom: 20px;
   ul {
     li {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-around;
+      padding-left: 5px;
+      padding-right: 5px;
     }
   }
+
+  button:nth-child(2) {
+    background-color: rgba(0, 0, 0, 0.25);
+    left: 0;
+    z-index: 1;
+  }
+
+  button:nth-child(3) {
+    background-color: rgba(0, 0, 0, 0.25);
+    right: 0;
+    z-index: 1;
+  }
+
+
 `
 
 
 const ContractItem = styled.div`
-  height: 120px;
-  max-width: 240px;
+  max-height: 120px;
+  max-width: 120px;
 `
 
 
@@ -65,31 +84,31 @@ const Image = styled.img`
 `
 
 const ContractSlider = () => {
-  
+
   const items = [
-    {image: '/images/contracts/1.jpeg'},
-    {image: '/images/contracts/2.jpeg'},
-    {image: '/images/contracts/3.jpeg'},
-    {image: '/images/contracts/4.jpeg'},
-    {image: '/images/contracts/5.jpeg'},
-    {image: '/images/contracts/6.jpeg'},
-    {image: '/images/contracts/axa.png'},
-    {image: '/images/contracts/med-right.png'},
+    { image: '/images/contracts/1.jpeg' },
+    { image: '/images/contracts/2.jpeg' },
+    { image: '/images/contracts/3.jpeg' },
+    { image: '/images/contracts/4.jpeg' },
+    { image: '/images/contracts/5.jpeg' },
+    { image: '/images/contracts/6.jpeg' },
+    { image: '/images/contracts/axa.png' },
+    { image: '/images/contracts/med-right.png' },
   ]
 
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 1024 },
-      items: 5
+      items: 7
     },
     desktop: {
       breakpoint: { max: 1024, min: 768 },
-      items: 6
+      items: 5
     },
     tablet: {
       breakpoint: { max: 768, min: 464 },
-      items: 3
+      items: 4
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -102,17 +121,19 @@ const ContractSlider = () => {
       <ContainerTitle>
         <Title>contracts</Title>
       </ContainerTitle>
-      <StyledCarousel 
+      <StyledCarousel
+        swipeable={true}
         responsive={responsive}
         infinite={true}
-        autoPlay={true}
+        showDots={true}
+        autoPlay={false}
         autoPlaySpeed={3000}
       >
-      {items.map((item, i) => (
-        <ContractItem key={i}>
-          <Image src={item.image} key={i} />
-        </ContractItem>
-      ))}
+        {items.map((item, i) => (
+          <ContractItem key={i}>
+            <Image src={item.image} key={i} />
+          </ContractItem>
+        ))}
       </StyledCarousel>
     </Container>
   )

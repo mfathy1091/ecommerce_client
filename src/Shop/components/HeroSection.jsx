@@ -42,13 +42,13 @@ const Details = styled.div`
   flex-direction: column;
 `
 const Title = styled.span`
-  color: white;
+  color: #000;
   font-size: 30px;
   padding: 15px;
 `
 
 const Paragraph = styled.span`
-  color: white;
+  color: #000;
   font-size: 20px;
   padding: 15px;
 

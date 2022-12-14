@@ -1,4 +1,5 @@
 export const v = {
+  headerAndAnnouncementHeight: "105px",
   headerHeight: "65px",
   smSpacing: `8px`,
   mdSpacing: `16px`,

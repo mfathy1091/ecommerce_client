@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { uiActions } from '../../../../app/slices/uiSlice';
 import logo from "../../../../assets/logo-2.png"
 import MobileNav from './MobileMenu/MobileMenu';
+import NavLinks from './NavLinks/NavLinks'
 import Nav from './Nav/Nav';
 
 import {
@@ -19,10 +20,11 @@ import {
   SLeft,
   SLogoLinkLeft,
   SLogoLinkCenter,
-  SMenu,
+  SMobileMenu,
   SMenuIcon,
   SMenuToggleButton,
   SRight,
+  SMenu
 } from "./styles";
 
 const Header = () => {
@@ -53,17 +55,21 @@ const Header = () => {
             <SLogoLinkCenter to="/" onClick={menuCloseHandler}>
               <img src={logo} alt="logo" />
             </SLogoLinkCenter>
-            <Nav/>
+            <SMenu>
+              <NavLinks />
+            </SMenu>
           </SCenter>
           <SRight>
-            <SCTAButton>Sign In</SCTAButton>
             <SSearchIcon />
           </SRight>
         </SHeader>
       </SHeaderFixed>
-      <SMenu style={menuOpen ? { left: 0 } : {}}>
+      <SMobileMenu style={menuOpen ? { left: 0 } : {}}>
+        <SMenuToggleButton onClick={menuToggleHandler}>
+          <SCloseIcon />
+        </SMenuToggleButton>
         <Nav menuToggleHandler={menuToggleHandler} />
-      </SMenu>
+      </SMobileMenu>
     </>
   )
 }

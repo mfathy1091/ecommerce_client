@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
-import { SArrowContainer, SArrowIcon, SNavLabel, SNavLabelContainer, SNavLink } from "../styles";
-import { SDropdown, STreeChild, STreeItem } from "./styles";
+import { SDropDownButton, SNavLabel, SNavLabelContainer } from "../styles";
+import { SDropdown, STreeChild, STreeItem, SInnerNavLink } from "./styles";
 
 const TreeItem = ({ onSelectCallback, label, children, link }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,16 +8,14 @@ const TreeItem = ({ onSelectCallback, label, children, link }) => {
   return (
     <STreeItem>
       {link && (
-        <SNavLink to={link} onClick={onSelectCallback}>
+        <SInnerNavLink to={link} onClick={onSelectCallback}>
           {label}
-        </SNavLink>
+        </SInnerNavLink>
       )}
       {!link && (
         <SNavLabelContainer onClick={() => setIsOpen((p) => !p)}>
           <SNavLabel isOpen={isOpen}>{label}</SNavLabel>
-          <SArrowContainer isOpen={isOpen}>
-            <SArrowIcon />
-          </SArrowContainer>
+          <SDropDownButton isOpen={isOpen} />
         </SNavLabelContainer>
       )}
       {children && isOpen && <STreeChild>{children}</STreeChild>}

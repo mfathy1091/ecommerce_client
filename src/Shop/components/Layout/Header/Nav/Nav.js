@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown/Dropdown";
 import {
-  SArrowContainer,
-  SArrowIcon,
   SNav,
   SNavLabel,
   SNavLabelContainer,
   SNavLink,
   SNavLinkContainer,
+  SDropDownButton
 } from "./styles";
 
 const Nav = ({ navLinks, menuToggleHandler }) => {
@@ -33,9 +32,7 @@ const Nav = ({ navLinks, menuToggleHandler }) => {
             {!link && (
               <SNavLabelContainer onClick={() => openDropdownHandler(label)}>
                 <SNavLabel isOpen={isOpen}>{label}</SNavLabel>
-                <SArrowContainer isOpen={isOpen}>
-                  <SArrowIcon />
-                </SArrowContainer>
+                <SDropDownButton isOpen={isOpen} />
               </SNavLabelContainer>
             )}
             {isOpen && <Dropdown tree={tree} onSelectCallback={onSelectCallback} />}

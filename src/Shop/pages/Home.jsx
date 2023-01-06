@@ -85,7 +85,7 @@ const Home = () => {
         scrollFunc={scrollToRef} 
         contactRef={contactRef} 
       /> */}
-      <HeroSection/>
+      {/* <HeroSection/> */}
       <Categories2/>
       <PartnersSlider />
       <Slider3 

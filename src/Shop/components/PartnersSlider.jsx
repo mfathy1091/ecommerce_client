@@ -9,7 +9,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px 50px;
+  margin-top: 70px;
+  padding: 0 10% 70px 10%;
   height: 100%;
 
 @media (max-width: 768px) {
@@ -18,7 +19,7 @@ const Container = styled.div`
 `
 
 const ContainerTitle = styled.div`
-  margin: 20px 20px 60px 20px;
+  margin: 20px 20px 20px 20px;
 `
 
 const Title = styled.h1`
@@ -43,7 +44,7 @@ const Title = styled.h1`
     margin: auto;
   }
 `
-sdfsdfsdfsdfkjlklk
+
 const StyledCarousel = styled(Carousel)`
   width: 100%;
   padding-bottom: 20px;
@@ -90,17 +91,19 @@ const Image = styled.img`
   height: 100%;
 `
 
-const ContractSlider = () => {
+const PartnersSlider = () => {
 
   const items = [
-    { image: '/images/contracts/1.jpeg' },
-    { image: '/images/contracts/2.jpeg' },
-    { image: '/images/contracts/3.jpeg' },
-    { image: '/images/contracts/4.jpeg' },
-    { image: '/images/contracts/5.jpeg' },
-    { image: '/images/contracts/6.jpeg' },
-    { image: '/images/contracts/axa.png' },
-    { image: '/images/contracts/med-right.png' },
+    { image: '/images/partners/Chint.png' },
+    { image: '/images/partners/colorlight.png' },
+    { image: '/images/partners/Elsewedy.png' },
+    { image: '/images/partners/HUIDU.png' },
+    { image: '/images/partners/Linsn.png' },
+    { image: '/images/partners/listen.png' },
+    { image: '/images/partners/mean-well.png' },
+    { image: '/images/partners/Megmeet.png' },
+    { image: '/images/partners/novastar.png' },
+    { image: '/images/partners/Schneider.png' },
   ]
 
   const responsive = {
@@ -126,7 +129,7 @@ const ContractSlider = () => {
   return (
     <Container>
       <ContainerTitle>
-        <Title>contracts</Title>
+        <Title>Partners</Title>
       </ContainerTitle>
       <StyledCarousel
         swipeable={true}
@@ -145,4 +148,4 @@ const ContractSlider = () => {
     </Container>
   )
 }
-export default ContractSlider
+export default PartnersSlider

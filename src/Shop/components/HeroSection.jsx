@@ -64,8 +64,8 @@ const HeroSection = () => {
 
       <ImageOverlay>
         <Details>
-          <Title>CARERA VISION</Title>
-          <Paragraph>WE HAVE THE BEST INTENATIONAL BRANS AND MORE</Paragraph>
+          <Title>LED SYSTEMS</Title>
+          <Paragraph>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus error modi sed saepe consequuntur earum, iste ut aperiam ullam nisi quos quod ad quis laudantium quae voluptatem velit aliquid quia.</Paragraph>
         </Details>
       </ImageOverlay>
 

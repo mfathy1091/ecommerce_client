@@ -157,65 +157,29 @@ MobileNav.defaultProps = {
       link: "/",
       tree: null,
     },
+    
     {
-      label: "Sunglasses",
+      label: "Categories",
       link: null,
       tree: [
         {
-          label: "All",
-          link: "/sunglasses",
+          label: "All Products",
+          link: "/all",
           branches: null,
         },
         {
-          label: "Men",
-          link: "/sunglasses/men",
+          label: "Outdoor LED Display",
+          link: "/outdoor",
           branches: null,
         },
         {
-          label: "Women",
-          link: "/sunglasses/women",
+          label: "Indoor LED Display",
+          link: "/indoor",
           branches: null,
         },
         {
-          label: "Boys",
-          link: "/sunglasses/boys",
-          branches: null,
-        },
-        {
-          label: "Girls",
-          link: "/sunglasses/girls",
-          branches: null,
-        },
-        
-      ],
-    },
-    {
-      label: "Eyeglasses",
-      link: null,
-      tree: [
-        {
-          label: "All",
-          link: "/sunglasses",
-          branches: null,
-        },
-        {
-          label: "Men",
-          link: "/sunglasses/men",
-          branches: null,
-        },
-        {
-          label: "Women",
-          link: "/sunglasses/women",
-          branches: null,
-        },
-        {
-          label: "Boys",
-          link: "/sunglasses/boys",
-          branches: null,
-        },
-        {
-          label: "Girls",
-          link: "/sunglasses/girls",
+          label: "Text LED Display",
+          link: "/text",
           branches: null,
         },
         

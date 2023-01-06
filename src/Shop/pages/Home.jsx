@@ -14,16 +14,27 @@ import { BsWindowSidebar } from 'react-icons/bs'
 import Locations from '../components/Locations'
 import Slider3 from '../components/Slider3'
 import Services from '../components/Services'
-import Footer2 from '../components/Footer2'
 import insuranceCompanies from '../images/insurance_companies.png'
 import ProductSlider from '../components/ProductSlider'
-import ContractSlider from '../components/ContractSlider'
+import PartnersSlider from '../components/PartnersSlider'
 import Navbar2 from '../components/Navbar2/Navbar2'
+import Categories2 from '../components/Categories2'
+import { Slideshow } from '@material-ui/icons'
+import Carousel from '../components/carousel/Carousel'
 
-
+const Container = styled.div`
+  
+`
 
 
 const Home = () => {
+  const slides = [
+    "/images/hero_slider/1.jpg",
+    "/images/hero_slider/2.jpg",
+    "/images/hero_slider/3.jpg",
+    "/images/hero_slider/4.jpg",
+  ]
+
   const contactRef = useRef(null);
 
   const navbarLinks = [
@@ -61,6 +72,11 @@ const Home = () => {
 
   return (
     <div>
+      <Container>
+        <Carousel slides={slides} />
+      </Container>
+
+
       {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
       {/* <Announcement /> */}
       {/* <Navbar2 /> */}
@@ -70,7 +86,8 @@ const Home = () => {
         contactRef={contactRef} 
       /> */}
       <HeroSection/>
-      <ContractSlider />
+      <Categories2/>
+      <PartnersSlider />
       <Slider3 
         imageSrc='/images/img-home-11.jpg' 
         title={'TRENDY WOMEN’S SUNGLASSES'} 
@@ -96,7 +113,6 @@ const Home = () => {
 
       <Services />
       <Footer ref={contactRef} />
-      <Footer2 />
     </div>
   )
 }

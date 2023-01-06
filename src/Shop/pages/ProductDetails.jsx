@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom'
 import { publicAxios } from '../api'
 import { mobile } from "../responsive"
 import Services from '../components/Services'
-import Footer2 from '../components/Footer2'
 
 const Container = styled.div`
 `
@@ -289,7 +288,6 @@ const ProductDetails = () => {
       </Wrapper>
       <Services />
       <Footer />
-      <Footer2 />
     </Container>
   )
 }

@@ -4,14 +4,21 @@ import { Facebook, EmailOutlined, Phone, Room } from '@material-ui/icons'
 import { mobile } from "../responsive"
 
 const Container = styled.div`
+  background-color: #222222;
+  color: #999;
+`
+
+const Top = styled.div`
   padding: 16px;
   display: flex;
-  background-color: #f2f2f2;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${mobile({
-  flexDirection: 'column'
-})}
+    flexDirection: 'column'
+  })}
+`
+const Bottom = styled.div`
+  
 `
 const Left = styled.div`
   flex: 1;
@@ -53,6 +60,8 @@ const Center = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 30px;
+  color: #fff;
+  font-weight: 700;
 `
 
 const List = styled.ul`
@@ -71,10 +80,6 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
-
-  ${mobile({
-  backgroundColor: '#fff'
-})}
 `
 
 const ContactItem = styled.div`
@@ -87,12 +92,24 @@ const Payment = styled.img`
   height: 30px;
 
 `
+const CopyRgihts = styled.div`
+  height: 60px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 20px;
+  border-top: 1px solid #000;
+  
+`
 
 const Footer = (props, ref) => {
   return (
     <Container ref={ref}>
-      <Left>
-        <Logo>CARERA</Logo>
+      
+
+    <Top>
+    <Left>
+        <Logo>LED SYSTEMS</Logo>
         <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Description>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -112,16 +129,22 @@ const Footer = (props, ref) => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room /> 29 elbkbashy elesawy st., Alexandria, Egypt
+          <Room /> Miami, Alexandria, Egypt
         </ContactItem>
         <ContactItem>
-          <Phone /> (+2) 012 8083 8383
+          <Phone /> (+2) 012 2222 2222
         </ContactItem>
         <ContactItem>
-          <EmailOutlined /> carera.vision.alex.1@gmail.com
+          <EmailOutlined /> led.systems@gmail.com
         </ContactItem>
         <Payment src="https://www.pngitem.com/pimgs/m/5-55223_visa-mastercard-logo-png-transparent-png.png" />
       </Right>
+    </Top>
+    <Bottom>
+      <CopyRgihts>
+        © Copyright Led systems - All Rights Reserved
+      </CopyRgihts>
+    </Bottom>
     </Container>
 
   )

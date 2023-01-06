@@ -7,14 +7,12 @@ import Footer from '../components/Footer'
 import { colors, frameMaterials, frameShapes, frameTypes, frameBrands } from '../data'
 import { useLocation } from 'react-router-dom'
 import { mobile } from "../responsive"
-import Footer2 from '../components/Footer2'
 // import { navbarLinks } from './Home'
 
 
 const Container = styled.div`
   height: 100%;
 `
-
 const Title = styled.h1`
   margin: 20px;
 `
@@ -156,7 +154,6 @@ const ProductList = () => {
         <Products catSlug={catSlug} filters={filters} sort={sort} />
       </ProductsContainer>
       <Footer />
-      <Footer2 />
     </Container>
   )
 }

@@ -244,7 +244,7 @@ const Navbar = ({ links, scrollFunc, contactRef }) => {
     <Container>
 
       <LogoLink to="/" onClick={closeMobileMenu} >
-        CARERA
+        LED SYSTEMS
       </LogoLink>
       <NavList ref={menuRef} left={showMenu ? '0' : '-100%'}>
         {showMenu &&

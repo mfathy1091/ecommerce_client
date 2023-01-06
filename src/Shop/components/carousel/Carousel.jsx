@@ -17,7 +17,7 @@ const SCarouselInner = styled.div`
   transition: ease 1s;
 `
 
-const Carousel = ({ slides }) => {
+const Carousel = ({ slides, interval = 3000, controls = false, indicators = false, autoPlay = true, width = "100%" }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideInterval = useRef();
 
@@ -39,14 +39,16 @@ const Carousel = ({ slides }) => {
   }
 
   const startSlideTimer = () => {
-    stopSlideTimer()
-    slideInterval.current = setInterval(() => {
-      setCurrentSlide(currentSlide => currentSlide < slides.length - 1 ? currentSlide + 1 : 0);
-    }, 3000)
+    if(autoPlay) {
+      stopSlideTimer()
+      slideInterval.current = setInterval(() => {
+        setCurrentSlide(currentSlide => currentSlide < slides.length - 1 ? currentSlide + 1 : 0);
+      }, interval)
+    }
   }
 
   const stopSlideTimer = () => {
-    if (slideInterval.current) {
+    if (autoPlay && slideInterval.current) {
       clearInterval(slideInterval.current)
     }
   }
@@ -59,7 +61,7 @@ const Carousel = ({ slides }) => {
 
   return (
 
-    <SCarousel>
+    <SCarousel style={{ maxWidth: width }}>
       <SCarouselInner
         style={{ transform: `translate(${-currentSlide*100}%)` }}
       >
@@ -67,8 +69,8 @@ const Carousel = ({ slides }) => {
           <CarouselItem key={index} slide={slide} stopSlide={stopSlideTimer} startSlide={startSlideTimer} />
         ))}
       </SCarouselInner>
-      <CarouselIndicators slides={slides} currentIndex={currentSlide} switchIndex={switchIndex} />
-      <CarouselControls prev={prev} next={next} />
+      {indicators && <CarouselIndicators slides={slides} currentIndex={currentSlide} switchIndex={switchIndex} />}
+      {controls && <CarouselControls prev={prev} next={next} />}
     </SCarousel>
   )
 }

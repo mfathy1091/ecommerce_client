@@ -73,7 +73,13 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <Carousel slides={slides} />
+        <Carousel 
+          slides={slides} 
+          interval={3000}
+          controls
+          indicators
+          autoPlay = {true}
+        />
       </Container>
 
 

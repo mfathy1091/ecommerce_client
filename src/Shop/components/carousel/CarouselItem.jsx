@@ -6,9 +6,9 @@ const SCarouselItem = styled.div`
   width: 100%;
 `
 
-const CarouselItem = ({ slide }) => {
+const CarouselItem = ({ slide, stopSlide, startSlide }) => {
   return (
-    <SCarouselItem>
+    <SCarouselItem onMouseEnter={stopSlide} onMouseOut={startSlide} >
       <img src={slide} />
     </SCarouselItem>
   )

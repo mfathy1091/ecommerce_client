@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import CarouselItem from './CarouselItem'
 import CarouselControls from './CarouselControls'
@@ -18,25 +18,38 @@ const SCarouselInner = styled.div`
 
 const Carousel = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slideInterval = useRef();
 
   const prev = () => {
+    startSlideTimer()
     const index = currentSlide > 0 ? currentSlide -1 : slides.length - 1;
     setCurrentSlide(index);
   }
 
   const next = () => {
+    startSlideTimer()
     const index = currentSlide < slides.length - 1 ? currentSlide + 1 : 0;
     setCurrentSlide(index);
   }
 
-  // useEffect(() => {
-  //   const slideInterval = setInterval(() => {
-  //     setCurrentSlide(currentSlide => currentSlide < slides.length - 1 ? currentSlide + 1 : 0 );
-  //     console.log('hleeee');
-  //   }, 3000)
+  const startSlideTimer = () => {
+    stopSlideTimer()
+    slideInterval.current = setInterval(() => {
+      setCurrentSlide(currentSlide => currentSlide < slides.length - 1 ? currentSlide + 1 : 0);
+    }, 3000)
+  }
 
-  //   return () => clearInterval(slideInterval)
-  // }, [])
+  const stopSlideTimer = () => {
+    if (slideInterval.current) {
+      clearInterval(slideInterval.current)
+    }
+  }
+
+  useEffect(() => {
+    startSlideTimer();
+
+    return () => stopSlideTimer()
+  }, [])
 
   return (
 
@@ -45,7 +58,7 @@ const Carousel = ({ slides }) => {
         style={{ transform: `translate(${-currentSlide*100}%)` }}
       >
         {slides.map((slide, index) => (
-          <CarouselItem slide={slide} key={index} />
+          <CarouselItem key={index} slide={slide} stopSlide={stopSlideTimer} startSlide={startSlideTimer} />
         ))}
       </SCarouselInner>
       <CarouselControls prev={prev} next={next} />

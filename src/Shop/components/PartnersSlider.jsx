@@ -3,6 +3,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { publicAxios } from '../api'
 import styled from 'styled-components';
+import { partner1, partner2, partner3, partner4, partner5, partner6,
+  partner7, partner8 ,partner9, partner10 } from '../../assets/images';
 
 const Container = styled.div`
   display: flex;
@@ -94,16 +96,16 @@ const Image = styled.img`
 const PartnersSlider = () => {
 
   const items = [
-    { image: '/images/partners/Chint.png' },
-    { image: '/images/partners/colorlight.png' },
-    { image: '/images/partners/Elsewedy.png' },
-    { image: '/images/partners/HUIDU.png' },
-    { image: '/images/partners/Linsn.png' },
-    { image: '/images/partners/listen.png' },
-    { image: '/images/partners/mean-well.png' },
-    { image: '/images/partners/Megmeet.png' },
-    { image: '/images/partners/novastar.png' },
-    { image: '/images/partners/Schneider.png' },
+    { image: partner1 },
+    { image: partner2 },
+    { image: partner3 },
+    { image: partner4 },
+    { image: partner5 },
+    { image: partner6 },
+    { image: partner7 },
+    { image: partner8 },
+    { image: partner9 },
+    { image: partner10 },
   ]
 
   const responsive = {

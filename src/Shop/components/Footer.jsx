@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Facebook, EmailOutlined, Phone, Room } from '@material-ui/icons'
 import { mobile } from "../responsive"
-import logo from "../../assets/logo/logo-gray.png"
+import logo from "../../assets/images/logo/logo-gray.png"
 
 const Container = styled.div`
   background-color: #222222;

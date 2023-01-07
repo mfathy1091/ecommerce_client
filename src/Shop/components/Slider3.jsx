@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
+
 const Slider = styled.div`
   display: flex;
   align-items: center;
@@ -85,7 +86,7 @@ const Slider3 = ({ imageSrc, title, subtitle, flipped, url }) => {
   const renderContent = () => {
     if(flipped) {
       return <>
-        <Image src={imageSrc} alt="glasses" />
+        <Image src={imageSrc} alt="image" />
         <Content >
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
@@ -99,7 +100,7 @@ const Slider3 = ({ imageSrc, title, subtitle, flipped, url }) => {
           <Subtitle>{subtitle}</Subtitle>
           <StyledLink to={url} >See Details</StyledLink>
         </Content>
-        <Image src={imageSrc} alt="glasses" />
+        <Image src={imageSrc} alt="image" />
       </>
     }
   }

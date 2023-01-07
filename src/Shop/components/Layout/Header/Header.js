@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { uiActions } from '../../../../app/slices/uiSlice';
-import logo from "../../../../assets/logo-4.png"
+import logo from "../../../../assets/images/logo/logo-black.png"
 import MobileNav from './MobileMenu/MobileMenu';
 import NavLinks from './NavLinks/NavLinks'
 import Nav from './Nav/Nav';

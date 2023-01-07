@@ -14,7 +14,7 @@ import { FaInfoCircle } from 'react-icons/fa';
 import InputSelect from "../../components/Input/InputSelect";
 import Loader from "../../components/Loader/Loader";
 // import ImageHolder from '../../../images/image-holder.jpg'
-import ImageHolder from "./../../../assets/image-holder.jpg"
+import ImageHolder from "./../../../assets/images/image-holder.jpg"
 
 const HeaderContainer = styled.div`
   display: flex;

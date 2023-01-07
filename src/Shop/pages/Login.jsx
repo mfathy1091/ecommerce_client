@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import background from "../images/login_background.jpg"
+import background from "../../assets/images/login_background.jpg"
 import { mobile } from "../responsive"
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'

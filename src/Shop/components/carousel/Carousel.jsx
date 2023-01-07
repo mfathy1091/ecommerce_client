@@ -22,7 +22,7 @@ const Carousel = ({ slides, interval = 3000, controls = false, indicators = fals
   const slideInterval = useRef();
 
   const prev = () => {
-    startSlideTimer()
+  startSlideTimer()
     const index = currentSlide > 0 ? currentSlide -1 : slides.length - 1;
     setCurrentSlide(index);
   }

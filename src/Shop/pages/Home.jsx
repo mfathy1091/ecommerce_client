@@ -83,9 +83,8 @@ const Home = () => {
       </Container>
 
 
+
       {/* <button onClick={() => scrollToRef(contactRef)}>Contact</button> */}
-      {/* <Announcement /> */}
-      {/* <Navbar2 /> */}
       {/* <Navbar 
         links={navbarLinks} 
         scrollFunc={scrollToRef} 
@@ -93,31 +92,26 @@ const Home = () => {
       /> */}
       {/* <HeroSection/> */}
       <Categories2/>
-      <PartnersSlider />
+
+      <ProductSlider catSlug={'Featured Products'} title={'FEATURED PRODUCTS'} />
+
       <Slider3 
-        imageSrc='/images/img-home-11.jpg' 
-        title={'TRENDY WOMEN’S SUNGLASSES'} 
+        imageSrc='/images/outdoor-flat-display1.jpg' 
+        title={'Outdoor LED Display Solutions'} 
         subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
-        url={'/products/sunglasses/women'}
+        url={'/products/outdoor'}
       />
       <Slider3 
-        imageSrc='/images/img-home-12.jpg' 
-        title={"MEN'S EYEWARE"} 
+        imageSrc='/images/curved-led-display.jpg' 
+        title={"Curved or Flat Digital LED Displays"} 
         subtitle={'Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat, ut wisi enim ad minim veniam, quis nostrud.'} 
         flipped={true} 
-        url={'/products/eyeglasses'}
+        url={'/curved'}
       />
-      <ProductSlider catSlug={'sunglasses'} title={'SUNGLASSES'} />
-      <ProductSlider catSlug={'eyeglasses'} title={'EYEGLASSES'} />
-
-      {/* <Products catSlug={'sunglasses'} filters={[]} sort={[]} /> */}
-
-
-      {/* <Slider /> */}
-      {/* <Categories /> */}
-      <Locations />
 
       <Services />
+      <PartnersSlider />
+
       <Footer ref={contactRef} />
     </div>
   )

@@ -9,6 +9,9 @@ import { BsHourglassSplit, BsCalendar3 } from 'react-icons/bs'
 
 const Container = styled.div`
   margin-top: 70px;
+  @media(max-width: 768px) {
+    margin: 0;
+  }
 `
 
 const Row = styled.ul`

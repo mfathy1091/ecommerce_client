@@ -129,7 +129,7 @@ const PartnersSlider = () => {
   return (
     <Container>
       <ContainerTitle>
-        <Title>Partners</Title>
+        <Title>OUR Partners</Title>
       </ContainerTitle>
       <StyledCarousel
         swipeable={true}

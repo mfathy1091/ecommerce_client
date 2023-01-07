@@ -2,15 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import { FaBolt, FaWrench } from 'react-icons/fa'
+import { FaShare, FaWrench } from 'react-icons/fa'
 
 
-import { BsHourglassSplit, BsCalendar3 } from 'react-icons/bs'
+import { BsTruck } from 'react-icons/bs'
+import { BiCustomize } from 'react-icons/bi'
 
 const Container = styled.ul`
   padding: 35px 15px;
   position: relative;
-  background-color: #000;
+  background-color: #f2f2f2;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -51,7 +52,7 @@ align-items: center;
 }
 svg {
   font-size: 40px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 `
@@ -69,12 +70,12 @@ flex: 3;
 const Title = styled.h1`
   font-size: 16px;
   font-weight: 500;
-  color: rgb(220, 220, 220);
+  color: rgb(0, 0, 0);
   margin-bottom: 3px;
   letter-spacing: 0.5px;
 `
 const Subtitle = styled.p`
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   color: #999999;
   line-height: 27px;
@@ -85,19 +86,19 @@ const Services = () => {
 
   const items = [
     {
-      title: "Open 7 Days a Week",
-      subtitle: "10 AM – 8 PM",
-      icon: <BsCalendar3 />
+      title: "Free Shipment for orders over $200",
+      subtitle: "*Conditions apply",
+      icon: <BsTruck />
     },
     {
-      title: "Immediate Service",
-      subtitle: "We make glasses right away",
-      icon: <BsHourglassSplit />
+      title: "CUSTOMISED SERVICE APPROACH",
+      subtitle: "We make right away",
+      icon: <BiCustomize />
     },
     {
-      title: "Repairs and Adjustments",
-      subtitle: "Free adjustment services",
-      icon: <FaWrench />
+      title: "14 DAYS RETURN",
+      subtitle: "*Conditions apply",
+      icon: <FaShare />
     },
   ]
 

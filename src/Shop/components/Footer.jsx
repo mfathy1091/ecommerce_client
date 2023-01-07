@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Facebook, EmailOutlined, Phone, Room } from '@material-ui/icons'
 import { mobile } from "../responsive"
+import logo from "../../assets/logo/logo-gray.png"
 
 const Container = styled.div`
   background-color: #222222;
@@ -14,8 +15,8 @@ const Top = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${mobile({
-    flexDirection: 'column'
-  })}
+  flexDirection: 'column'
+})}
 `
 const Bottom = styled.div`
   
@@ -27,7 +28,17 @@ const Left = styled.div`
   padding: 20px;
 `
 
-const Logo = styled.h1``;
+const Logo = styled.div`
+  display: flex;
+  height: 40px;
+  color: inherit;
+  text-decoration: none;
+  img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
 
 const Description = styled.p`
   margin: 20px 0px;
@@ -59,9 +70,16 @@ const Center = styled.div`
 `
 
 const Title = styled.h3`
+  display: inline-block;
   margin-bottom: 30px;
   color: #fff;
   font-weight: 700;
+  transition: all ease 0.3s;
+
+  :hover {
+    color: #ffd200;
+    cursor: pointer;
+  }
 `
 
 const List = styled.ul`
@@ -70,11 +88,20 @@ const List = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 `
 
 const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 10px;
+  p {
+    display: inline-block;
+    margin-bottom: 10px;
+    transition: all ease 0.3s;
+    :hover {
+      color: #ffd200;
+      cursor: pointer;
+    }
+  }
+
 `
 
 const Right = styled.div`
@@ -105,46 +132,48 @@ const CopyRgihts = styled.div`
 const Footer = (props, ref) => {
   return (
     <Container ref={ref}>
-      
 
-    <Top>
-    <Left>
-        <Logo>LED SYSTEMS</Logo>
-        <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Description>
-        <SocialContainer>
-          <SocialIcon color="3B5999">
-            <Facebook />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Sunglasses</ListItem>
-          <ListItem>Accesories</ListItem>
-          <ListItem>Terms</ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>Contact</Title>
-        <ContactItem>
-          <Room /> Miami, Alexandria, Egypt
-        </ContactItem>
-        <ContactItem>
-          <Phone /> (+2) 012 2222 2222
-        </ContactItem>
-        <ContactItem>
-          <EmailOutlined /> led.systems@gmail.com
-        </ContactItem>
-        <Payment src="https://www.pngitem.com/pimgs/m/5-55223_visa-mastercard-logo-png-transparent-png.png" />
-      </Right>
-    </Top>
-    <Bottom>
-      <CopyRgihts>
-        © Copyright Led systems - All Rights Reserved
-      </CopyRgihts>
-    </Bottom>
+
+      <Top>
+        <Left>
+          <Logo>
+            <img src={logo} alt="logo" />
+          </Logo>
+          <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Description>
+          <SocialContainer>
+            <SocialIcon color="3B5999">
+              <Facebook />
+            </SocialIcon>
+          </SocialContainer>
+        </Left>
+        <Center>
+          <Title>Products</Title>
+          <List>
+            <ListItem><p>Home</p></ListItem>
+            <ListItem><p>Processors</p></ListItem>
+            <ListItem><p>Rental LED Display</p></ListItem>
+            <ListItem><p>HD LED Display</p></ListItem>
+          </List>
+        </Center>
+        <Right>
+          <Title>Contact</Title>
+          <ContactItem>
+            <Room /> Miami, Alexandria, Egypt
+          </ContactItem>
+          <ContactItem>
+            <Phone /> (+2) 012 2222 2222
+          </ContactItem>
+          <ContactItem>
+            <EmailOutlined /> led.systems@gmail.com
+          </ContactItem>
+          <Payment src="https://www.pngitem.com/pimgs/m/5-55223_visa-mastercard-logo-png-transparent-png.png" />
+        </Right>
+      </Top>
+      <Bottom>
+        <CopyRgihts>
+          © Copyright Led systems - All Rights Reserved
+        </CopyRgihts>
+      </Bottom>
     </Container>
 
   )

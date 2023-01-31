@@ -26,9 +26,6 @@ import AttributeList from './Admin/pages/Attribute/AttributeList';
 import ProductList from './Admin/pages/Product/ProductList'
 import ProductEdit from './Admin/pages/Product/ProductEdit';
 
-import EyeglassesList from './Admin/pages/Eyeglasses/EyeglassesList';
-import EyeglassesEdit from './Admin/pages/Eyeglasses/EyeglassesEdit';
-
 import RoleList from './Admin/pages/Role/RoleList'
 import RoleCreate from './Admin/pages/Role/RoleCreate';
 
@@ -44,39 +41,7 @@ import CurrentUserProfile from './Admin/pages/CurrentUserProfile/CurrentUserProf
 import shopRoutes from './router/shopRouter'
 
 
-// import Profile from './Admin/pages/profile/Profile'
-
 const App = () => {
-// const {dispatch, token, isLoggedIn} = useContext(AuthContext);
-
-// get access token
-// useEffect(()=> {
-//   const _appSigning = localStorage.getItem("_appSigning")
-//   if(_appSigning) {
-//     const getToken = async () => {
-//       const res = await api.post("/auth/access")
-//       dispatch({type: "GET_TOKEN", payload: res.data.ac_token})
-
-//       // // set token for upcoming axios calls
-//       // api.interceptors.request.use(request => {
-//       //   request.headers.common.Authorization = `Bearer ${token}`;
-//       //   return request;
-//       // });
-//     }
-//     getToken();
-//   }
-// }, [dispatch, isLoggedIn])
-
-// useEffect(() => {
-//   if (token) {
-//     const getUser = async () => {
-//       dispatch({ type: "SIGNING" });
-//       const res = await api.get("/api/auth/user");
-//       dispatch({ type: "GET_USER", payload: res.data });
-//     };
-//     getUser();
-//   }
-// }, [dispatch, token]);
 
 const {isLoggedIn} = useContext(AuthContext);
 
@@ -103,10 +68,6 @@ const {isLoggedIn} = useContext(AuthContext);
               <Route path="product/list" element={<ProductList />} />
               <Route path="product/edit/:productId" element={<ProductEdit />} />
               <Route path="product/create" element={<ProductEdit />} />
-
-              <Route path="eyeglasses/list" element={<EyeglassesList />} />
-              <Route path="eyeglasses/edit/:productId" element={<EyeglassesEdit />} />
-              <Route path="eyeglasses/create" element={<EyeglassesEdit />} />
 
               <Route path="role/list" element={<RoleList />} />
               <Route path="role/create" element={<RoleCreate />} />

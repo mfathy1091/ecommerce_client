@@ -43,11 +43,6 @@ export const sidebarLinks = [
         path: 'admin/product/list',
         icon: <BiCategory />,
       },
-      {
-        name: 'Eyeglasses',
-        path: 'admin/eyeglasses/list',
-        icon: <BiCategory />,
-      },
     ]
   },
   

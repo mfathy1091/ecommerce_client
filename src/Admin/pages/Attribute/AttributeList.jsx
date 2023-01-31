@@ -25,7 +25,9 @@ const navigate = useNavigate();
         let rawAttributes = res.data.map((attribute) => {
           return {     
             ...attribute,
-            values: attribute.values.join(' | ')
+            values: attribute.values.reduce((acc, val)=> {
+              return [...acc, val.name]
+            }, []).join(' | ')
           }
         });
         console.log(rawAttributes)

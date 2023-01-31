@@ -33,20 +33,19 @@ const location = useLocation();
     setRowsPerPage(rowsPerPage);
   }
 
-  const timeout = useRef()
+  //const timeout = useRef()
 
   const debounceUsers = (isMounted, controller, delay = 1000) => { // handleDebounceSearch = (callback, delay = 1000)
     //Clear the previous timeout.
-    clearTimeout(timeout.current)
-    timeout.current = setTimeout(() => {
+    // let timer;
+    // clearTimeout(timer)
+    setTimeout(() => {
       getUsers(isMounted, controller) // callback(...args)
     }, delay)
   }
 
 
   const getUsers = async (isMounted, controller) => {
-    // Add validation
-
     try {
       const res = await axiosPrivate.get(
         `/users?searchKeyword=${searchKeyword}&page=${page}&limit=${rowsPerPage}`, 

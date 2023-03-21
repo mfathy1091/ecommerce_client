@@ -1,0 +1,81 @@
+.select {
+  padding: 5px;
+  width: 100%;
+  border: 1px  solid #efefef;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbContainer {
+  display: flex;
+  margin: 10px;
+}
+
+.thumb {
+  height: 50px;
+  width: 75px;
+  margin: 5px;
+
+}
+
+.thumb > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imagePreview {
+  width: 200px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3 ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.imagePreview > img {
+  box-shadow: 1px 1px 15px -15px #000 !important;
+  transition: all 0.3 ease;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.imageSelectContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageSelectLabel {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  gap: 10px;
+}
+
+.imageSelectLabel > svg {
+  height: 30px;
+  width: 30px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.formInput {
+  width: 50%;
+
+}

@@ -64,7 +64,7 @@ const useForm = (inititalDirtyFields, schema, callback) => {
           ...values,
           [name]: value,
         }
-        // console.log(updatedValues);
+        console.log(updatedValues);
         
         setValues(updatedValues);
         setIsValid(await schema.isValid(updatedValues));

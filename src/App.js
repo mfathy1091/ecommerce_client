@@ -38,7 +38,6 @@ import CategoryCreate from './Admin/pages/Category/CategoryCreate';
 import Dashboard from './Admin/pages/Dashboard/Dashboard';
 import PersistLogin from './Admin/components/PersistLogin';
 import CurrentUserProfile from './Admin/pages/CurrentUserProfile/CurrentUserProfile';
-import shopRoutes from './router/shopRouter'
 
 
 const App = () => {
@@ -48,7 +47,6 @@ const {isLoggedIn} = useContext(AuthContext);
   return (
     <div>
       <Routes>
-      {shopRoutes}
 
         <Route path='/admin/login' element={<Login />} />
         

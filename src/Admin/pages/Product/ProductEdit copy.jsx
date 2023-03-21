@@ -6,6 +6,8 @@ import { useMainContext } from "../../contexts/MainProvider"
 import { productSchema } from "../../validations/productSchema";
 import useForm from "../../hooks/useForm"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import styled from 'styled-components'
+import { AiFillCamera } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md";
 import { Container, Button, LoadingButton, Input, PageHeader } from '../../components';
 import { FaInfoCircle } from 'react-icons/fa';
@@ -15,7 +17,84 @@ import Loader from "../../components/Loader/Loader";
 import ImageHolder from "./../../../assets/images/image-holder.jpg"
 import { getEffectiveTypeRoots } from "typescript";
 
-import ProductCSS from "./Product.module.css"
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const SelectContainer = styled.select`
+  padding: 5px;
+  width: 100%;
+  border: 1px  solid #efefef;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+`
+
+const TextArea = styled.textarea`
+  
+`
+
+const ThumbContainer = styled.div`
+    display: flex;
+    margin: 10px;
+
+`
+const Thumb = styled.div`
+  height: 50px;
+  width: 75px;
+  margin: 5px;
+`
+const ThumbImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+`
+
+const ImageInput = styled.div`
+  margin: 0 auto;
+`
+const ImagePreview = styled.div`
+  width: 200px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3 ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`
+
+
+const Image = styled.img`
+  box-shadow: 1px 1px 15px -15px #000 !important;
+  transition: all 0.3 ease;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+`
+
+
+
+const UploadIcon = styled.label`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+
+  gap: 10px;
+  & svg {
+    height: 30px;
+    width: 30px;
+  }
+`
+
+const ImageBrowse = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 
 const inititalDirtyFields = {
@@ -26,9 +105,17 @@ const inititalDirtyFields = {
   images: false,
   pixelPitch: false,
   moduleSize: false,
-  cabinetSize: false,
+  moduleResolution: false,
 }
 
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`
+const FormInput = styled.div`
+  width: 50%;
+`
 
 const ProductEdit = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -141,7 +228,7 @@ const ProductEdit = () => {
 
     try {
       let data = {
-        brandId: values.brandId,
+        // brandId: values.brandId,
         categoryId: values.categoryId,
         // typeId: values.typeId,
         name: values.name,
@@ -150,7 +237,7 @@ const ProductEdit = () => {
         // attributeValues: mappedValues
         pixelPitch: values.pixelPitch,
         moduleSize: values.moduleSize,
-        cabinetSize: values.cabinetSize,
+        moduleResolution: values.moduleResolution,
       }
 
       let res
@@ -197,7 +284,7 @@ const ProductEdit = () => {
     }
   }
 
-  useEffect(() => {
+  // useEffect(() => {
   //   const getAttributes = async () => {
   //     try {
   //       const res = await axiosPrivate.get('/attributes/');
@@ -220,27 +307,27 @@ const ProductEdit = () => {
 
 
 
-    const getBrands = async () => {
-      try {
-        const res = await axiosPrivate.get('/brands/');
-        const mappedData = res.data.map((brand) => {
-          return { value: brand.id, label: brand.name }
-        })
-        setBrands(mappedData)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+  //   const getBrands = async () => {
+  //     try {
+  //       const res = await axiosPrivate.get('/brands/');
+  //       const mappedData = res.data.map((brand) => {
+  //         return { value: brand.id, label: brand.name }
+  //       })
+  //       setBrands(mappedData)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
 
 
 
-    getBrands();
-    // getAttributes();
-    getTypes()
+  //   getBrands();
+  //   getAttributes();
+  //   getTypes()
 
-  }, [])
+  // }, [])
 
-  useEffect(() => {
+  useEffect(()=>{
     const getProduct = async () => {
       try {
         const res = await axiosPrivate.get('/products/' + productId);
@@ -292,7 +379,7 @@ const ProductEdit = () => {
 
   return (
     <div>
-      <div className={ProductCSS.headerContainer}>
+      <HeaderContainer>
         <PageHeader category="Products" title={productId ? 'Update Product' : 'Ceate Product'} />
         {productId &&
           <Button
@@ -303,24 +390,24 @@ const ProductEdit = () => {
           </Button>
         }
 
-      </div>
+      </HeaderContainer>
 
       <form onSubmit={handleSubmit}>
-        <div className={ProductCSS.formContainer}>
-          {/* image select */}
-          <div className={ProductCSS.imageSelectContainer}>
-            <div className={ProductCSS.thumbContainer}>
-              {values?.images?.map((image) => {
-                return (
-                  <div className={ProductCSS.thumb} key={image.url}>
-                    <img key={image.url} src={image.url} onClick={() => setSelectedImage(image)} />
-                  </div>
-                )
+        <FormContainer>
+          <ThumbContainer>
+            {values?.images?.map((image) => {
+              return (
+                <Thumb key={image.url}>
+                  <ThumbImage key={image.url} src={image.url} onClick={() => setSelectedImage(image)} />
+                </Thumb>
+              )
 
-              })}
-            </div>
-            <div className={ProductCSS.imagePreview}>
-              <img
+            })}
+          </ThumbContainer>
+
+          <ImageInput>
+            <ImagePreview>
+              <Image
                 src={
                   values.image
                     ? values.image
@@ -329,23 +416,25 @@ const ProductEdit = () => {
                 alt="picture-placeholder"
               />
               {uploading ? <Loader color='000' /> : ''}
-            </div >
-            <label className={ProductCSS.imageSelectLabel} htmlFor="file">
-              Select an Image <MdDriveFolderUpload />
-            </label>
-            <input
-              style={{ display: 'none' }}
-              type="file"
-              ref={inputFileRef}
-              id='file'
-              onChange={uploadImageHandler}
-            />
-            <span className={errors.image ? "flex items-center instructions" : "flex items-center offscreen"}>
-              <FaInfoCircle /> {errors.image}
-            </span>
-          </div>
+            </ImagePreview>
+            <ImageBrowse>
+              <UploadIcon htmlFor="file">
+                Image <MdDriveFolderUpload />
+              </UploadIcon>
+              <input
+                style={{ display: 'none' }}
+                type="file"
+                ref={inputFileRef}
+                id='file'
+                onChange={uploadImageHandler}
+              />
+              <span className={errors.image ? "flex items-center instructions" : "flex items-center offscreen"}>
+                <FaInfoCircle /> {errors.image}
+              </span>
+            </ImageBrowse>
+          </ImageInput>
 
-          <div className={ProductCSS.formInput}>
+          {/* <FormInput>
             <InputSelect
               onChange={handleChange}
               name='brandId'
@@ -355,9 +444,9 @@ const ProductEdit = () => {
               label='Select Brand'
               error={errors.brandId}
             />
-          </div>
+          </FormInput> */}
 
-          <div className={ProductCSS.formInput}>
+          <FormInput>
             <InputSelect
               onChange={handleChange}
               name='categoryId'
@@ -371,9 +460,9 @@ const ProductEdit = () => {
               ]}
               error={errors.categoryId}
             />
-          </div>
+          </FormInput>
 
-          <div className={ProductCSS.formInput}>
+          <FormInput>
             <Input
               name="name"
               label="Model Name"
@@ -385,9 +474,9 @@ const ProductEdit = () => {
               required={true}
               error={errors.name}
             />
-          </div>
+          </FormInput>
 
-          <div className={ProductCSS.formInput}>
+          <FormInput>
             <Input
               name="pixelPitch"
               label="Pixel Pitch"
@@ -399,9 +488,9 @@ const ProductEdit = () => {
               required={true}
               error={errors.pixelPitch}
             />
-          </div>
+          </FormInput>
 
-          <div className={ProductCSS.formInput}>
+          <FormInput>
             <Input
               name="moduleSize"
               label="Module Size"
@@ -412,22 +501,22 @@ const ProductEdit = () => {
               required={true}
               error={errors.moduleSize}
             />
-          </div>
+          </FormInput>
 
-          <div className={ProductCSS.formInput}>
+          <FormInput>
             <Input
-              name="cabinetSize"
-              label="Cabinet Size"
+              name="moduleResolution"
+              label="Model Resolution"
               type='text'
-              placeholder="Cabinet Size"
-              value={values.cabinetSize}
+              placeholder="Module Resolution"
+              value={values.moduleResolution}
               onChange={handleChange}
               required={true}
-              error={errors.cabinetSize}
+              error={errors.moduleResolution}
             />
-          </div>
+          </FormInput>
 
-          {/* <div className={ProductCSS.formInput}>
+          {/* <FormInput>
             <Input
               name="description"
               label="Description"
@@ -438,9 +527,9 @@ const ProductEdit = () => {
               required={true}
               error={errors.description}
             />
-          </div> */}
+          </FormInput> */}
 
-          {/* <div className={ProductCSS.formInput}>
+          {/* <FormInput>
             <InputSelect
               onChange={handleChangeType}
               name='typeId'
@@ -450,10 +539,10 @@ const ProductEdit = () => {
               label='Select Type'
               error={errors.typeId}
             />
-          </div> */}
+          </FormInput> */}
           {/* {types && selectedType && selectedType.attributes?.map((attribute, i) => {
             return (
-              <div className={ProductCSS.formInput} key={i}>
+              <FormInput key={i}>
                 <InputSelect
                   onChange={handleChangeAttribute}
                   name={attribute.label}
@@ -463,10 +552,10 @@ const ProductEdit = () => {
                   label={`Select ${attribute.label}`}
                   error={errors.brandId}
                 />
-              </div>
+              </FormInput>
             )
           })} */}
-        </div>
+        </FormContainer>
 
 
 

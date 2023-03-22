@@ -49,9 +49,7 @@ const {isLoggedIn} = useContext(AuthContext);
       <Routes>
 
         <Route path='/admin/login' element={<Login />} />
-        
-        {/* <Route path='/' element={isLoggedIn ? <HomeLayout /> : <Login />} /> */}
-        
+                
         <Route element={<PersistLogin />}>
           <Route element={<RequireAuth />} >
             <Route path='/admin' element={<AdminLayout />}>
@@ -89,8 +87,6 @@ const {isLoggedIn} = useContext(AuthContext);
 
         <Route path="/unauthorized" element={<Unauthorized />} />
         
-        {/* <Route path='/profile' element={<Profile />} />  */}
-        {/* <Route path='/admin' element={<Admin />} /> */}
 
         {/* Catch all */}
         <Route path="*" element={<Page404 />} />

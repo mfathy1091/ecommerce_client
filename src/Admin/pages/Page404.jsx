@@ -36,7 +36,7 @@ const Page404 = () => {
       <Title>404</Title>
       <Paragraph>Page Not Found</Paragraph>
       <Button 
-          onClick={() => {navigate('/')}}
+          onClick={() => {navigate('/admin')}}
           className='btn btn-primary btn-md'
         >
           Go Home

@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_API_URL
-// import success from '@/interceptors/response/success.js'
-// import failure from '@/interceptors/response/failure.js'
 
 export default axios.create({
     baseURL: BASE_URL,
@@ -16,5 +14,3 @@ export const axiosPrivate = axios.create({
     withCredentials: true,
 })
 
-
-// HTTP.interceptors.response.use(success, failure)
